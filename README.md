@@ -20,18 +20,19 @@ public static IWebHost BuildWebHost(string[] args) =>
                 .UseStartup<Startup>()
                 .Build();
 
-2. xxxxx.csproj项目文件添加上<PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>，否则可能会出现错误：
-Error:
+2. xxxxx.csproj项目文件添加上
+"<PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>"，否则可能会出现错误：
+"Error:
   An assembly specified in the application dependencies manifest (*.*.deps.json) was not found:
     package: ‘Microsoft.AspNetCore.Antiforgery‘, version: ‘2.0.3‘
     path: ‘lib/netstandard2.0/Microsoft.AspNetCore.Antiforgery.dll‘
   This assembly was expected to be in the local runtime store as the application was published using the following target manifest files:
-    aspnetcore-store-2.0.8.xml　
+    aspnetcore-store-2.0.8.xml　"
 
-  <PropertyGroup>
+ " <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
-  </PropertyGroup>
+  </PropertyGroup>"
 
 3. SSH工具推荐使用Bitvise SSH Client
 
@@ -39,4 +40,4 @@ Error:
 	部署模式：独立
 	目标运行时选择对应的环境
 
-框架依赖的可移植仍然摸索中...
+5. 框架依赖的可移植模式发布，发布目录仅仅包含项目文件而不包含运行时文件，所以出现错误，可能是需要进行其他配置才能启动。
