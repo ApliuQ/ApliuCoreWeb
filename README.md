@@ -9,6 +9,8 @@ dotnet publish
 dotnet run
 dotnet xxxx.dll
 
+为防止ssh工具界面关闭后导致服务停止，加上指令（xxxx为具体执行指令）：nohup xxxxxx &
+
 
 1. Program.cs 方法添加[.UseUrls("http://0.0.0.0:8000")]，不然会出现只监听127.0.0.1，外网无法访问
 
