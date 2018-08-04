@@ -32,3 +32,9 @@ Error:
   </PropertyGroup>
 
 3. SSH工具推荐使用Bitvise SSH Client
+
+4. 发布的时候注意点，稳妥起见
+	部署模式：独立
+	目标运行时选择对应的环境
+
+框架依赖的可移植仍然摸索中...
