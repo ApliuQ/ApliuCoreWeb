@@ -19,6 +19,7 @@ namespace ApliuCoreWeb
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://0.0.0.0:8000")
                 .UseStartup<Startup>()
                 .Build();
     }
