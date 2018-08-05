@@ -36,7 +36,7 @@ namespace ApliuCoreWeb
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

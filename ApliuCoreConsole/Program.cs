@@ -6,12 +6,7 @@ namespace ApliuCoreConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ApliuCoreConsole Hello World!");
+            Console.WriteLine("Apliu Core Console Hello World!");
         } 
-
-        public int Add(int a, int b)
-        {
-            return a + b;
-        }
     }
 }
