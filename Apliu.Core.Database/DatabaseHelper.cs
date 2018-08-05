@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace ApliuCoreDatabase
+namespace Apliu.Core.Database
 {
     public class DatabaseHelper
     {

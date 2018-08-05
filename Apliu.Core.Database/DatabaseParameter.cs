@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Text;
 
-namespace ApliuCoreDatabase
+namespace Apliu.Core.Database
 {
     [Obsolete]
     public class DatabaseParameter : DbParameter

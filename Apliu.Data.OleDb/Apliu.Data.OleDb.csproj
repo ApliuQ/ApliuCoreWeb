@@ -7,8 +7,8 @@
     <ProjectGuid>{E2C2766A-646B-4C5B-8412-59444794956F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>System.Data.OleDb</RootNamespace>
-    <AssemblyName>System.Data.OleDb</AssemblyName>
+    <RootNamespace>Apliu.Data.OleDb</RootNamespace>
+    <AssemblyName>Apliu.Data.OleDb</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

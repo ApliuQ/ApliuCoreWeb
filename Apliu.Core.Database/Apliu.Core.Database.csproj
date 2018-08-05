@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Apliu.Core.Database</AssemblyName>
     <!--<TargetFrameworks>netstandard2.0;netcoreapp2.0;net45</TargetFrameworks>-->
   </PropertyGroup>
 
@@ -13,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\System.Data.OleDb\Apliu.Data.OleDb.csproj" />
+    <ProjectReference Include="..\Apliu.Data.OleDb\Apliu.Data.OleDb.csproj" />
   </ItemGroup>
 
 </Project>

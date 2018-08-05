@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApliuCoreDatabase
+namespace Apliu.Core.Database
 {
     public enum DatabaseType
     {
