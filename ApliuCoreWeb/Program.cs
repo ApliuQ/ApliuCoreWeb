@@ -19,7 +19,7 @@ namespace ApliuCoreWeb
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://0.0.0.0:8000")
+                .UseUrls("http://0.0.0.0:80","https://0.0.0.0:443")
                 .UseStartup<Startup>()
                 .Build();
     }
