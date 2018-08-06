@@ -1,8 +1,5 @@
-﻿using System;
-using System.Data;
-using ApliuCoreWeb.Models;
+﻿using Apliu.Standard.Tools;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,10 +10,14 @@ namespace ApliuCoreWeb.Controllers
     {
         // GET: api/<controller>
         [HttpGet]
-        public string Get()
+        public byte[] Get()
         {
-            String result = String.Empty;
-            Apliu.Core.Database.DatabaseType databaseType = (Apliu.Core.Database.DatabaseType)Enum.Parse(typeof(Apliu.Core.Database.DatabaseType), AppsettingJson.GetuUserDefinedSetting("DatabaseType")); 
+            return QRCode.CreateCodeSimpleByte("dd");
+            /*String result = "result";
+            Apliu.Standard.Tools.Logger.WriteLogWeb("11111");
+            Apliu.Standard.Tools.Logger.WriteLogWeb("22222");
+            return result;
+            Apliu.Core.Database.DatabaseType databaseType = (Apliu.Core.Database.DatabaseType)Enum.Parse(typeof(Apliu.Core.Database.DatabaseType), AppsettingJson.GetuUserDefinedSetting("DatabaseType"));
             UserConnectionString userConnectionString = AppsettingJson.GetSetting<UserConnectionString>("ConnectionString", "userdefined.json");
             String databaseConnection = String.Empty;
             switch (databaseType)
@@ -37,7 +38,7 @@ namespace ApliuCoreWeb.Controllers
                     break;
             }
 
-            Apliu.Core.Database.DatabaseHelper databaseHelper = 
+            Apliu.Core.Database.DatabaseHelper databaseHelper =
                 new Apliu.Core.Database.DatabaseHelper(databaseType, databaseConnection);
 
             string sql01 = "insert into test (ID,NAME) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');";
@@ -53,7 +54,7 @@ namespace ApliuCoreWeb.Controllers
                 result = JsonConvert.SerializeObject(ds.Tables[0], setting);
             }
 
-            return result;
+            return result;*/
         }
 
         // GET api/<controller>/5

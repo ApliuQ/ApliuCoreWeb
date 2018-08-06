@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apliu.Core.Database", "Apli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApliuCoreConsole", "ApliuCoreConsole\ApliuCoreConsole.csproj", "{3881577B-01FE-4A43-96E1-8A8D77364495}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apliu.Standard.Tools", "Apliu.Standard.Tools\Apliu.Standard.Tools.csproj", "{334D5251-367C-426E-8831-F9081F2E2076}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3881577B-01FE-4A43-96E1-8A8D77364495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3881577B-01FE-4A43-96E1-8A8D77364495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3881577B-01FE-4A43-96E1-8A8D77364495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334D5251-367C-426E-8831-F9081F2E2076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334D5251-367C-426E-8831-F9081F2E2076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334D5251-367C-426E-8831-F9081F2E2076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334D5251-367C-426E-8831-F9081F2E2076}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

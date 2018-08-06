@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="WebTools\**" />
+    <EmbeddedResource Remove="WebTools\**" />
+    <None Remove="WebTools\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="WebTools\HttpRequestHelper.cs" />
+    <Compile Include="WebTools\ResponseMessage.cs" />
+    <Compile Include="WebTools\Thumbnail.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="QRCoder" Version="1.3.3" />
+  </ItemGroup>
+
+</Project>
