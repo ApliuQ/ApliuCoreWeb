@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Apliu.Standard.Database
+namespace Apliu.Core.Database
 {
     public enum DatabaseType
     {
@@ -10,6 +10,7 @@ namespace Apliu.Standard.Database
         /// <summary>
         /// Microsoft Access 数据库(.accdb)
         /// </summary>
+        [Obsolete]
         OleDb = 3
     }
 }

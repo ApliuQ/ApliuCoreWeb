@@ -16,29 +16,29 @@ namespace ApliuCoreWeb.Controllers
         public string Get()
         {
             String result = String.Empty;
-            Apliu.Standard.Database.DatabaseType databaseType = (Apliu.Standard.Database.DatabaseType)Enum.Parse(typeof(Apliu.Standard.Database.DatabaseType), AppsettingJson.GetuUserDefinedSetting("DatabaseType")); 
+            Apliu.Core.Database.DatabaseType databaseType = (Apliu.Core.Database.DatabaseType)Enum.Parse(typeof(Apliu.Core.Database.DatabaseType), AppsettingJson.GetuUserDefinedSetting("DatabaseType")); 
             UserConnectionString userConnectionString = AppsettingJson.GetSetting<UserConnectionString>("ConnectionString", "userdefined.json");
             String databaseConnection = String.Empty;
             switch (databaseType)
             {
-                case Apliu.Standard.Database.DatabaseType.SqlServer:
+                case Apliu.Core.Database.DatabaseType.SqlServer:
                     databaseConnection = userConnectionString.SqlServer;
                     break;
-                case Apliu.Standard.Database.DatabaseType.Oracle:
+                case Apliu.Core.Database.DatabaseType.Oracle:
                     databaseConnection = userConnectionString.Oracle;
                     break;
-                case Apliu.Standard.Database.DatabaseType.MySql:
+                case Apliu.Core.Database.DatabaseType.MySql:
                     databaseConnection = userConnectionString.MySql;
                     break;
-                case Apliu.Standard.Database.DatabaseType.OleDb:
+                case Apliu.Core.Database.DatabaseType.OleDb:
                     databaseConnection = userConnectionString.OleDb;
                     break;
                 default:
                     break;
             }
 
-            Apliu.Standard.Database.DatabaseHelper databaseHelper = 
-                new Apliu.Standard.Database.DatabaseHelper(databaseType, databaseConnection);
+            Apliu.Core.Database.DatabaseHelper databaseHelper = 
+                new Apliu.Core.Database.DatabaseHelper(databaseType, databaseConnection);
 
             string sql01 = "insert into test (ID,NAME) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');";
             int p1 = databaseHelper.PostData(sql01);

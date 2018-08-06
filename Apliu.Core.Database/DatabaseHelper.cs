@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Apliu.Standard.Database
+namespace Apliu.Core.Database
 {
     public class DatabaseHelper
     {
@@ -295,11 +295,11 @@ namespace Apliu.Standard.Database
                     break;
                 case DatabaseType.Oracle:
                     databaseConnectionStr = beginConnectionStr + ";"
-                    + "MIN POOL SIZE=" + MinPool + ";"
-                    + "MAX POOL SIZE=" + MaxPool + ";"
-                    + "CONNECTION TIMEOUT=" + Conn_Timeout + ";"
-                    + "CONNECTION LIFETIME=" + Conn_Lifetime + ";"
-                    + "POOLING=True;";
+                                        + "MIN POOL SIZE=" + MinPool + ";"
+                                        + "MAX POOL SIZE=" + MaxPool + ";"
+                                        + "CONNECTION TIMEOUT=" + Conn_Timeout + ";"
+                                        + "CONNECTION LIFETIME=" + Conn_Lifetime + ";"
+                                        + "POOLING=True;";
                     break;
                 case DatabaseType.OleDb:
                     databaseConnectionStr = beginConnectionStr;

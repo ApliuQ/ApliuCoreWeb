@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApliuCoreConsole", "ApliuCoreConsole\ApliuCoreConsole.csproj", "{FF21BABF-C6C8-4C08-8525-9EBB25452164}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApliuCoreWeb", "ApliuCoreWeb\ApliuCoreWeb.csproj", "{9B26EE7E-03BE-4F25-925A-BF9854286960}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apliu.Data.OleDb", "Apliu.Data.OleDb\Apliu.Data.OleDb.csproj", "{E2C2766A-646B-4C5B-8412-59444794956F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apliu.Standard.Database", "Apliu.Standard.Database\Apliu.Standard.Database.csproj", "{147DF80A-C5D5-49A1-865F-3D087B000EA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apliu.Core.Database", "Apliu.Core.Database\Apliu.Core.Database.csproj", "{918750BB-71A8-425A-999C-4CFABAB03605}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApliuCoreConsole", "ApliuCoreConsole\ApliuCoreConsole.csproj", "{3881577B-01FE-4A43-96E1-8A8D77364495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FF21BABF-C6C8-4C08-8525-9EBB25452164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF21BABF-C6C8-4C08-8525-9EBB25452164}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF21BABF-C6C8-4C08-8525-9EBB25452164}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF21BABF-C6C8-4C08-8525-9EBB25452164}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B26EE7E-03BE-4F25-925A-BF9854286960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B26EE7E-03BE-4F25-925A-BF9854286960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B26EE7E-03BE-4F25-925A-BF9854286960}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,10 +25,14 @@ Global
 		{E2C2766A-646B-4C5B-8412-59444794956F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2C2766A-646B-4C5B-8412-59444794956F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2C2766A-646B-4C5B-8412-59444794956F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{147DF80A-C5D5-49A1-865F-3D087B000EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{147DF80A-C5D5-49A1-865F-3D087B000EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{147DF80A-C5D5-49A1-865F-3D087B000EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{147DF80A-C5D5-49A1-865F-3D087B000EA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{918750BB-71A8-425A-999C-4CFABAB03605}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{918750BB-71A8-425A-999C-4CFABAB03605}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{918750BB-71A8-425A-999C-4CFABAB03605}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{918750BB-71A8-425A-999C-4CFABAB03605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3881577B-01FE-4A43-96E1-8A8D77364495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3881577B-01FE-4A43-96E1-8A8D77364495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3881577B-01FE-4A43-96E1-8A8D77364495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3881577B-01FE-4A43-96E1-8A8D77364495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

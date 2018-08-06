@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Text;
 
-namespace Apliu.Standard.Database
+namespace Apliu.Core.Database
 {
     [Obsolete]
     public class DatabaseParameter : DbParameter

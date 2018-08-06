@@ -1,6 +1,6 @@
 ﻿{
   "UseUrls": "http://0.0.0.0:80",
-  "DatabaseType": "Oracle",
+  "DatabaseType": "MySql",
   "ConnectionString": {
     "SqlServer": "Data Source=140.143.5.141;Initial Catalog=ApliuWeb;User ID=sa;Password=apliu@2018",
     "Oracle": "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=140.143.5.141)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCL)));User Id=APLIUWEB;Password=apliu2018",

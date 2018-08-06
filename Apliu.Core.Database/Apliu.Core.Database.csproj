@@ -1,9 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Apliu.Standard.Database</AssemblyName>
-    <!--<TargetFrameworks>netstandard2.0;netcoreapp2.0;net45</TargetFrameworks>-->
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
