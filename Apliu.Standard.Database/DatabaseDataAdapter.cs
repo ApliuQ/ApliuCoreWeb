@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Common;
 
-namespace Apliu.Core.Database
+namespace Apliu.Standard.Database
 {
     public class DatabaseDataAdapter : DbDataAdapter
     {

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using ApliuCoreWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -19,10 +16,31 @@ namespace ApliuCoreWeb.Controllers
         public string Get()
         {
             String result = String.Empty;
-            String databaseConnection = AppsettingJson.GetSetting("ConnectionString").ToString();
-            Apliu.Core.Database.DatabaseHelper databaseHelper = new Apliu.Core.Database.DatabaseHelper(databaseConnection);
+            Apliu.Standard.Database.DatabaseType databaseType = (Apliu.Standard.Database.DatabaseType)Enum.Parse(typeof(Apliu.Standard.Database.DatabaseType), AppsettingJson.GetuUserDefinedSetting("DatabaseType")); 
+            UserConnectionString userConnectionString = AppsettingJson.GetSetting<UserConnectionString>("ConnectionString", "userdefined.json");
+            String databaseConnection = String.Empty;
+            switch (databaseType)
+            {
+                case Apliu.Standard.Database.DatabaseType.SqlServer:
+                    databaseConnection = userConnectionString.SqlServer;
+                    break;
+                case Apliu.Standard.Database.DatabaseType.Oracle:
+                    databaseConnection = userConnectionString.Oracle;
+                    break;
+                case Apliu.Standard.Database.DatabaseType.MySql:
+                    databaseConnection = userConnectionString.MySql;
+                    break;
+                case Apliu.Standard.Database.DatabaseType.OleDb:
+                    databaseConnection = userConnectionString.OleDb;
+                    break;
+                default:
+                    break;
+            }
 
-            string sql01 = "insert into test values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');";
+            Apliu.Standard.Database.DatabaseHelper databaseHelper = 
+                new Apliu.Standard.Database.DatabaseHelper(databaseType, databaseConnection);
+
+            string sql01 = "insert into test (ID,NAME) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');";
             int p1 = databaseHelper.PostData(sql01);
 
             DataSet ds = databaseHelper.GetData("select * from test ");
@@ -35,7 +53,6 @@ namespace ApliuCoreWeb.Controllers
                 result = JsonConvert.SerializeObject(ds.Tables[0], setting);
             }
 
-            //  <DatabaseConnection>Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa</DatabaseConnection>
             return result;
         }
 

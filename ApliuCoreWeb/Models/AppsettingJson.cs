@@ -46,7 +46,13 @@ namespace ApliuCoreWeb.Models
             return appconfig;
         }
 
-        public static String GetSetting(string key, string fileName = "appsettings.json")
+        /// <summary>
+        /// 获取指定Json文件中节点的值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static String GetuUserDefinedSetting(string key, string fileName = "userdefined.json")
         {
             IConfiguration config = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
@@ -56,5 +62,13 @@ namespace ApliuCoreWeb.Models
 
             return value;
         }
+    }
+
+    public class UserConnectionString
+    {
+        public string SqlServer { get; set; }
+        public string Oracle { get; set; }
+        public string MySql { get; set; }
+        public string OleDb { get; set; }
     }
 }

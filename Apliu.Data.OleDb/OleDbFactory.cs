@@ -7,6 +7,13 @@ namespace Apliu.Data.OleDb
 {
     public static class OleDbFactory
     {
+        public static String CreateOleDbConnectionString(String DataSource, String Provider = "Microsoft.ACE.OleDB.15.0")
+        {
+            OleDbConnectionStringBuilder oleDbConnectionStringBuilder = new OleDbConnectionStringBuilder();
+            oleDbConnectionStringBuilder.Provider = Provider;
+            oleDbConnectionStringBuilder.DataSource = DataSource;
+            return oleDbConnectionStringBuilder.ToString();
+        }
         public static OleDbConnection CreateOleDbConnection(string connectionString)
         {
             OleDbConnection oleDbConnection = new OleDbConnection(connectionString);

@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Apliu.Core.Database\Apliu.Core.Database.csproj" />
+    <ProjectReference Include="..\Apliu.Standard.Database\Apliu.Standard.Database.csproj" />
   </ItemGroup>
 
 </Project>

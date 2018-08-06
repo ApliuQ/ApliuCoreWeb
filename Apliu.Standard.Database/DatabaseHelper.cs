@@ -1,15 +1,14 @@
-﻿using Apliu.Data.OleDb;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
 using System.Data.Common;
-using System.Data.OracleClient;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Apliu.Core.Database
+namespace Apliu.Standard.Database
 {
     public class DatabaseHelper
     {
@@ -40,7 +39,6 @@ namespace Apliu.Core.Database
         /// </summary>
         public string databaseConnection
         {
-            // Data Source={0};Initial Catalog={1};Integrated Security=False;User ID={2};Password={3};Connect Timeout=15;Encrypt=False;TrustServerCertificate=False
             get
             {
                 return CreateDatabaseConnectionStr(_databaseConnection);
@@ -56,9 +54,10 @@ namespace Apliu.Core.Database
         /// 初始化数据库操作对象
         /// </summary>
         /// <param name="ConnectionString"></param>
-        public DatabaseHelper(String ConnectionString)
+        public DatabaseHelper(DatabaseType DatabaseType, String ConnectionString)
         {
             this._databaseConnection = ConnectionString;
+            this.databaseType = DatabaseType;
         }
 
         /// <summary>
@@ -144,6 +143,24 @@ namespace Apliu.Core.Database
             int val = -1;
             try
             {
+                //SQL语句以分号结束
+                if (!commandText.Trim().EndsWith(";")) commandText = commandText.Trim() + ";";
+
+                switch (databaseType)
+                {
+                    case DatabaseType.SqlServer:
+                        break;
+                    case DatabaseType.Oracle://Oracle SQL语句必须加上Begin End
+                        if (!commandText.Trim().ToUpper().EndsWith("END;")) commandText = "begin " + commandText + " end;";
+                        break;
+                    case DatabaseType.MySql:
+                        break;
+                    case DatabaseType.OleDb:
+                        break;
+                    default:
+                        break;
+                }
+
                 using (DbConnection dbConnection = CreateDbConnection(databaseConnection))
                 {
                     if (dbConnection.State != ConnectionState.Open) dbConnection.Open();
@@ -261,14 +278,31 @@ namespace Apliu.Core.Database
             switch (databaseType)
             {
                 case DatabaseType.SqlServer:
-                case DatabaseType.Oracle:
-                case DatabaseType.MySql:
-                case DatabaseType.OleDb:
                     databaseConnectionStr = beginConnectionStr + ";"
-                                    + "Max Pool Size=" + MaxPool + ";"
-                                    + "Min Pool Size=" + MinPool + ";"
-                                    + "Connect Timeout=" + Conn_Timeout + ";"
-                                    + "Connection Lifetime=" + Conn_Lifetime + ";";
+                                        + "Max Pool Size=" + MaxPool + ";"
+                                        + "Min Pool Size=" + MinPool + ";"
+                                        + "Connect Timeout=" + Conn_Timeout + ";"
+                                        + "Connection Lifetime=" + Conn_Lifetime + ";"
+                                        + "Pooling =True;";
+                    break;
+                case DatabaseType.MySql:
+                    databaseConnectionStr = beginConnectionStr + ";"
+                                        + "maxpoolsize=" + MaxPool + ";"
+                                        + "minpoolsize=" + MinPool + ";"
+                                        + "connectiontimeout=" + Conn_Timeout + ";"
+                                        + "connectionlifetime=" + Conn_Lifetime + ";"
+                                        + "pooling=True;SslMode = none;";
+                    break;
+                case DatabaseType.Oracle:
+                    databaseConnectionStr = beginConnectionStr + ";"
+                    + "MIN POOL SIZE=" + MinPool + ";"
+                    + "MAX POOL SIZE=" + MaxPool + ";"
+                    + "CONNECTION TIMEOUT=" + Conn_Timeout + ";"
+                    + "CONNECTION LIFETIME=" + Conn_Lifetime + ";"
+                    + "POOLING=True;";
+                    break;
+                case DatabaseType.OleDb:
+                    databaseConnectionStr = beginConnectionStr;
                     break;
                 default:
                     throw new Exception("数据库类型有误或未初始化 databaseType：" + databaseType.ToString());
@@ -284,7 +318,6 @@ namespace Apliu.Core.Database
         /// <returns></returns>
         private DbConnection CreateDbConnection(String databaseConnection)
         {
-            //System.Data.OleDb.OleDbPermissionAttribute
             DbConnection dbConnection = null;
             switch (databaseType)
             {
@@ -366,7 +399,7 @@ namespace Apliu.Core.Database
                     break;
                 case DatabaseType.Oracle:
                     dbParameter = new OracleParameter();
-                    ((OracleParameter)dbParameter).OracleType = (OracleType)Enum.Parse(typeof(OracleType), dbType);
+                    ((OracleParameter)dbParameter).OracleDbType = (OracleDbType)Enum.Parse(typeof(OracleDbType), dbType);
                     break;
                 case DatabaseType.MySql:
                     dbParameter = new MySqlParameter();
