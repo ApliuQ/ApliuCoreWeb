@@ -12,9 +12,9 @@ namespace Apliu.Standard.Tools
             string result = HttpRequestHelper.HttpGet(json);
             return "";
         }
-        private static string sendurl = @"https://tmt.api.qcloud.com/v2/index.php?Action={0}&Nonce={1}&Region={2}&SecretId={3}&Timestamp={4}&sourceText={5}&source={6}&target={7}&Signature={8}";
+        private static readonly string sendurl = @"https://tmt.api.qcloud.com/v2/index.php?Action={0}&Nonce={1}&Region={2}&SecretId={3}&Timestamp={4}&sourceText={5}&source={6}&target={7}&Signature={8}";
 
-        private static string sendJson = @"{
+        private static readonly string sendJson = @"{
                                 'Action' : '{0}',
                                 'Nonce' : {1},
                                 'Region' : '{2}',

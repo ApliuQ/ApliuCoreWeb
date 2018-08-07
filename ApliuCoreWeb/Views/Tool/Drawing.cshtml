@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_None.cshtml";
+    ViewBag.Title = "Drawing 画板";
+}
+
+<link rel="stylesheet" href="/CssStyle/drawing.css">
+<link rel="stylesheet" type="text/css" href="/CssStyle/jquery.bigcolorpicker.css">
+<script type="text/javascript" src="/JsScript/jquery.bigcolorpicker.min.js"></script>
+
+<canvas id="xxx"></canvas>
+
+<div id="actions" class="actions">
+
+    <a href="/">
+        <img src="~/Images/Logo/logosqu.png" style="width: 40px;" title="返回主页" /></a>
+
+    <svg id="pen" class="active icon">
+        <use xlink:href="#icon-pen"></use>
+    </svg>
+    <svg id="eraser" class="icon">
+        <use xlink:href="#icon-erase"></use>
+    </svg>
+    <svg id="clear" class="icon">
+        <use xlink:href="#icon-clear"></use>
+    </svg>
+    <svg id="download" class="icon">
+        <use xlink:href="#icon-save"></use>
+    </svg>
+</div>
+
+<ol class="colors">
+    <li id="black" class="black active"></li>
+    <li id="red" class="red"></li>
+    <li id="green" class="green"></li>
+    <li id="blue" class="blue"></li>
+    <li id="usercolor" class="usercolor">∞</li>
+</ol>
+<ol class="sizes">
+    <li id="thin" class="thin active"></li>
+    <li id="thick" class="thick"></li>
+    <select id="usersizes" class="usersizes">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="8">8</option>
+        <option value="12">12</option>
+    </select>
+</ol>
+
+<script type="text/javascript" src="/JsScript/drawing.js"></script>
+<div id="none"></div>
+<script type="text/javascript">
+    document.addEventListener('touchmove', function (e) { e.preventDefault() }, false);
+</script>

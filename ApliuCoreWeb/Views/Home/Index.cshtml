@@ -1,97 +1,318 @@
 ﻿@{
-    ViewData["Title"] = "Apliu Core Web";
+    Layout = "~/Views/Shared/Templet.cshtml";
+    ViewBag.Title = "主页";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    <img src="/api/values" />
-                    <h1>Apliu Core Web</h1>
-                    <br />
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
+<section id="wrapper">
+    <section class="top-slider-wrapper" dd_name="首页焦点轮播区">
+        <section data-widget="topSlider" class="J_top_slider index-slider">
+            <ul class="top-slider" style="width: 500%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-2588px, 0px) translateZ(0px);">
+                <li style="width: 20%">
+                    <a href="javascript:void(0);" dd_name="焦点轮播图1">
+                        <img src="../../images/other/zhanshi1.jpg" alt="预留">
                     </a>
-                </p>
+                </li>
+                <li style="width: 20%">
+                    <a href="javascript:void(0);" dd_name="焦点轮播图2">
+                        <img class="" alt="预留" src="../../images/other/zhanshi1.jpg">
+                    </a>
+                </li>
+                <li style="width: 20%">
+                    <a href="javascript:void(0);" dd_name="焦点轮播图3">
+                        <img class="" alt="预留" src="../../images/other/zhanshi1.jpg">
+                    </a>
+                </li>
+            </ul>
+            <div class="top-slider-indicator">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <!--                    <span class="dot"></span>
+                    <span class="dot"></span>-->
+                <span class="dot on"></span>
+            </div>
+        </section>
+    </section>
+    <ul class="index-nav" dd_name="首页功能区">
+        <li>
+            <a href="../../OldWeb/lovetime/wxindex.html" dd_name="爱的故事">
+                <img class="" src="../../Earliest/images/gouwuche.png"><span>恋爱计时</span>
+            </a>
+        </li>
+        <li>
+            <a href="/text" dd_name="">
+                <img class="" src="../../Earliest/images/fenlei.png"><span>临时文本</span>
+            </a>
+        </li>
+        <li>
+            <a href="/test/cube.html" dd_name="">
+                <img class="" src="../../Earliest/images/xiazai-0605.png"><span>3D正方体</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Earliest/PersCenter/index.html" dd_name="">
+                <img class="" src="../../Earliest/images/wodedangdang-h5.png"><span>个人中心</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Tool/SqlServer" dd_name="">
+                <img class="" src="../../Earliest/images/haoshubang.png"><span>数据库</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Tool/QRCode" dd_name="">
+                <img class="" src="../../Earliest/images/tognshubang-0604.png"><span>二维码</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Game/Pins" dd_name="">
+                <img class="" src="../../Earliest/images/9.9.png"><span>见缝插针</span>
+            </a>
+        </li>
+        <li>
+            <a href="/OldWeb/maincopy.html" dd_name="">
+                <img class="" src="../../Earliest/images/dianzihsu.png"><span>爱的故事</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Tool/SMSSend" dd_name="">
+                <img class="" src="../../Earliest/images/dianzihsu.png"><span>短信接口</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Upload" dd_name="">
+                <img class="" src="../../Earliest/images/haoshubang.png"><span>文件管理</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Tool/Drawing" dd_name="">
+                <img class="" src="../../Earliest/images/haoshubang.png"><span>网页画板</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Tool/HttpSend" dd_name="">
+                <img class="" src="../../Earliest/images/haoshubang.png"><span>Http测试</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Tool/Security" dd_name="">
+                <img class="" src="../../Earliest/images/haoshubang.png"><span>字符串处理</span>
+            </a>
+        </li>
+        <li>
+            <a href="/Tool/BaseConver" dd_name="">
+                <img class="" src="../../Earliest/images/haoshubang.png"><span>进制转换</span>
+            </a>
+        </li>
+        <li>
+            <a href="/wechat" dd_name="">
+                <img class="" src="../../Earliest/images/haoshubang.png"><span>singalR Hub实时通讯</span>
+            </a>
+        </li>
+    </ul>
+    <section class="seckilling" dd_name="首页秒杀区" style="display: none;">
+        <div class="seckilling-box">
+            <div class="seckilling-title">
+                <span class="seckilling-name">秒购</span>
+                <span class="seckilling-icon"></span>
+                <div class="seckilling-content" data-widget="countdown" data-end-time="1444381201" data-left-time="12191" data-is-begin="0">
+                </div>
+            </div>
+            <div class="seckilling-con" id="seckill_index">
+                <ul class="clearfix">
+                    <li>
+                        <a href="javascript:void(0);" dd_name="秒杀品1">
+                            <p class="pic">
+                                <img class="" src="/images/logo/logosqu.png">
+                            </p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">1.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                                <span class="discount">3折</span>
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" dd_name="秒杀品2">
+                            <p class="pic">
+                                <img class="" src="/images/logo/logosqu.png">
+                            </p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">2.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                                <!--<span class="discount">折</span>-->
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" dd_name="秒杀品3">
+                            <p class="pic">
+                                <img class="" src="/images/logo/logosqu.png">
+                            </p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">3.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                                <span class="discount">5折</span>
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" dd_name="秒杀品3">
+                            <p class="pic">
+                                <img class="" src="/images/logo/logosqu.png">
+                            </p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">4.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                                <!--<span class="discount">折</span>-->
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" dd_name="秒杀品3">
+                            <p class="pic">
+                                <img class="" src="/images/logo/logosqu.png">
+                            </p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">5.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                                <!--<span class="discount">折</span>-->
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" dd_name="秒杀品3">
+                            <p class="pic">
+                                <img class="" src="/images/logo/logosqu.png">
+                            </p>
+                            <p class="price">
+                                <span class="rob">
+                                    <span class="sign">¥</span>
+                                    <span class="num">6.00</span>
+                                    <span class="tail"></span>
+                                </span>
+                                <span class="discount">3折</span>
+                            </p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
+    </section>
+    <section class="banner" dd_name="轮播推荐区">
+        <section data-widget="bannerSlider" class="J_banner_slider banner-slider" id="bannerSlider_99659" dd_name="轮播推荐区99659">
+            <ul class="banner-slider" style="width: 200%; -webkit-transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); transition: 0ms cubic-bezier(0.1, 0.57, 0.1, 1); -webkit-transform: translate(-647px, 0px) translateZ(0px);">
+                <li style="width: 50%">
+                    <a href="javascript:void(0);" dd_name="轮播推荐1">
+                        <img class="" src="../../images/other/hxzst.jpg">
                     </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
+                </li>
+                <li style="width: 50%">
+                    <a href="javascript:void(0);" dd_name="轮播推荐2">
+                        <img class="" src="../../images/other/weburl.png">
                     </a>
-                </p>
+                </li>
+            </ul>
+            <div class="banner-slider-indicator">
+                <span class="dot"></span>
+                <span class="dot on"></span>
             </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+        </section>
+    </section>
+    <!--        <section class="floor" dd_name="">
+            <h2>
+                <a class="title">推荐商品</a>
+                <a href="javascript:void(0);" class="more" dd_name="更多">更多</a>
+            </h2>
+            <dl>
+                <dt><a href="javascript:void(0);" dd_name="">
+                    <img class="" src="Earliest/images/DHC-h51.jpg"></a></dt>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+                <dd><a href="javascript:void(0);">
+                    <img class="" src="Earliest/images/liangpinpuzih53.jpg"></a></dd>
+
+                <dd><a href="javascript:void(0);">
+                    <img class="" src="Earliest/images/doujiangjih52.jpg"></a></dd>
+
+            </dl>
+        </section>
+        <section class="floor" dd_name="">
+            <h2>
+                <a class="title">优惠商品</a>
+                <a href="javascript:void(0);" class="more" dd_name="更多">更多</a>
+            </h2>
+            <dl>
+                <dt><a href="javascript:void(0);">
+                    <img class="" src="Earliest/images/h5-k1-1008-nbewxj2015.jpg"></a></dt>
+
+                <dd><a href="javascript:void(0);">
+                    <img class="" src="Earliest/images/h5-k3-1008-xsqxk.jpg"></a></dd>
+
+                <dd><a href="javascript:void(0);">
+                    <img class="" src="Earliest/images/h5-k2-1008-slbdmj.jpg"></a></dd>
+
+            </dl>
+        </section>
+        <section class="floor" dd_name="">
+            <h2>
+                <a class="title">热卖商品</a>
+                <a href="javascript:void(0);" class="more" dd_name="更多">更多</a>
+            </h2>
+            <dl>
+                <dt><a href="javascript:void(0);" dd_name="">
+                    <img class="" src="Earliest/images/310x449ts929.jpg"></a></dt>
+
+                <dd><a href="javascript:void(0);">
+                    <img class="" src="Earliest/images/309x224ts0929_01.jpg"></a></dd>
+
+                <dd><a href="javascript:void(0);">
+                    <img class="" src="Earliest/images/309x224ts0929_02.jpg"></a></dd>
+
+            </dl>
+        </section>-->
+
+
+
+
+    <section class="floor" dd_name="">
+        <h2>
+            <a class="title">最新内容</a>
+            <a href="javascript:void(0);" class="more" dd_name="更多">更多</a>
+        </h2>
+        <dl>
+            <dt>
+                <a href="javascript:void(0);" dd_name="">
+                    <img class="" src="../../images/other/sxzst.jpg">
+                </a>
+            </dt>
+
+            <dd>
+                <a href="javascript:void(0);">
+                    <img class="" src="/images/logo/logosqu.png">
+                </a>
+            </dd>
+
+            <dd>
+                <a href="javascript:void(0);">
+                    <img class="" src="/images/logo/logosqu.png">
+                </a>
+            </dd>
+
+        </dl>
+    </section>
+
+</section>

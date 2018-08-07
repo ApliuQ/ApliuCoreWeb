@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; " />
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+<title>Flappy 2048</title>
+</head>
+
+<body>
+<div id="logo" style="position:fixed;left:0px;top: 0px; z-index:1000;">
+  <a href="../index.html"><img src="image/exit.png" width="184px" heigh="63px" title="返回主页" border="0"/></a>
+</div>
+
+<div style="position:fixed; right:0px;top: 0px; z-index:1000;">
+  <a id="username" title="用户名" class="topuser">用户名显示</a>
+      <a id="logout" onclick="logout()" href="" title="注销" class="topuser" >注销</a> 
+      <a id="login" href="../login/login.html?id=Flappy2048" title="登录" class="topuser">登录</a> 
+      <a id="register" href="../login/register.html?id=Flappy2048" title="注册" class="topuser">注册</a> 
+  <a href="../cloudmain/game.html" ><img src="image/fanhui.png" title="退出游戏" border="0"/></a>
+  </div>
+
+<div style="position:fixed; left:26.5%; top:10px; width:200px; z-index: 31338;">
+<font face="Arial, Helvetica, sans-serif"; color="#6c6c6c"><strong>
+<div style="flaot:left; font-size:18px;" id="time">时间：0</div>
+</strong></font>
+</div>
+
+<div style="position:fixed; left:34%; top:10px; width:200px; z-index: 31338;">
+<font face="Arial, Helvetica, sans-serif"; color="#6c6c6c"><strong>
+<div style="flaot:left; font-size:18px;" id="Maxscore"></div>
+</strong></font>
+</div>
+
+<div style="position:fixed; left:44.5%; top:10px; width:200px; z-index: 31338;">
+<font face="Arial, Helvetica, sans-serif"; color="#6c6c6c"><strong>
+<div style="flaot:left; font-size:18px;" id="Maxscore">分数：</div>
+</strong></font>
+</div>
+
+<div style=" position:fixed; left:48%; bottom:0px; z-index: 31338;">
+<p ><a href="index.html" title="Apliu" target="_blank"><font face="Arial, Helvetica, sans-serif"; color="#6c6c6c" size="5px"><strong>Apliu</strong></font></a></p>
+</div>
+
+
+<!--为了识别简体中文，常用的有gb2312和UTF-8。gb2312只能标识简体中文，UTF-8则能表示多种亚洲文字。-->
+<script type="text/javascript" src="js/flappy2048.js"></script>
+
+<div id="gameover" class="hide">
+  <div class="gameovercontainer">
+    <div class="gameoverscore" style="margin-top: 30%"></div></div>
+  <div>
+  </div>
+  <div class="gameoverbtns">
+  <p><font><strong><div id="display2" align="center" style="font-size:35px; color:#FFF;"></div></strong></font></p>
+  <p><font><strong><div id="display3" align="center" style="font-size:35px; color:#FFF;"></div></strong></font></p>
+  <p><font><strong><div id="display4" align="center" style="font-size:35px; color:#FFF;"></div></strong></font></p><br/><br/><br/>
+  <p><font><strong><div id="results" style="font-size:40px; color:#FFF;"></div></strong></font></p><br/>
+    <button class="btngameover sharegamebtn" id="islogin" onclick="login();">登录</button>
+    <button class="btngameover restartgamebtn" onclick="startGame();">继续挑战</button>
+    <button class="btngameover moregamebtn" onclick="clickMore();">更多游戏</button>
+  </div>
+</div>
+
+
+</body>
+</html>

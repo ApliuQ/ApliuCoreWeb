@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "注册";
+}
+<link rel="stylesheet" href="/Earliest/css/common.css">
+<link rel="stylesheet" href="/Earliest/css/app.css">
+<link rel="stylesheet" href="/CssStyle/User/login.css">
+
+<div class="register">
+    <div class="regTop">
+        <span>注册</span>
+        <a class="back" href="Login">&lt;&nbsp;返回</a>
+    </div>
+    <div class="content">
+        <div class="point">
+            <img src="/images/logo/logorect.png" alt="" />
+        </div>
+        <form action="javascript:void(0);">
+            <div class="message">
+                <input type="tel" name="username" id="username" placeholder="输入手机号" maxlength="11" />
+                <input type="text" name="smscode" id="smscode" placeholder="输入短信验证码" maxlength="6" />
+                <input type="password" name="password" id="password" placeholder="请输入3-18位密码" maxlength="18" />
+                <input type="password" name="passwordag" id="passwordag" placeholder="请再次输入密码" maxlength="18"/>
+                <div class="icons">
+                    <b>
+                        <img src="/Images/Icon/zc-1.jpg" alt="" /></b>
+                    <b>
+                        <img src="/Images/Icon/zc-2.jpg" alt="" /></b>
+                    <b>
+                        <img src="/Images/Icon/zc-3.jpg" alt="" /></b>
+                    <b>
+                        <img src="/Images/Icon/zc-3.jpg" alt="" /></b>
+                </div>
+                <a class="codechange" href="javascript:void(0);" id="getsmscode" codetype="1">获取短信验证码</a>
+            </div>
+            <div class="agree">
+                <input type="checkbox" id="registerservice" /><span>&nbsp;同意&nbsp;</span><a href="javascript:void(0);">《注册协议》</a>
+            </div>
+            <button class="submit" type="submit" id="btn-register">注册</button>
+        </form>
+    </div>
+</div>
+<script src="/JsScript/User/login.js"></script>

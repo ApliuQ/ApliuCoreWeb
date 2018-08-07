@@ -1,17 +1,17 @@
 ﻿using System;
 using System.IO;
 
-namespace ApliuTools.Web
+namespace Apliu.Standard.Tools.Web
 {
     /// <summary>
     /// 服务器信息类
     /// </summary>
-    public class ServerInfo
+    public static class ServerInfo
     {
         /// <summary>
         /// 服务器版本
         /// </summary>
-        public string ServerOS
+        public static string ServerOS
         {
             get
             {
@@ -22,7 +22,7 @@ namespace ApliuTools.Web
         /// <summary>
         /// 机器名称
         /// </summary>
-        public string MachineName
+        public static string MachineName
         {
             get
             {
@@ -31,9 +31,9 @@ namespace ApliuTools.Web
         }
 
         /// <summary>
-        /// 站点绝对目录
+        /// 站点绝对目录 SitePath+@"\Log"
         /// </summary>
-        public string SitePath
+        public static string SitePath
         {
             get
             {
@@ -46,7 +46,7 @@ namespace ApliuTools.Web
         /// <summary>
         ///  DotNET 版本
         /// </summary>
-        public string DotNetVersion
+        public static string DotNetVersion
         {
             get
             {
@@ -54,21 +54,21 @@ namespace ApliuTools.Web
             }
         }
 
-        public string SiteTotalFileSize
+        public static string SiteTotalFileSize
         {
             get
             {
-                return (GetDirectorySize(this.SitePath) / 1024).ToString() + " MB";
+                return (GetDirectorySize(SitePath) / 1024).ToString() + " MB";
             }
         }
 
-        private long longDirSize = 0;
+        private static long longDirSize = 0;
         /// <summary>
         /// 获取目录的大小
         /// </summary>
         /// <param name="srcPath">目录路径</param>
         /// <returns>目录的大小(单位:KB)</returns>
-        public long GetDirectorySize(string srcPath)
+        public static long GetDirectorySize(string srcPath)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace ApliuTools.Web
         /// </summary>
         /// <param name="file">文件完整路径</param>
         /// <returns>文件大小(单位:bytes)</returns>
-        public long GetFileSize(string file)
+        public static long GetFileSize(string file)
         {
             System.IO.FileInfo fiArr = new System.IO.FileInfo(file);
             return fiArr.Length;

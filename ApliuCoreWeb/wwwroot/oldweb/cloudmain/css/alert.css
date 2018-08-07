@@ -1,0 +1,93 @@
+#zhezhaoceng {
+	position: fixed;
+	top: 0px;
+	visibility: collapse;
+	background-color: rgba(5, 5, 5, 0.5);
+	width: 100%;
+	height: 1000px;
+	z-index: 100;
+	_position: absolute;
+}
+#tanchuangceng {
+	border-radius: 10px;
+	position: fixed;
+	z-index: 101;
+	visibility: collapse;
+	_position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -158.5px 0 0 -250px;
+	width: 500px;
+	height: 317px;
+	overflow: hidden;
+	-webkit-box-shadow: 0px 0px 15px #666;
+	-moz-box-shadow: 0px 0px 15px #666;
+	box-shadow: 0px 0px 15px #666;
+	background-color: #FACA00;
+}
+.lucky-btn {
+	font: 14px/24px arial, "\5b8b\4f53", sans-serif, "Microsoft YaHei", tahoma;
+	width: 136px;
+	height: 49px;
+	display: -moz-inline-box;
+	-moz-box-orient: vertical;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 20px;
+	line-height: 49px;
+	color: #fff;
+	margin: 0 10px;
+	text-align: center;
+	text-decoration: none;
+}
+.lucky-btn-more {
+	background-image: url(../img/jiangpin/baiduanniu.png);
+	background-position: -845px -676px;
+	background-repeat: no-repeat;
+}
+.lucky-btn-ok {
+	background-image: url(../img/jiangpin/baiduanniu.png);
+	background-position: -845px -622px;
+	background-repeat: no-repeat;
+}
+.titlebar-close {
+	width: 21px;
+	height: 21px;
+	float: right;
+	cursor: pointer;
+	background-image: url(../img/jiangpin/baiduanniu.png);
+	background-position: -960px -596px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+#lottery {
+	width: 401.8px;
+	height: 408.8px;
+	background: url(../img/jiangpin/bg.jpg) no-repeat;
+	background-size: 100% 100%;
+	padding-top:32px;
+	padding-left:35px;
+}
+#lottery table td {
+	width: 90px;
+	height: 91.4px;
+	text-align: center;
+	vertical-align: middle;
+	color: #333;
+	font-index: -999
+}
+#lottery table td a {
+	width: 182px;
+	height: 183.5px;
+	line-height: 105px;
+	display: block;
+	text-decoration: none;
+}
+#lottery table td.active {
+	background-color: #ea0000;
+}
+.lottery-unit img
+{
+	width:100%;
+	height:100%;
+}

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>爱的故事</title>
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+<script src="js/message.js"></script>
+<script src="js/ClientBrowser.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/message.css" />
+</head>
+<body>
+<script type="text/javascript">
+    $(document).ready(function(){
+		//Getdatamessage();
+		allmessage();
+    });
+</script>
+<div class="bg_top">
+  <div class="header_bg">
+    <div class="header"> <a href="../index.html" class="logo" title="返回主页"></a>
+    <a href="englishhtml/englist.html" title="English" class="lan en" ></a>
+    <a href="../index.html" title="中文版" class="lan cn" style="background-position:left top;"></a>
+    <a id="logout" onclick="logout()" href="javascript:void(0);" title="注销" class="user">注销</a>
+    <a id="register" href="../login/register.html?id=message" title="注册" class="user">注册</a>
+    <a id="login" href="../login/login.html?id=message" title="登录" class="user">登录</a>
+    <a id="username" title="用户名" class="user">用户名显示</a> </div>
+  </div>
+</div>
+</div>
+<div class="page_box page_box_bg">
+  <div class="home_menu"><a href="../index.html"></a></div>
+  <div class="index_left page_left job_l">
+    <div style="width:90%; background:rgba(255,255,255,0.8); border-radius: 20px; margin-left:20px; margin-top:30px;">
+      <div align="center" style="margin-top:30px"><font size="5"; face="方正舒体"; color="#993300";> 留言</font></div>
+      <form action="php/inputliuyan.php" method="post" onsubmit="return isLogin()">
+        <div align="center" style="margin-top:20px">
+          <textarea type="text" style="resize:none; width:90%; height:200px;" maxlength="200" name="message" id="message"></textarea>
+        </div>
+        <div align="right" style="margin-top:20px; margin-right:30px"> <font size="3"; face="方正舒体"; color="#993300";>不超过200个字（包括英文字符）</font>
+          <input type="submit" align="top" style="font-family:'方正舒体'; font-size:16px; color:#930; background-color:#39F;" value=" 发表 "/>
+        </div>
+      </form>
+      <div align="left" style="margin-top:50px;"> <font size="3"; face="方正舒体"; color="#993300";>如果不能登录或者不能留言，请使用</font> <a href="#" style="font-family:'方正舒体'; font-size:16px; color:#930;" onclick="alert('暂不提供使用！');" title="备用留言">备用留言</a> </div>
+    </div>
+  </div>
+  <div class="index_right page_right job_r">
+    <div align="center" style="margin-top:30px"><font size="5"; face="方正舒体"; color="#993300";> 留言板</font></div>
+    <table border="0" width="400" cellpadding="0" style="border-collapse: collapse; font-size:12px; margin-top:20px; margin-left:30px;" id="table1">
+      <tr>
+        <td width="65%" valign="top"><div id="News" style="border:0px dashed; OVERFLOW: hidden; WIDTH: 360px; HEIGHT: 480px; color:#875d44; line-height:20px;">
+            <div align="center">
+              <table border="0" width="100%" cellpadding="0" style="border-collapse: collapse" id="table31">
+                <tr>
+                  <td><div class="page_right_2">
+                      <div class="job_top" align="center"></div>
+                      <div id="tablebody"> </div>
+                    </div></td>
+                </tr>
+              </table>
+            </div>
+          </div></td>
+        <td width="2%" valign="top">
+    		<img onmousedown="Scroll(-3)" onmouseover="Scroll(-3)" style="CURSOR: hand" onmouseout="Scroll(0)" border="0" src="img/job_06.jpg"  title="按下鼠标速度会更快">
+        	<img onmousedown="Scroll(3)" onmouseover="Scroll(3)" style="CURSOR: hand;margin-top:450px; float:left;" onmouseout="Scroll(0)"  border="0" src="img/job_09.jpg"  title="按下鼠标速度会更快">
+        </td>
+      </tr>
+    </table>
+     <img src="img/pageup.jpg" class="pageup" onclick="pageup()" alt="pageup" />
+     <img src="img/pagedown.jpg" class="pagedown" onclick="pagedown()" alt="pagedown" />
+  </div>
+  <div class="page_right_menu" >
+    <ul>
+      <li class="menu_1"><a href="about.html" title="简介"></a></li>
+      <li class="menu_2"><a href="keeplove.html" title="爱心记"></a></li>
+      <!--      <li class="menu_3"><a href="blog/" title="爱之博客"></a></li>-->
+      <li class="menu_5"><a href="game.html" title="随心行"></a></li>
+      <li class="menu_6"><a href="message.html" title="留言"></a></li>
+      <li class="menu_4"><a href="../lovetime/index.html" title="恋爱计时"></a></li>
+    </ul>
+  </div>
+</div>
+<div class="page_bot"></div>
+<div class="footer">
+  <div class="footer_left"> <a href="#" title="爱之微博" target="_blank" class="sina"></a> <a href="#" target="_blank" class="taobao" title="爱之淘淘" ></a> <a href="#" title="瑶宝宝" target="_blank" class="douban"></a>
+    <div class="link"> <a class="contact" href="#" target="_blank" title="联系我们" ></a> <a class="linker" href="#" target="_blank" title="友情链接" ></a> </div>
+  </div>
+  <div class="footer_right">
+    <p>Copyright&copy;2015 Love Story Apliu. <a href="#" title="Apliu" target="_blank">Apliu</a> </p>
+  </div>
+</div>
+</body>
+</html>

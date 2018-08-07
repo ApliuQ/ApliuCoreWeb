@@ -1,0 +1,51 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.pageup {
+	width: 60px;
+	height: 30px;
+	margin-left: 250px;
+	-webkit-box-shadow: 0px 0px 10px #666;
+	-moz-box-shadow: 0px 0px 10px #666;
+	-shadow: 0px 0px 10px #666;
+}
+.pageup:hover {
+	width: 60px;
+	height: 30px;
+	margin-left: 250px;
+	-webkit-box-shadow: 0px 0px 10px red;
+	-moz-box-shadow: 0px 0px 10px red;
+	-shadow: 0px 0px 10px red;
+}
+.pageup:active {
+	width: 60px;
+	height: 30px;
+	margin-left: 250px;
+	-webkit-box-shadow: 0px 0px 10px #0F0;
+	-moz-box-shadow: 0px 0px 10px #0F0;
+	-shadow: 0px 0px 10px #0F0;
+}
+.pagedown {
+	width: 60px;
+	height: 30px;
+	margin-left: 20px;
+	-webkit-box-shadow: 0px 0px 10px #666;
+	-moz-box-shadow: 0px 0px 10px #666;
+	-shadow: 0px 0px 10px #666;
+}
+.pagedown:hover {
+	width: 60px;
+	height: 30px;
+	margin-left: 20px;
+	-webkit-box-shadow: 0px 0px 10px red;
+	-moz-box-shadow: 0px 0px 10px red;
+	-shadow: 0px 0px 10px red;
+}
+.pagedown:active {
+	width: 60px;
+	height: 30px;
+	margin-left: 20px;
+	-webkit-box-shadow: 0px 0px 10px #0F0;
+	-moz-box-shadow: 0px 0px 10px #0F0;
+	-shadow: 0px 0px 10px greed;
+}

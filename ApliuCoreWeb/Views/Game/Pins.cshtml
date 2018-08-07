@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "见缝插针";
+}
+<link rel="stylesheet" type="text/css" href="/OldWeb/pins/css/main.css" />
+<div class="regTop" style="background-color: transparent;">
+    <span>见缝插针</span>
+    <a class="back" href="/Home/Index">&lt;&nbsp;返回</a>
+</div>
+<div class="title"></div>
+<div id="gamemain"><canvas id="stage" height="550rem" style="margin-top: -4rem;"></canvas></div>
+<div id="gohw"></div>
+<div id="gameover" class="hide">
+    <div class="gameovercontainer">
+    </div>
+    <div class="gameoverbtns">
+        <div class="gametime"></div>
+        <div class="gameoverscore"></div>
+        <p><font><strong><div id="display2" align="center" style="font-size:30px; color:#FFF;"></div></strong></font></p>
+        <p><font><strong><div id="display3" align="center" style="font-size:30px; color:#FFF;"></div></strong></font></p>
+        <p><font><strong><div id="display4" align="center" style="font-size:30px; color:#FFF;"></div></strong></font></p>
+        <p><font><strong><div id="results" style="font-size:30px; color:#FFF;"></div></strong></font></p>
+        <button class="btngameover restartgamebtn" onclick="startGame();">继续挑战</button>
+    </div>
+</div>
+<script src="/OldWeb/pins/js/game.js" charset="utf-8"></script>

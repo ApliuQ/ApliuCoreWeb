@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/Templet.cshtml";
+    ViewBag.Title = "微信JS-SDK测试页面";
+}
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: '@ViewData["AppId"]', // 必填，公众号的唯一标识
+        timestamp: '@ViewData["Timestamp"]', // 必填，生成签名的时间戳
+        nonceStr: '@ViewData["NonceStr"]', // 必填，生成签名的随机串
+        signature: '@ViewData["Signature"]',// 必填，签名
+        jsApiList: [
+              "checkJsApi",
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'hideMenuItems',
+                'showMenuItems',
+                'hideAllNonBaseMenuItem',
+                'showAllNonBaseMenuItem',
+                'translateVoice',
+                'startRecord',
+                'stopRecord',
+                'onRecordEnd',
+                'playVoice',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'downloadVoice',
+                'chooseImage',
+                'previewImage',
+                'uploadImage',
+                'downloadImage',
+                'getNetworkType',
+                'openLocation',
+                'getLocation',
+                'hideOptionMenu',
+                'showOptionMenu',
+                'closeWindow',
+                'scanQRCode',
+                'chooseWXPay',
+                'openProductSpecificView',
+                'addCard',
+                'chooseCard',
+                'openCard'
+        ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2。详见：https://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+    });
+
+    wx.error(function (res) {
+        console.log(res);
+        alert('验证失败:' + JSON.stringify(res));
+    });
+    var url = 'https://apliu.xyz';
+    var link = url + 'www.baidu.com';
+    var imgUrl = url + '/images/logo/logorect.png';
+
+    wx.ready(function () {
+
+    });
+
+    var testq = function () {
+        //转发到朋友圈
+        wx.onMenuShareTimeline({
+            title: 'JSSDK朋友圈转发测试',
+            link: link,
+            imgUrl: imgUrl,
+            success: function () {
+                alert('转发成功！');
+            },
+            cancel: function () {
+                alert('转发失败！');
+            }
+        });
+    }
+    var testqrcode = function () {
+        wx.scanQRCode({
+            needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function (res) {
+                var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                alert(JSON.stringify(res));
+            },
+            cancel: function () {
+                alert('取消扫描');
+            }
+        });
+    }
+    var testphone = function () {
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+            }
+        });
+    }
+    var testlocation = function () {
+        wx.getLocation({
+            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function (res) {
+                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                var speed = res.speed; // 速度，以米/每秒计
+                var accuracy = res.accuracy; // 位置精度
+
+                wx.openLocation({
+                    latitude: latitude, // 纬度，浮点数，范围为90 ~ -90
+                    longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
+                    name: '当前位置', // 位置名
+                    address: '当前位置', // 地址详情说明
+                    scale: 20, // 地图缩放级别,整形值,范围从1~28。默认为1最大
+                    infoUrl: 'https://apliu.xyz' // 在查看位置界面底部显示的超链接,可点击跳转
+                });
+            }
+        });
+    }
+    var testf = function () {
+        //转发给朋友
+        wx.onMenuShareAppMessage({
+            title: 'JSSDK朋友圈转发测试',
+            desc: '转发给朋友',
+            link: link,
+            imgUrl: imgUrl,
+            type: 'link',
+            dataUrl: link,
+            success: function () {
+                alert('转发成功！');
+            },
+            cancel: function () {
+                alert('转发失败！');
+            }
+        });
+    }
+</script>
+
+<div style="text-align: center; line-height: 50px; padding-top: 50px;">
+    <input type="button" class="loginwelcome" onclick="testq()" value="转发到朋友圈" />
+    <input type="button" class="loginwelcome" onclick="testf()" value="转发给朋友" />
+    <input type="button" class="loginwelcome" onclick="testqrcode()" value="扫描二维码" />
+    <input type="button" class="loginwelcome" onclick="testphone()" value="拍照或选图" />
+    <input type="button" class="loginwelcome" onclick="testlocation()" value="查看位置" />
+    <div><a href="/" class="loginwelcome">返回主页</a></div>
+</div>

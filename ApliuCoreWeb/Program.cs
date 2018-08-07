@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using ApliuCoreWeb.Models;
+﻿using ApliuCoreWeb.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace ApliuCoreWeb
 {
@@ -15,6 +8,7 @@ namespace ApliuCoreWeb
     {
         public static void Main(string[] args)
         {
+            //Apliu.Standard.Tools.Logger.WriteLogWeb(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"));
             CreateWebHostBuilder(args).Build().Run();
         }
 

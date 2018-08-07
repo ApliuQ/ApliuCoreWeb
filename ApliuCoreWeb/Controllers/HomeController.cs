@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ApliuCoreWeb.Models;
 using Microsoft.AspNetCore.Mvc;
-using ApliuCoreWeb.Models;
+using System.Diagnostics;
 
 namespace ApliuCoreWeb.Controllers
 {
@@ -15,22 +11,9 @@ namespace ApliuCoreWeb.Controllers
             return View();
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
+        public IActionResult TestView()
         {
             ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 

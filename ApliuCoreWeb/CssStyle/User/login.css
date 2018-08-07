@@ -1,0 +1,253 @@
+.login_bg {
+    width: 100%;
+    min-height: 100%;
+    text-align: center;
+    background: #d1d6fa;
+    opacity: 0.9;
+    font-size: .7rem;
+    background: url(/Images/Background/login.jpg) no-repeat;
+}
+
+.register {
+    width: 100%;
+    min-height: 100%;
+    text-align: center;
+    font-size: .7rem;
+    opacity: 0.9;
+    background: url(/Images/Background/login.jpg) no-repeat;
+}
+
+#logo {
+    margin: 0 auto;
+    padding: 2rem 0 2rem 0;
+    width: 7rem;
+}
+
+img {
+    width: 100%;
+}
+
+form {
+    width: 80%;
+    margin: 1rem auto 2rem auto;
+    text-align: left;
+}
+
+    form div.userName, form div.passWord {
+        border: 1px solid #c1c1c1;
+        padding: 3.5% 0 4% 3%;
+        height: 22%;
+        background: #ffffff;
+    }
+
+    form div.userName {
+        border-bottom: 0;
+        -webkit-border-top-left-radius: 0.45em;
+        -webkit-border-top-right-radius: 0.45em;
+        -moz-border-radius-topleft: 0.45em;
+        -moz-border-radius-topright: 0.45em;
+        border-top-left-radius: 0.45em;
+        border-top-right-radius: 0.45em;
+    }
+
+    form div.passWord {
+        -webkit-border-bottom-left-radius: 0.45em;
+        -webkit-border-bottom-right-radius: 0.45em;
+        -moz-border-radius-bottomleft: 0.45em;
+        -moz-border-radius-bottomright: 0.45em;
+        border-bottom-left-radius: 0.45em;
+        border-bottom-right-radius: 0.45em;
+    }
+
+        form div.userName input, form div.passWord input {
+            width: 68%;
+            height: 80%;
+            border: none;
+            background: transparent;
+            font-size: 1em;
+            font-family: "Microsoft YaHei";
+            color: #b3b3b3;
+            letter-spacing: 1px;
+            padding-left: 2px;
+        }
+
+.choose_box {
+    height: 4.5em;
+    line-height: 4.5em;
+    padding: 0 5px;
+}
+
+    .choose_box div {
+        float: left;
+    }
+
+    .choose_box a {
+        float: right;
+    }
+
+.login_btn {
+    width: 100%;
+    display: block;
+    padding: 3% 0;
+    background: #ffffff;
+    border: 0;
+    font-size: 1em;
+    font-family: "Microsoft YaHei";
+    color: #374782;
+    -webkit-box-shadow: #8f9bad 0px 0px 20px;
+    -moz-box-shadow: #8f9bad 0px 0px 20px;
+    box-shadow: #8f9bad 0px 0px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.other_login {
+    width: 80%;
+    margin: 1rem 10%;
+    margin-top: 2rem;
+}
+
+    .other_login .other, .other_login span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .other_login .other {
+        width: 28%;
+        height: 8px;
+        border-bottom: 1px solid #2f2c59;
+    }
+
+    .other_login span {
+        width: 40%;
+    }
+
+.other_choose {
+    width: 100%;
+    padding-top: 0rem;
+}
+
+    .other_choose a {
+        padding: 1rem;
+    }
+
+        .other_choose a img {
+            border: 2px solid #505887;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            width: 1rem;
+            padding: 0.6rem;
+        }
+
+.point {
+    padding: 6% 5%;
+}
+
+    .point img {
+        width: 80%;
+    }
+
+.content form input:not(:nth-child(6)) {
+    border: 0;
+    border-bottom: 1px solid #c3c3c5;
+}
+
+.content form {
+    width: 100%;
+    height: 35.21%;
+}
+
+.message {
+    background: #ffffff;
+    padding: 2% 5% 0 5%;
+    position: relative;
+}
+
+    .message input {
+        width: 90%;
+        padding: 0.8rem 0 0.8rem 1.8rem;
+        font-family: "Microsoft YaHei";
+    }
+
+    .message .icons b {
+        position: absolute;
+        width: 0.7rem;
+        top: 1.2rem;
+        left: 1.3rem;
+    }
+
+        .message .icons b img {
+            width: 100%;
+        }
+
+        .message .icons b:nth-child(2) {
+            top: 3.8rem;
+        }
+
+        .message .icons b:nth-child(3) {
+            top: 6.2rem;
+        }
+
+        .message .icons b:nth-child(4) {
+            top: 8.8rem;
+        }
+
+.code {
+    position: absolute;
+    top: 82%;
+    right: 10%;
+    color: #21a9f5;
+    font-size: 0.875em;
+    font-family: "Microsoft YaHei";
+}
+
+.codechange {
+    position: absolute;
+    top: 35%;
+    right: 10%;
+    color: #21a9f5;
+    font-size: 0.875em;
+    font-family: "Microsoft YaHei";
+}
+
+.getsmscode-disabled {
+    color: #000000;
+}
+
+select {
+    width: 33%;
+    padding: 2% 1%;
+    margin: 5%;
+    font-size: 1em;
+    color: #909093;
+    border: solid 1px #909093;
+    font-family: "Microsoft YaHei";
+}
+
+.agree {
+    margin: 1rem auto;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.submit {
+    width: 90%;
+    display: block;
+    padding: 3% 0;
+    background: #ffffff;
+    border: 0;
+    font-size: 1em;
+    font-family: "Microsoft YaHei";
+    color: #374782;
+    -webkit-box-shadow: #8f9bad 0px 0px 20px;
+    -moz-box-shadow: #8f9bad 0px 0px 20px;
+    box-shadow: #8f9bad 0px 0px 20px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+form .agree input[type="checkbox"] :default {
+    outline: 2px solid #21a9f5;
+}

@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="/Earliest/css/common.css">
+<link rel="stylesheet" href="/Earliest/css/app.css">
+<header id="search">
+    <div class="dd-logo">
+        <a href="/" style="background-size: 2rem 2rem;"></a>
+    </div>
+    <div class="search_box">
+        <div class="search">
+            <form id="index_search_form" method="get" action="/Shared/Error" target="_parent" onsubmit="return submit_search();">
+                <div class="text_box">
+                    <input id="keyword" name="keyword" type="text" placeholder="请输入搜索内容" class="keyword text" onkeydown="this.style.color=&#39;#404040&#39;" autocomplete="off">
+                </div>
+                <input type="submit" value="" class="submit">
+                <input type="hidden" value="index_search_form_submit" name="sid">
+            </form>
+        </div>
+    </div>
+    <div class="header-category"><a href="/Earliest/ListNavi/index.html"><em>更多</em></a></div>
+    <div class="search_list"></div>
+</header>
+<div style="background-color: white; min-height: 500px; -ms-word-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all;">
+    @RenderBody()
+</div>
+<div class="fixed_box" style="-webkit-transform-origin: 0px 0px; opacity: 1; -webkit-transform: scale(1, 1); display: none;">
+    <a href="javascript:scrollTo(0,0)" class="btn_back" id="backtop">
+        <img style="width: 2rem" src="../../Earliest/images/go-top.png"></a>
+</div>
+<footer class="footer new">
+    <section class="status-bar">
+        <div style="text-align: center;">
+            <a href="/User/Login" id="userlogin" style="float: none; width: 30%; margin-left: auto;">登录</a>
+            <a href="/User/Register" id="userregister" style="float: none; width: 30%; margin-left: auto;">注册</a>
+            <a style="float: right; margin-left: auto; padding: 0 15px 0 0;" href="javascript:scrollTo(0,0);">TOP</a>
+        </div>
+    </section>
+    <nav class="b-nav">
+        <p>
+            <a href="javascript:void(0);">提建议</a>
+            <a class="red" href="javascript:void(0);">触屏版</a>
+            <a href="javascript:void(0);">电脑版</a>
+            <a href="javascript:void(0);">帮&nbsp;&nbsp;助</a>
+        </p>
+    </nav>
+    <section class="copyright">
+        <p>Copyright © Apliu 2018 all rights reserved</p>
+        <a href="http://www.miitbeian.gov.cn" target="_blank"><p>赣ICP备18003600号-1 | 工信部</p></a>
+    </section>
+</footer>
+<script src="/Earliest/js/zepto.min.js"></script>
+<script src="/Earliest/js/underscore.min.js"></script>
+<script src="/Earliest/js/iscroll5.min.js"></script>
+<script src="/Earliest/js/fastclick.min.js"></script>
+<script src="/Earliest/js/mod_countdown.min.js"></script>
+<script src="/Earliest/js/mod_suggest.min.js"></script>
+<script src="/Earliest/js/mdd_index.min.js"></script>

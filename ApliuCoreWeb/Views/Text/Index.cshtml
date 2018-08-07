@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "文本临时保存";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    @{var _Key = Model == null ? "" : Model.ToString();}
+    var Key = '@_Key';
+
+    $(function () {
+        $("#clear").click(function () { $("#content").val(""); });
+        $("#getcontent").click(getcontent);
+        $("#save").click(save);
+        getcontent();
+        @*@{
+            if (Model == null)
+            {
+                @:getcontent();
+            }
+            else
+            {
+                @:$("#content").val(@Model.ToString());
+            }
+        }*@
+    });
+
+    var getcontent = function () {
+        $(".qrcodebutton").attr("background", "#b8b8b8");
+        var apiurl = "/api/toolapi/GetTempContent?Key=" + Key;
+        $.when(ApliuCommon.HttpSend(apiurl)).then(function (rst) {
+            if (rst.code == "0") {
+                $("#content").val(decodeURI(rst.msg));
+                if (rst.remark == null || rst.remark == "") { $("#updatetime").text("无"); }
+                else { $("#updatetime").text(rst.remark); }
+            } else {
+                apliualert("恢复失败，详情：" + rst.msg);
+            }
+            $(".qrcodebutton").attr("background", "#ff463c");
+        }, function (rst) {
+            apliualert("发生未知异常");
+            $(".qrcodebutton").attr("background", "#ff463c");
+        });
+    }
+    var save = function () {
+        var content = document.getElementById("content").value;
+        if (content == null || content == "") {
+            apliualert("请输入文本内容");
+            return;
+        }
+        $(".qrcodebutton").attr("background", "#b8b8b8");
+        var apiurl = "/api/toolapi/SetTempContent";
+        var params = { Content: encodeURI(content), Key: Key };
+        $.when(ApliuCommon.HttpSend(apiurl, ApliuCommon.getoptions("Post", params, false))).then(function (rst) {
+            if (rst.code == "0") {
+                apliualert("保存成功");
+                getcontent();
+            } else {
+                apliualert("保存失败，详情：" + rst.msg);
+            }
+            $(".qrcodebutton").attr("background", "#ff463c");
+        }, function (rst) {
+            apliualert("发生未知异常");
+            $(".qrcodebutton").attr("background", "#ff463c");
+        });
+    }
+</script>
+<div style="text-align: center;">
+    <div>
+        <span style="font-weight: bold; font-size: 1rem;">文本临时保存</span>
+    </div>
+    <div style="font-size: .5rem; text-align: right; width: 90%; margin: .4rem 0rem;">
+        <span>最后更新时间：</span><span id="updatetime"></span>
+    </div>
+    <div>
+        <textarea id="content" class="qrcodecontentinput" style="height: 12rem;" placeholder="请输入文本内容"></textarea>
+    </div>
+    <div>
+        <input id="clear" class="qrcodebutton" style="background-color: #3ca6ff;" type="button" value="清空" />
+        <input id="getcontent" class="qrcodebutton" style="background-color: #3ca6ff;" type="button" value="恢复" />
+        <input id="save" class="qrcodebutton" style="background-color: #3ca6ff;" type="button" value="保存" />
+    </div>
+    <div><a href="/" class="common_a_calss">返回主页</a></div>
+    <section style="color: #999; font-size: .6rem;">
+        <p>
+            Copyright © Apliu 2018 all rights reserved<br />
+            赣ICP备18003600号-1 | 工信部
+        </p>
+    </section>
+</div>
+

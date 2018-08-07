@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>恋爱注册</title>
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/body.css"/>
+</head>
+<body>
+<div id="logo"> <!--style="background: url(logo.png) left top;"--> 
+  <a href="../index.html"><img src="images/logo.png" width="184px" heigh="63px" title="返回主页" border="0"/></a> </div>
+<div class="container">
+  <section id="content">
+    <form id="register" method="post" onsubmit="return RegisterIsNull()">
+      <h1>注册</h1>
+      <div>
+        <input type="text" placeholder="用户名（字母或数字）" name="username" id="username" onblur="isExist()"/>
+      </div>
+      <div id="isExist" style="visibility:hidden;"> <font color="#FF0000"><b>该账户已存在！</b></font> </div>
+      <div>
+        <input type="password" placeholder="密码（字母或数字）" name="password" id="password" />
+      </div>
+      <div class=""> <span class="help-block u-errormessage" id="js-server-helpinfo">&nbsp;</span> </div>
+      <div> 
+        <!-- <input type="submit" value="Log in" /> -->
+        <input type="submit" value="注册" class="btn btn-primary" id="js-btn-login"/>
+        <a href="login.html">返回登录</a> </div>
+    </form>
+    <!-- form -->
+    <div class="button"> 
+      <!--			<span class="help-block u-errormessage" id="js-server-helpinfo">&nbsp;</span>
+			<a href="#">百度网盘</a>	--> 
+    </div>
+    <!-- button --> 
+  </section>
+  <!-- content --> 
+</div>
+<!-- container --> 
+
+<br>
+<br>
+<br>
+<br>
+<div style="text-align:center;">
+  <p><a href="#" target="_blank">Apliu</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/Templet.cshtml";
+    ViewBag.Title = "Http在线接口测试";
+}
+
+<script>
+    var executesql = function (type) {
+        var content = document.getElementById("coontent").value;
+        if (content == null || content == "") {
+            apliualert("请输入URL地址");
+            return;
+        }
+        $(".qrcodebutton").attr("background", "#b8b8b8");
+        var apiurl = content;
+        $.when(ApliuCommon.HttpSend(apiurl, ApliuCommon.getoptions(type, "", ""))).then(function (rst) {
+            var data = "执行结果：" + JSON.stringify(rst);
+            $("#executesqlresult").val(data);
+            $(".qrcodebutton").attr("background", "#ff463c");
+        }, function (rst) {
+            var error = "执行结果：" + JSON.stringify(rst);
+            $("#executesqlresult").val(error);
+            $(".qrcodebutton").attr("background", "#ff463c");
+        });
+    }
+</script>
+
+<div style="padding: 10px; background-color: white;">
+    <div style="margin-top: 30px;">
+@*        <span class="Biaoqian">Api介绍</span><br />
+        <div style="padding-left: 1rem; font-size: 0.7rem;">
+            无
+        </div>*@
+    </div>
+    <div style="margin-top: 30px;">
+        <span class="Biaoqian">演示Demo</span><br />
+        <div style="margin-top: 10px; text-align: center;">
+            <textarea id="coontent" class="qrcodecontentinput" placeholder="请输入URL地址"></textarea>
+            <input onclick="executesql('Get')" class="qrcodebutton" type="button" value="Http-Get" />
+            <input onclick="executesql('Post')" class="qrcodebutton" type="button" value="Http-Post" />
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <textarea id="executesqlresult" class="qrcodecontentinput" style="font-size: 0.5rem; height: 6rem;" placeholder="执行结果"></textarea>
+        </div>
+    </div>
+</div>

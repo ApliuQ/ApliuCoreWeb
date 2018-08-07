@@ -1,0 +1,98 @@
+.new-cate-srch {
+	padding: 10px 12px 0;
+}
+
+.new-cate-srch .new-srch-box {
+	width: auto;
+	margin-left: 0;
+	padding-right: 90px;
+	background-color: #fff;
+    border-radius:2px;
+}
+
+.new-cate-srch .new-srch-input {
+	margin-right: 0;
+}
+
+.new-category {
+	padding: 30px 12px 20px;
+}
+
+.new-category .new-category-lst {
+	border: 1px solid #ded6c9;
+	background-color: #fff;
+}
+
+.new-category .new-category-lst .new-category-li .new-category-a,.new-category .new-category2-lst .new-category2-li .new-category2-a {
+	border-bottom: 1px solid #ded6c9;
+}
+
+.new-category .new-category-lst .new-category-li:last-child .new-category-a {
+	border-bottom: none;
+}
+
+.new-category .new-category-lst .new-category-li .new-category-a {
+	display: block;
+	padding: 11px 13px 10px;
+	background: url(../../../images/touch2013/icon.png) 98% -839px no-repeat;
+	font-size: 14px;
+	color: #6e6e6e;
+}
+
+.new-category .new-category-lst .new-category-li .new-category-a.new-on {
+	background: url(../../../images/touch2013/icon.png) 98% -893px no-repeat;
+}
+
+.new-category .new-category-lst .new-category-li .new-category-a .icon {
+	display: inline-block;
+	width: 7px;
+	height: 7px;
+	margin: 0 5px 2px 0;
+	border-radius: 7px;
+	background-color: #e4393c;
+}
+
+.new-category .new-category2-lst .new-category2-li .new-category2-a {
+	border-top: 1px solid #fff;
+}
+
+.new-category .new-category-lst .new-category-li:last-child .new-category2-lst .new-category2-li:first-child {
+	border-top: 1px solid #ded6c9;
+}
+
+.new-category .new-category-lst .new-category-li:last-child .new-category2-lst .new-category2-li:last-child .new-category2-a {
+	border-bottom: none;
+}
+
+.new-category .new-category2-lst {
+	background-color: #fff;
+}
+
+.new-category .new-category2-lst .new-category2-li {
+	display: table;
+	width: 100%;
+}
+
+.new-category .new-category2-lst .new-category2-li .new-category2-a {
+	display: table-cell;
+	width: 33.9%;
+	padding: 10px 0;
+	font-size: .75em;
+	color: #6e6e6e;
+	text-align: center;
+}
+
+.new-category .new-category2-lst .new-category2-li .new-category2-a .new-bar {
+	float: left;
+	width: 1px;
+	height: 12px;
+	margin-top: 3px;
+	border-bottom: 1px solid #fff;
+	background-color: #ded6c9;
+	vertical-align: middle;
+}
+
+.new-category .new-category2-lst .new-category2-li .new-category2-a:first-child .new-bar {
+	border: none;
+	background: none;
+}

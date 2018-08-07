@@ -1,0 +1,119 @@
+ul, ol {
+    list-style: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+#xxx {
+    display: block;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+.actions {
+    position: fixed;
+    top: 0;
+    left: 10px;
+    /*padding: 20px;*/
+}
+
+    .actions svg {
+        width: 1.5em;
+        height: 1.5em;
+        transition: all 0.3s;
+        margin: 0 10px;
+    }
+
+        .actions svg.active {
+            fill: red;
+            transform: scale(1.2);
+        }
+
+.colors {
+    position: fixed;
+    top: 40px;
+    left: 10px;
+}
+
+    .colors > li {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        box-shadow: 0 0 3px rgba(0,0,0,0.25);
+        margin: 10px 0;
+        transition: all 0.3s;
+    }
+
+        .colors > li.black {
+            background: black;
+        }
+
+        .colors > li.red {
+            background: red;
+        }
+
+        .colors > li.green {
+            background: green;
+        }
+
+        .colors > li.blue {
+            background: blue;
+        }
+
+        .colors > li.usercolor {
+            text-align: center;
+        }
+
+        .colors > li.active {
+            box-shadow: 0 0 3px rgba(0,0,0,0.95);
+            transform: scale(1.2);
+        }
+
+.sizes {
+    position: fixed;
+    right: 5px;
+    top: 10px;
+}
+
+.sizes {
+    margin-top: 40px;
+    /*margin: 60px 0 0 0;*/
+}
+
+    .sizes > .thin {
+        height: 20px;
+        width: 20px;
+        border-top: 3px solid black;
+    }
+
+    .sizes > .thick {
+        height: 20px;
+        width: 20px;
+        border-top: 6px solid black;
+    }
+
+    .sizes > li.active {
+        width: 30px;
+    }
+
+.usersizes {
+    width: 40px;
+    border-radius: 3px;
+}

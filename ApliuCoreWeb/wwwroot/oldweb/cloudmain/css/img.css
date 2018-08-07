@@ -1,0 +1,76 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.imgleft
+{
+	/*width:120px;*/
+	height:120px;
+	margin:10px;
+    -webkit-box-shadow:0px 0px 10px #666;
+    -moz-box-shadow:0px 0px 10px #666;
+    box-shadow:0px 0px 10px #666;
+}
+
+.imgleft:hover
+{
+	-webkit-box-shadow:0px 0px 10px red;
+    -moz-box-shadow:0px 0px 10px red;
+    box-shadow:0px 0px 10px red;/*水平偏移0, 垂直偏移0，模糊0(纯色), 扩展大小30像素*/
+}
+
+.teamleft01{
+	border:solid 5px white;
+}
+.teamleft02{
+	border-radius:10px;
+}
+
+
+.imgright
+{
+	margin:15px;
+	/*width:120px;*/
+	height:120px;
+    -webkit-box-shadow:0px 0px 10px #666;
+    -moz-box-shadow:0px 0px 10px #666;
+    box-shadow:0px 0px 10px #666;
+}
+
+.imgright:hover
+{
+	-webkit-box-shadow:0px 0px 10px red;
+    -moz-box-shadow:0px 0px 10px red;
+    box-shadow:0px 0px 10px red;/*水平偏移0, 垂直偏移0，模糊0(纯色), 扩展大小30像素*/
+}
+.teamright01{
+	border:solid 5px white;
+}
+.teamright02{
+	border-radius:10px;
+}
+
+.ybbimg
+{
+	/*margin:30px;*/
+	height:120px;
+    -webkit-box-shadow:0px 0px 10px #666;
+	border:solid 5px white;
+    -moz-box-shadow:0px 0px 10px #666;
+    box-shadow:0px 0px 10px #666;
+}
+.ybbimg:hover
+{
+	-webkit-box-shadow:0px 0px 10px red;
+    -moz-box-shadow:0px 0px 10px red;
+    box-shadow:0px 0px 10px red;/*水平偏移0, 垂直偏移0，模糊0(纯色), 扩展大小30像
+}
+
+
+
+
+
+
+
+
+
+

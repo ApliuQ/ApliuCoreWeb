@@ -1,0 +1,139 @@
+*{-webkit-tap-highlight-color:rgba(0,0,0,0)}
+a{
+	text-decoration: none;
+}
+body{
+	margin-bottom: 30px;
+}
+.wrap{
+	min-width: 320px;
+	margin:0 auto;
+}
+.order-con{
+	background-color:#f1f1f5;
+}
+.order-list{
+	position:relative;
+	top:0px;
+}
+.order-list li{
+	display: list-item;
+	text-align: center;
+}
+.order-box{
+	margin-top:10px;
+	background: #FFF;
+	border-top:1px solid #c8c7cc;
+	border-bottom:1px solid #c8c7cc;
+	display: inline-block;
+	width: 100%;
+}
+.order-box .order-msg{
+	margin-top:10px;
+}
+.order-box p{
+	text-align: left;
+	vertical-align: bottom;
+}
+.order-box .order-msg .price{
+	color:#c00000;
+	height:29px;
+	font-size:14px;
+}
+.order-box .order-msg .order-data{
+	color:#7b7b7b;
+}
+.order-box .order-msg .price span{
+	float:right;
+	width:10px;
+	height:10px;
+	border-top:2px solid #ebeaec;
+	border-right:2px solid #ebeaec;
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	transform:rotate(45deg);
+	margin-right:10px;
+}
+.order-box .order-msg .title{
+	height:41px;
+	overflow: hidden;
+	font-size:16px;
+}
+
+.order-box .order-msg .img_ware{
+	width:86px;
+	height:86px;
+}
+
+
+.order-box img{
+	float:left;
+	border:1px solid #e4e4e4;
+	margin-right:20px;
+}
+
+.pay-order{
+	clear: left;
+	margin:0 auto;
+	width:140px;
+	height:30px;
+	background-color: #fb4e3a;
+	font-size:16px;
+	text-align: center;
+	line-height: 30px;
+	vertical-align: middle;
+	border-radius: 3px;
+	margin-top:10px;
+	margin-bottom: 15px;
+	display: inline-block;
+	color:#FFF;
+}
+.pay-order a{
+	color:#FFF;
+}
+.border-bottom{
+	border-bottom:1px solid #e4e4e4;
+}
+.book-list li{
+	padding:5px 0;
+	margin-left:10px;
+}
+.order-width{
+	color:#707070;
+	font-size:14px;
+	margin:0 10px;
+}
+.order-width p{
+	min-height:30px;
+}
+.pay-button{
+	text-align: center;
+	margin-bottom: 10px;
+	color:#FFF;
+	height:36px;
+	font-size: 14px;
+}
+.pay-button a{
+	margin-top:2px;
+}
+
+.pay-button a:nth-child(2){
+	margin-left:20px;
+	background-color: #bf9d5a;
+}
+
+.fr{
+	float:right;
+}
+.usr-name{
+	margin-top:5px;
+}
+.usr-addr{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.red{
+	color:#c00000;
+}

@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Templet.cshtml";
+    ViewBag.Title = "QRCode 二维码";
+}
+
+<script>
+    var createqrcode = function () {
+        var content = document.getElementById("content").value;
+        if (content == null || content == "") {
+            apliualert("请输入需要生成二维码的内容");
+            return;
+        }
+        var srcapi = "/api/toolapi/GetQRCode?Content=" + content + "&random" + Math.random();
+        $("#qrcodeimg").attr("src", srcapi);
+    }
+</script>
+
+<div style="padding: 10px; background-color: white;">
+    <div style="margin-top: 30px;">
+        <span class="Biaoqian">API介绍</span><br />
+        <div style="padding-left: 1rem; font-size: 0.7rem;">
+            1. 方法类型 Get<br />
+            2. 接口地址：https://www.apliu.xyz/api/toolapi/GetQRCode?Content=string <br />
+            3. 接口参数：一个默认参数Content，如上“string”是需要生成二维码的内容<br />
+        </div>
+    </div>
+    <div style="margin-top: 30px;">
+        <span class="Biaoqian">演示Demo</span><br />
+        <div style="margin-top: 10px; text-align: center;">
+            <textarea id="content" class="qrcodecontentinput" placeholder="请输入二维码内容"></textarea>
+            <input onclick="createqrcode()" class="qrcodebutton" type="button" value="生成二维码" />
+        </div>
+        <div style="text-align: center; padding: 20px;">
+            <img id="qrcodeimg" height="300" src="/images/logo/logosqu.png" />
+        </div>
+    </div>
+</div>

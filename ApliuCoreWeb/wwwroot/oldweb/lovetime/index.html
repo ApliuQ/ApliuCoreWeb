@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <title>恋爱计时</title>
+    <meta http-equiv="content-type" content="text/html; charset=gb2312">
+    <link href="css/default.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" charset="gb2312" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="gb2312" src="js/garden.js"></script>
+    <script type="text/javascript" charset="gb2312" src="js/functions.js"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (is_weixn()) {
+            window.location.href = "wxindex.html";
+            return;
+        }
+        window.parent.frames['bgmusicFrame'].document.getElementById("bgmusic").pause();
+    });
+
+    function myClose() {
+        window.parent.frames['bgmusicFrame'].document.getElementById("bgmusic").play();
+    }
+
+    function is_weixn() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+<body onunload="myClose()">
+    <!--style="background-image:url(../JS_xuanzhuanmuma/image/f9.jpg); background-size:100% 100%"-->
+    <audio autoplay="true">
+        <source src="music/A_Little_Love.mp3" type="audio/mpeg"/>
+        <source src="music/A_Little_Love.ogg" type="audio/ogg"/>
+        <!-- If no support at all. -->
+        浏览器不支持HTML5音频！
+    </audio>
+    <div id="logo">
+        <!--style="background: url(logo.png) left top;"-->
+        <a href="../index.html">
+            <img src="/images/logo/logosqu.png" width="184px" heigh="63px" title="返回主页" border="0" /></a>
+    </div>
+    </div>
+    <div id="mainDiv">
+        <div id="content">
+            <div id="code">
+                <span class="comments">/**</span><br />
+                <span class="space" /><span class="comments">* 因为我是一个程序员，不太会表达自己的想法</span><br />
+                <span class="space" /><span class="comments">* 所以在这里我想用小小程序来表达我对你的心意。</span><br />
+                <span class="space" /><span class="comments">*/</span><br />
+                Boy i = <span class="keyword">new</span> Boy(<span class="string">"安笨笨"</span>);<br />
+                Girl u = <span class="keyword">new</span> Girl(<span class="string">"瑶宝宝"</span>);<br />
+                <span class="comments">// 2009年3月15的那一天傍晚, 我告诉你说我喜欢你。</span><br />
+                i.love(u);<br />
+                <span class="comments">// 非常幸运, 你接受了我，答应做我的女朋友。</span><br />
+                u.accepted(i);<br />
+                <span class="comments">// 从那一天起, 我每天都会想你，深深地思念。</span><br />
+                i.miss(u);<br />
+                <span class="comments">// 并且我努力学会照顾你和我们的爱。</span><br />
+                i.takeCareOf(u);<br />
+                <span class="comments">// 现在，你说你现在还不能嫁给我。</span><br />
+                <span class="comments">// 我并没有说太多，我会等待也会努力，因为我有信心娶你。</span><br />
+                <span class="keyword">boolean</span> isHesitate = <span class="keyword">true</span>;<br />
+                <span class="keyword">while</span> (isHesitate) {<br />
+                <span class="placeholder" /><span class="comments">// 我同样也觉得这也是一个很重要的决定，所以我会等待</span><br />
+                <span class="placeholder" />i.waitFor(u);<br />
+                <span class="placeholder" /><span class="comments">// 直到你想好了，答应嫁给我。</span><br />
+                <span class="placeholder" />isHesitate = u.thinkOver();<br />
+                }<br />
+                <span class="comments">// 一个浪漫的婚礼之后，我们一定会很幸福的在一起。</span><br />
+                i.marry(u);<br />
+                i.liveHappilyWith(u);<br />
+                <br />
+                <br />
+                <span class="comments">// 记得点击最下方中间的</span> <span class="self">爱的祝福</span><br />
+            </div>
+            <div id="loveHeart">
+                <canvas id="garden"></canvas>
+                <div id="words">
+                    <div id="messages">
+                        瑶宝宝，我们已经相恋了
+          <div id="elapseClock"></div>
+                    </div>
+                    <div id="loveu">
+                        永远爱你，一生守护。<br />
+                        <div class="signature">—— 安笨笨</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="copyright">
+            来自安笨笨<a href="https://www.baidu.com/s?ie=UTF-8&wd=52020152319">爱的祝福</a>。<br />
+            ? 2015 瑶宝宝，爱你的心从未停止，2009-2015-未来。
+        </div>
+    </div>
+    <script type="text/javascript">
+        var offsetX = $("#loveHeart").width() / 2;
+        var offsetY = $("#loveHeart").height() / 2 - 55;
+        var together = new Date();
+        together.setFullYear(2009, 3, 15);
+        together.setHours(17);
+        together.setMinutes(0);
+        together.setSeconds(0);
+        together.setMilliseconds(0);
+
+        if (!document.createElement('canvas').getContext) {
+            var msg = document.createElement("div");
+            msg.id = "errorMsg";
+            msg.innerHTML = "你的浏览器不支持 HTML5!<br/>请使用 Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+            document.body.appendChild(msg);
+            $("#code").css("display", "none")
+            $("#copyright").css("position", "absolute");
+            $("#copyright").css("bottom", "10px");
+            document.execCommand("stop");
+        } else {
+            setTimeout(function () {
+                startHeartAnimation();
+            }, 5000);
+
+            timeElapse(together);
+            setInterval(function () {
+                timeElapse(together);
+            }, 500);
+
+            adjustCodePosition();
+            $("#code").typewriter();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;" charset="gb2312">
+<title>见缝插针</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+<div id="logo" style="position:fixed;left:0px;top: 0px; z-index:1000;">
+  <a href="../index.html"><img src="image/exit.png" width="184px" heigh="63px" title="返回主页" border="0"/></a>
+</div>
+<div align="center" style=" top: 0px; z-index:1000;">
+      <a class="make">游戏结束才会保存记录哦！</a><br />
+  </div>
+<div style="position:fixed; right:0px;top: 0px; z-index:1000;">
+      <a id="username" title="用户名" class="topuser">用户名显示</a>
+      <a id="logout" onclick="logout()" href="" title="注销" class="topuser" >注销</a> 
+      <a id="login" href="../login/login.html?id=pins" title="登录" class="topuser">登录</a> 
+      <a id="register" href="../login/register.html?id=pins" title="注册" class="topuser">注册</a> 
+  <a href="../cloudmain/game.html" ><img src="image/fanhui.png" title="退出游戏" border="0"/></a>
+  </div>
+  
+<img src="image/icon.png" width="0" height="0" style="position:absolute">
+<div class="title"></div>
+<canvas id="stage" width="320" height="480" style="height: 480px;"></canvas>
+<div id="gohw"></div>
+<div id="gameover" class="hide">
+  <div class="gameovercontainer">
+    
+  </div>
+  <div class="gameoverbtns">
+  <div class="gametime"></div>
+  <div class="gameoverscore"></div>
+    <p><font><strong><div id="display2" align="center" style="font-size:30px; color:#FFF;"></div></strong></font></p>
+  <p><font><strong><div id="display3" align="center" style="font-size:30px; color:#FFF;"></div></strong></font></p>
+  <p><font><strong><div id="display4" align="center" style="font-size:30px; color:#FFF;"></div></strong></font></p> 
+  <p><font><strong><div id="results" style="font-size:30px; color:#FFF;"></div></strong></font></p> 
+    <button id="islogin" class="btngameover sharegamebtn" onclick="share();">登录</button>
+    <button class="btngameover restartgamebtn" onclick="startGame();">继续挑战</button>
+    <button class="btngameover moregamebtn" onclick="clickMore();">更多游戏</button>
+  </div>
+</div>
+<script>
+document.getElementById('stage').style.height = (480 - Math.max(0, 568 - screen.height)) + 'px';</script> 
+<script src="js/jquery-1.8.3.min.js"></script> 
+<script src="js/game.js" charset="utf-8"></script> 
+</div>
+<div align="center" style="top:100%;"><a href="index.html" target="_blank" title="Apliu">Apliu</a></div>
+</body>
+</html>

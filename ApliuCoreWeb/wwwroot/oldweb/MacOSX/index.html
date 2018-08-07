@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<head>
+<title>Mac OS X桌面菜单效果</title>
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<meta http-equiv="content-type" content="text/html; charset=gb2312">
+<!--<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">-->
+<link rel="stylesheet" type="text/css" href="core/dockmenu.css">
+<script type="text/javascript" charset="gb2312" src="core/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" charset="gb2312" src="core/dockmenu.min.js"></script>
+<style>
+html, body {
+	margin: 0;
+	padding: 0;
+	background: url(grey_wash_wall.png)
+}
+.row label {
+	color: #999;
+	margin: 0 0 5px 0;
+	padding: 0;
+	line-height: 30px;
+	font-size: 13px;
+	font-weight: normal;
+}
+.menu {
+	padding: 10px;
+	/*background: #303030;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #fff;
+	width: 200px;
+}
+.menu input, .menu select {
+	background: rgba(0, 0, 0, 0.6);
+	border: 1px solid #FFF;
+	color: #FFF;
+	padding: 2px 5px;
+	width: 100px;
+	float: right;
+	margin-left: 10px;
+}
+.close {
+	position: absolute;
+	right: -0px;
+	/*background: #303030;*/
+	width: 25px;
+	text-align: right;
+	padding: 2px 10px 3px 0;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#wrapper1').dockmenu({
+        buttons: [{
+            'title': 'Settings',
+			/*'href': '#settings',*/
+            'imgURL': 'icons/Settings.png',
+            'onClick': function() {
+            	alert("Settings")  
+            }
+        },
+        {
+            'title': 'App Store',
+            'href': '../index.html',
+            'imgURL': 'icons/AppStore.png',
+
+        },
+        {
+            'title': 'Camera',
+            'href': '#camera',
+            'imgURL': 'icons/Camera.png',
+
+        },
+        {
+            'title': 'Games',
+            'href': '#Games',
+            'imgURL': 'icons/Games.png',
+
+        },
+        {
+            'title': 'Mail',
+            'href': '#Mail',
+            'imgURL': 'icons/Mail.png',
+
+        },
+        {
+            'title': 'Music',
+            'href': '#Music',
+            'imgURL': 'icons/Music.png',
+        },
+        {
+            'title': 'Safari',
+            'href': '#Safari',
+            'imgURL': 'icons/Safari.png',
+
+        },
+        {
+            'title': 'Photos',
+            'href': '#Photos',
+            'imgURL': 'icons/Photos.png',
+
+        }]
+
+    });
+
+    $('.close').on('click',
+    function() {
+        if ($('.menu').position().left === 0) {
+            $('.menu').animate({
+                'left': '-200px'
+            },
+            1000);
+            $(this).html('>');
+        } else {
+            $('.menu').animate({
+                'left': '0'
+            },
+            1000);
+            $(this).html('×');
+        }
+    });
+});
+</script>
+</head>
+
+<body>
+<div class="menu">
+  <div class="close">×</div>
+  <a href="../index.html"><img src="logo.png" width="184px" heigh="63px" title="返回主页" border="0"/></a> 
+</div>
+<div id="wrapper1"></div>
+<!-- Dockmenu build wrapper1 -->
+<div style="text-align:center;clear:both"> </div>
+</body>
+</html>
