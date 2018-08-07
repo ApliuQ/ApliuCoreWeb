@@ -376,12 +376,12 @@
 
     CitySelect.prototype.backOffView = function () {
         this.$cityElement.find('.cityselect-content').removeClass('cityselect-next')
-        .addClass('cityselect-move-animate cityselect-prev');
+            .addClass('cityselect-move-animate cityselect-prev');
     };
 
     CitySelect.prototype.ForwardView = function (animate) {
         this.$cityElement.find('.cityselect-content').removeClass('cityselect-move-animate cityselect-prev')
-        .addClass((animate ? 'cityselect-move-animate' : '') + ' cityselect-next');
+            .addClass((animate ? 'cityselect-move-animate' : '') + ' cityselect-next');
     };
 
     CitySelect.prototype.bindItemEvent = function () {
@@ -3061,13 +3061,13 @@
             touchEvents = _this.touchEvents();
 
         _this.$wrapper.find('.' + _this.options.slideClass)
-        .on(touchEvents.start, function (e) {
-            _this.onTouchStart(e);
-        }).on(touchEvents.move, function (e) {
-            _this.onTouchMove(e);
-        }).on(touchEvents.end, function (e) {
-            _this.onTouchEnd(e);
-        });
+            .on(touchEvents.start, function (e) {
+                _this.onTouchStart(e);
+            }).on(touchEvents.move, function (e) {
+                _this.onTouchMove(e);
+            }).on(touchEvents.end, function (e) {
+                _this.onTouchEnd(e);
+            });
 
         $(window).on('resize.ydui.slider', function () {
             _this.setSlidesSize();
@@ -3128,8 +3128,8 @@
             bulletActiveClass = _this.options.bulletActiveClass;
 
         !!_this.$pagination[0] && _this.$pagination.find('.' + _this.options.bulletClass)
-        .removeClass(bulletActiveClass)
-        .eq(index).addClass(bulletActiveClass);
+            .removeClass(bulletActiveClass)
+            .eq(index).addClass(bulletActiveClass);
     };
 
     /**

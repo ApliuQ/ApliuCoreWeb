@@ -3,11 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ApliuCoreWeb</title>
+    <title>@ViewData["Title"]</title>
 
-    <link rel="stylesheet" href="/CssStyle/weui.min.css">
-    <link rel="stylesheet" href="/CssStyle/jquery-weui.min.css">
-    <link rel="stylesheet" href="/CssStyle/ydui.css">
+    <link rel="stylesheet" href="~/css/style/commonstyle.css">
+    <link rel="stylesheet" href="~/css/style/weui.min.css">
+    <link rel="stylesheet" href="~/css/style/jquery-weui.min.css">
+    <link rel="stylesheet" href="~/css/style/ydui.css">
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -21,36 +22,10 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ApliuCoreWeb</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - ApliuCoreWeb</p>
-        </footer>
-    </div>
+    @RenderBody()
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -74,8 +49,12 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
-    <script src="/Earliest/js/zepto.min.js"></script>
-    <script src="/JsScript/jquery-weui.min.js"></script>
-    <script src="/JsScript/ydui.js"></script>
+
+    <script src="~/js/script/zepto.min.js"></script>
+    <script src="~/js/script/jquery-weui.min.js"></script>
+    <script src="~/js/script/ydui.js"></script>
+    <script src="~/js/script/apliualert.js"></script>
+    <script src="~/js/script/CommonJs.js"></script>
+
 </body>
 </html>

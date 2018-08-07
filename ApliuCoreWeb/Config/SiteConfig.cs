@@ -20,7 +20,7 @@ namespace ApliuCoreWeb.Config
             }
         }
 
-        private readonly static string configFilePath = ServerInfo.SitePath + @"\Config\BaseConfig.config";
+        private readonly static string configFilePath = System.IO.Directory.GetCurrentDirectory() + @"\Config\BaseConfig.config";//ServerInfo.SitePath + @"\Config\BaseConfig.config";
         private static DateTime configFileModifyDate = DateTime.Now; //配置文件最后一次修改时间
 
         #region ==属性字段==

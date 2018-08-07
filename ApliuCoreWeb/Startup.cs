@@ -123,10 +123,10 @@ namespace ApliuCoreWeb
                 Common.RootDirectory = Apliu.Standard.Tools.Web.ServerInfo.SitePath + @"\";
 
                 //启动access_token管理任务
-                Models.WeChat.WxTokenManager.TokenTaskStart();
+                //Models.WeChat.WxTokenManager.TokenTaskStart();
 
                 //创建自定义菜单
-                Models.WeChat.WxDefaultMenu.CreateMenus();
+                //Models.WeChat.WxDefaultMenu.CreateMenus();
 
                 Apliu.Standard.Tools.Logger.WriteLogWeb("自定义初始化事件执行完成");
             }

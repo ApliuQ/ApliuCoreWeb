@@ -10,10 +10,16 @@ using System.Text;
 
 namespace ApliuCoreWeb.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/tools")]
     [ApiController]
-    public class ToolApiController : ControllerBase
+    public class ToolsController : ControllerBase
     {
+        [HttpGet]
+        public String Get()
+        {
+            return "ToolsController OK";
+        }
+
         /// <summary>
         /// GET api/toolapi/GetQRCode?Content=content
         /// </summary>
