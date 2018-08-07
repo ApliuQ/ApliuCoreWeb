@@ -8,7 +8,9 @@ using System.Net.Http;
 
 namespace ApliuCoreWeb.Controllers
 {
-    public class WxController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class WxController : ControllerBase
     {
         /// <summary>
         /// 微信公众号获取Token Api 消息验证、接收微信服务器推送的消息

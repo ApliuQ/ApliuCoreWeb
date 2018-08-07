@@ -7,7 +7,9 @@ using System.Text;
 
 namespace ApliuCoreWeb.Controllers
 {
-    public class CommonController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CommonController : ControllerBase
     {
         [HttpPost]
         public string changepassword()

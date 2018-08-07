@@ -71,6 +71,13 @@ namespace ApliuCoreWeb
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //    name: "text",
+            //    template: "{controller=text}/{action=Index}/{id?}");
+            //});
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -95,6 +102,38 @@ namespace ApliuCoreWeb
             //                        .GetServices<Microsoft.AspNetCore.SignalR.IHubContext<WeChatHub>>();
             //    return null;
             //});
+
+            //启动自定义初始化事件
+            UserDefinedStartup();
+        }
+
+        /// <summary>
+        /// 自定义初始化事件
+        /// </summary>
+        public void UserDefinedStartup()
+        {
+            try
+            {
+                Apliu.Standard.Tools.Logger.WriteLogWeb("开始执行自定义初始化事件");
+
+                //加载配置文件
+                Config.SiteConfig.LoadConfig();
+
+                //初始化程序跟目录
+                Common.RootDirectory = Apliu.Standard.Tools.Web.ServerInfo.SitePath + @"\";
+
+                //启动access_token管理任务
+                Models.WeChat.WxTokenManager.TokenTaskStart();
+
+                //创建自定义菜单
+                Models.WeChat.WxDefaultMenu.CreateMenus();
+
+                Apliu.Standard.Tools.Logger.WriteLogWeb("自定义初始化事件执行完成");
+            }
+            catch (System.Exception ex)
+            {
+                Apliu.Standard.Tools.Logger.WriteLogWeb("自定义初始化事件执行失败，详情：" + ex.Message);
+            }
         }
     }
 }

@@ -8,8 +8,9 @@ namespace ApliuCoreWeb
     {
         public static void Main(string[] args)
         {
-            //Apliu.Standard.Tools.Logger.WriteLogWeb(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"));
+            Apliu.Standard.Tools.Logger.WriteLogWeb("开启Apliu Core Web服务");
             CreateWebHostBuilder(args).Build().Run();
+            Apliu.Standard.Tools.Logger.WriteLogWeb("关闭Apliu Core Web服务");
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

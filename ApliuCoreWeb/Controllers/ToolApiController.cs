@@ -3,7 +3,6 @@ using Apliu.Standard.Tools.Web;
 using ApliuCoreWeb.Config;
 using ApliuCoreWeb.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Data;
@@ -11,7 +10,9 @@ using System.Text;
 
 namespace ApliuCoreWeb.Controllers
 {
-    public class ToolApiController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ToolApiController : ControllerBase
     {
         /// <summary>
         /// GET api/toolapi/GetQRCode?Content=content

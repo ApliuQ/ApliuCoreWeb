@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApliuCoreWeb.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [ApiController]
+    public class ValuesController : ControllerBase
     {
         // GET: api/<controller>
         [HttpGet]
