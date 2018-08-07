@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace ApliuTools.Web
+namespace Apliu.Standard.Tools.Web
 {
     /// <summary>
     /// 生成缩略图类

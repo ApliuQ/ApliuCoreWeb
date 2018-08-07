@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ApliuTools.Web
 {
@@ -36,7 +37,9 @@ namespace ApliuTools.Web
         {
             get
             {
-                return HttpContext.Current.Request.ServerVariables["APPL_PHYSICAL_PATH"];
+                string rootdir = AppContext.BaseDirectory;
+                DirectoryInfo directoryInfo = Directory.GetParent(rootdir);
+                return directoryInfo.FullName;
             }
         }
 

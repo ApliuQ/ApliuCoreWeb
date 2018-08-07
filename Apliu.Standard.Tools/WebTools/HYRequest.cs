@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using System.Web;
 
 namespace ApliuTools.Web
 {
@@ -131,42 +130,10 @@ namespace ApliuTools.Web
         }
 
         /// <summary>
-        /// 获得当前Url的参数
-        /// </summary>
-        /// <returns></returns>
-        public static string GetUrlQuery()
-        {
-            return HttpContext.Current.Request.Url.Query.ToString();
-        }
-
-        /// <summary>
-        /// 获得当前完整Url地址
-        /// </summary>
-        /// <returns>当前完整Url地址</returns>
-        public static string GetUrl()
-        {
-            return HttpContext.Current.Request.Url.ToString();
-        }
-
-        /// <summary>
-        /// 获得指定Url参数的值
-        /// </summary>
-        /// <param name="strName">Url参数</param>
-        /// <returns>Url参数的值</returns>
-        public static string GetQueryString(string strName)
-        {
-            if (ApliuTools.Web.HttpContextRequest.QueryString[strName] == null)
-            {
-                return "";
-            }
-            return ApliuTools.Web.HttpContextRequest.QueryString[strName];
-        }
-
-        /// <summary>
         /// 获得当前页面的名称
         /// </summary>
         /// <returns>当前页面的名称</returns>
-        public static string GetPageName()
+        public static string GetPageName(this Url url)
         {
             string[] urlArr = HttpContext.Current.Request.Url.AbsolutePath.Split('/');
             return urlArr[urlArr.Length - 1].ToLower();
@@ -179,124 +146,6 @@ namespace ApliuTools.Web
         public static int GetParamCount()
         {
             return HttpContext.Current.Request.Form.Count + HttpContext.Current.Request.QueryString.Count;
-        }
-
-        /// <summary>
-        /// 获得指定表单参数的值
-        /// </summary>
-        /// <param name="strName">表单参数</param>
-        /// <returns>表单参数的值</returns>
-        public static string GetFormString(string strName)
-        {
-            if (ApliuTools.Web.HttpContextRequest.Form[strName] == null)
-            {
-                return "";
-            }
-            return ApliuTools.Web.HttpContextRequest.Form[strName];
-        }
-
-        /// <summary>
-        /// 获得Url或表单参数的值, 先判断Url参数是否为空字符串, 如为True则返回表单参数的值
-        /// </summary>
-        /// <param name="strName">参数</param>
-        /// <returns>Url或表单参数的值</returns>
-        public static string GetString(string strName)
-        {
-            if ("".Equals(GetQueryString(strName)))
-            {
-                return GetFormString(strName);
-            }
-            else
-            {
-                return GetQueryString(strName);
-            }
-        }
-
-
-        /// <summary>
-        /// 获得指定Url参数的int类型值
-        /// </summary>
-        /// <param name="strName">Url参数</param>
-        /// <param name="defValue">缺省值</param>
-        /// <returns>Url参数的int类型值</returns>
-        public static int GetQueryInt(string strName, int defValue)
-        {
-            int.TryParse(ApliuTools.Web.HttpContextRequest.QueryString[strName], out defValue);
-            return defValue;
-        }
-
-
-        /// <summary>
-        /// 获得指定表单参数的int类型值
-        /// </summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="defValue">缺省值</param>
-        /// <returns>表单参数的int类型值</returns>
-        public static int GetFormInt(string strName, int defValue)
-        {
-            int.TryParse(ApliuTools.Web.HttpContextRequest.Form[strName], out defValue);
-            return defValue;
-        }
-
-        /// <summary>
-        /// 获得指定Url或表单参数的int类型值, 先判断Url参数是否为缺省值, 如为True则返回表单参数的值
-        /// </summary>
-        /// <param name="strName">Url或表单参数</param>
-        /// <param name="defValue">缺省值</param>
-        /// <returns>Url或表单参数的int类型值</returns>
-        public static int GetInt(string strName, int defValue)
-        {
-            if (GetQueryInt(strName, defValue) == defValue)
-            {
-                return GetFormInt(strName, defValue);
-            }
-            else
-            {
-                return GetQueryInt(strName, defValue);
-            }
-        }
-
-        /// <summary>
-        /// 获得指定Url参数的float类型值
-        /// </summary>
-        /// <param name="strName">Url参数</param>
-        /// <param name="defValue">缺省值</param>
-        /// <returns>Url参数的int类型值</returns>
-        public static float GetQueryFloat(string strName, float defValue)
-        {
-            float.TryParse(ApliuTools.Web.HttpContextRequest.QueryString[strName], out defValue);
-            return defValue;
-        }
-
-
-        /// <summary>
-        /// 获得指定表单参数的float类型值
-        /// </summary>
-        /// <param name="strName">表单参数</param>
-        /// <param name="defValue">缺省值</param>
-        /// <returns>表单参数的float类型值</returns>
-        public static float GetFormFloat(string strName, float defValue)
-        {
-            float.TryParse(ApliuTools.Web.HttpContextRequest.Form[strName], out defValue);
-            return defValue;
-        }
-
-        /// <summary>
-        /// 获得指定Url或表单参数的float类型值, 先判断Url参数是否为缺省值, 如为True则返回表单参数的值
-        /// </summary>
-        /// <param name="strName">Url或表单参数</param>
-        /// <param name="defValue">缺省值</param>
-        /// <returns>Url或表单参数的int类型值</returns>
-        public static float GetFloat(string strName, float defValue)
-        {
-            if (GetQueryFloat(strName, defValue) == defValue)
-            {
-                return GetFormFloat(strName, defValue);
-            }
-            else
-            {
-                return GetQueryFloat(strName, defValue);
-            }
         }
 
         /// <summary>
@@ -324,6 +173,21 @@ namespace ApliuTools.Web
             }
             
             return result;
+        }
+
+        /// <summary>
+        /// 获取客户Ip
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static string GetClientUserIp(this HttpContext context)
+        {
+            var ip = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+            if (string.IsNullOrEmpty(ip))
+            {
+                ip = context.Connection.RemoteIpAddress.ToString();
+            }
+            return ip;
         }
 
         /// <summary>
