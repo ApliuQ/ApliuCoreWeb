@@ -125,7 +125,7 @@ var logout = function () {
         var data = { method: "Post" };
         $.when(ApliuCommon.HttpSend("/api/common/logout", data)).then(function (rst) {
             if (rst.code == "0") {
-                window.location.href = "/Home/Index";
+                window.location.href = "/";
             } else {
                 $.alert("退出失败，原因：" + rst.msg);
             }

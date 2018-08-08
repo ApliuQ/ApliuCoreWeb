@@ -2,14 +2,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "登录";
 }
-<link rel="stylesheet" href="/Earliest/css/common.css">
-<link rel="stylesheet" href="/Earliest/css/app.css">
-<link rel="stylesheet" href="/CssStyle/User/login.css">
-<script src="/JsScript/User/login.js"></script>
+<link rel="stylesheet" href="~/css/style/appcss/common.css">
+<link rel="stylesheet" href="~/css/style/appcss/app.css">
+<link rel="stylesheet" href="~/css/style/user/login.css">
+
+<script src="~/js/script/user/login.js"></script>
 <div class="login_bg">
     <div id="logo">
-        <a href="/Home/Index">
-            <img src="/images/logo/logorect.png" alt="" /></a>
+        <a href="/">
+            <img src="~/img/logo/logorect.png" alt="" />
+        </a>
     </div>
     <form action="javascript:void(0);">
         <div class="userName">
@@ -25,11 +27,11 @@
                 <input type="checkbox" checked="checked" name="checkbox" />
                 <span>记住密码</span>
             </div>
-            <a href="Password">忘记密码</a>
+            <a href="password">忘记密码</a>
         </div>
         <button class="login_btn" type="submit" id="btn-login">登&nbsp;&nbsp;录</button>
     </form>
-    <a href="Register">注册新用户</a>
+    <a href="register">注册新用户</a>
     <div class="other_login">
         <div class="other"></div>
         <span>其他方式登录</span>
@@ -37,13 +39,13 @@
     </div>
     <div class="other_choose">
         <a href="JavaScript:void(0)">
-            <img src="/Images/Icon/qq.png" alt="" />
+            <img src="~/img/icon/qq.png" alt="" />
         </a>
         <a href="JavaScript:void(0)">
-            <img src="/Images/Icon/wx.png" alt="" />
+            <img src="~/img/icon/wx.png" alt="" />
         </a>
         <a href="JavaScript:void(0)">
-            <img src="/Images/Icon/wb.png" alt="" />
+            <img src="~/img/icon/wb.png" alt="" />
         </a>
     </div>
 </div>

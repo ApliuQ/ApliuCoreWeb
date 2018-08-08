@@ -1,4 +1,8 @@
 ﻿var apliualert = function (content) {
+    $.alert(content);
+    return;
+
+
     var shield = document.createElement("DIV");
     shield.id = "shield";
     shield.style.position = "absolute";
@@ -26,7 +30,7 @@
     strHtml = "<div>\n";
     strHtml += "<ul style=\"list-style:none;margin:0 auto;padding:0px;border-radius: 5px;\">\n";
     //strHtml += " <li style=\"background:#4794FA;text-align:left;padding-left:20px;font-size:14px;font-weight:bold;height:25px;line-height:25px;border:1px solid #F9CADE;color:white\">提示</li>\n";
-    strHtml += " <li style=\"background: #fff url(/images/icon/tips.png) no-repeat scroll 5px center;text-align:center;font-size:large;line-height:90px;padding-left: 45px;padding-right: 10px;border-radius: 5px;\">" + content + "</li>\n";
+    strHtml += " <li style=\"background: #fff url(/img/icon/tips.png) no-repeat scroll 5px center;text-align:center;font-size:large;line-height:90px;padding-left: 45px;padding-right: 10px;border-radius: 5px;\">" + content + "</li>\n";
     strHtml += " <li style=\"background:#fff;text-align:center;font-weight:bold;height:50px;line-height:50px;\"><input type=\"button\" value=\"关闭\" onclick=\"doOk()\" style=\"width:80px;height:30px;background:#4693FA;color:white;border:1px solid white;font-size:.55rem;line-height:0px;font-family: Microsoft Yahei,Helvetica,Arial;outline:none;border-radius: 5px;margin-top: 4px\"/></li>\n";
     strHtml += "</div></ul>\n";
     alertFram.innerHTML = strHtml;

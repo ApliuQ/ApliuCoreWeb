@@ -365,7 +365,7 @@ namespace ApliuCoreWeb.Controllers
                     srcContent = SecurityHelper.UrlEncode(content, Encoding.UTF8);
                     break;
                 case "ASCIIEncode":
-                    byte[] array = System.Text.Encoding.UTF8.GetBytes(content);
+                    byte[] array = System.Text.Encoding.UTF8.GetBytes(content.Trim());
                     for (int i = 0; i < array.Length; i++)
                     {
                         int asciicode = (int)(array[i]);
@@ -376,6 +376,12 @@ namespace ApliuCoreWeb.Controllers
                 case "ASCIIDecode":
                     if (content.ToByte() != 0) srcContent = System.Text.Encoding.UTF8.GetString(new Byte[] { content.ToByte() });
                     else srcContent = "ASCII码 格式有误，只能单个码值转单字符";
+                    break;
+                case "ToUnicode":
+                    srcContent = SecurityHelper.ToUnicode(content.ToString().Trim());
+                    break;
+                case "UnicodeTo":
+                    srcContent = SecurityHelper.UnicodeTo(content.ToString().Trim());
                     break;
                 default: break;
             }

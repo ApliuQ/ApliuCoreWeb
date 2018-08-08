@@ -29,28 +29,30 @@
 <div style="padding: 10px; background-color: white;">
     <div style="margin-top: 30px;">
         <span class="Biaoqian">Api介绍</span><br />
-        <div style="padding-left: 1rem; font-size: 0.7rem;">
-            1.接口报文（地址）：<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://www.apliu.xyz/api/tools/security?type=处理类型&content=需处理字符串
-            <br />
-            <br />
-            2.接口参数：<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. type -> 处理类型<br />
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MD5  -> MD5加密<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UrlEncode  -> URL加密<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UrlDecode  -> URL解密<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASCIIEncode  -> 字符串转ASCII<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASCIIDecode  -> ASCII转字符<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GUID  -> 生成GUID<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToUpper  -> 字符串转大写<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToLower  -> 字符串转小写<br />
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. content -> 需处理的字符串<br />
-            <br />
-            3.接口说明：<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get方式<br />
-        </div>
+                                           <div style="padding-left: 1rem; font-size: 0.7rem;">
+                                               1.接口报文（地址）：<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://www.apliu.xyz/api/tools/security?type=处理类型&content=需处理字符串
+                                               <br />
+                                               <br />
+                                               2.接口参数：<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. type -> 处理类型<br />
+                                               <br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MD5  -> MD5加密<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UrlEncode  -> URL加密<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UrlDecode  -> URL解密<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASCIIEncode  -> 字符串转ASCII<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ASCIIDecode  -> ASCII转字符<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GUID  -> 生成GUID<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToUpper  -> 字符串转大写<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToLower  -> 字符串转小写<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnicodeTo  -> Unicode转中文<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ToUnicode  -> 中文转Unicode<br />
+                                               <br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. content -> 需处理的字符串<br />
+                                               <br />
+                                               3.接口说明：<br />
+                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get方式<br />
+                                           </div>
     </div>
     <div style="margin-top: 30px;">
         <span class="Biaoqian">演示Demo</span><br />
@@ -65,6 +67,8 @@
                 <option value="GUID">生成GUID</option>
                 <option value="ToUpper">字符串转大写</option>
                 <option value="ToLower">字符串转小写</option>
+                <option value="UnicodeTo">Unicode转中文</option>
+                <option value="ToUnicode">中文转Unicode</option>
             </select>
             <input onclick="executesql()" class="qrcodebutton" type="button" value="开始处理" />
         </div>

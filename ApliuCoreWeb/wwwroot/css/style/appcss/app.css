@@ -292,7 +292,9 @@ header {
     position: relative;
     height: 2.2rem;
     margin: 0 2.5rem 0 2.75rem;
-    overflow: hidden;
+    padding-top: .1rem;
+    z-index: 99;
+    /*overflow: hidden;*/
 }
 
     .search_box .logo_img {
@@ -954,10 +956,13 @@ header {
             border-radius: .1rem;
         }
 
-/*��̬���ض���*/
 .fixed_box {
     position: fixed;
     bottom: .5rem;
     right: .5rem;
     display: none;
+}
+
+#sid {
+    background-color: transparent;
 }

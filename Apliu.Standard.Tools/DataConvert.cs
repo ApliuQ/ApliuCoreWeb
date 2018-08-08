@@ -119,5 +119,17 @@ namespace Apliu.Standard.Tools
             DateTime.TryParse(stringtemp, out temp);
             return temp;
         }
+
+        /// <summary>
+        /// 字符串切割
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static String[] Split(this string content, String separator)
+        {
+            string[] sArray = System.Text.RegularExpressions.Regex.Split(content, separator);
+            return sArray;
+        }
     }
 }

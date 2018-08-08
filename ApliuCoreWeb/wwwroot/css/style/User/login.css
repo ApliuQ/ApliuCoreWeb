@@ -5,7 +5,7 @@
     background: #d1d6fa;
     opacity: 0.9;
     font-size: .7rem;
-    background: url(/Images/Background/login.jpg) no-repeat;
+    background: url(/img/background/login.jpg) no-repeat;
 }
 
 .register {
@@ -14,7 +14,7 @@
     text-align: center;
     font-size: .7rem;
     opacity: 0.9;
-    background: url(/Images/Background/login.jpg) no-repeat;
+    background: url(/img/background/login.jpg) no-repeat;
 }
 
 #logo {

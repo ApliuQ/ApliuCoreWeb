@@ -10,16 +10,16 @@
     </div>
     <div class="search_box">
         <div class="search">
-            <form id="index_search_form" method="get" action="/Shared/Error" target="_parent" onsubmit="return submit_search();">
+            <form id="index_search_form" method="get" action="/shared/error" target="_parent" onsubmit="return submit_search();">
                 <div class="text_box">
-                    <input id="keyword" name="keyword" type="text" placeholder="请输入搜索内容" class="keyword text" onkeydown="this.style.color=&#39;#404040&#39;" autocomplete="off">
+                    <input id="keyword" name="keyword" type="text" placeholder="请输入搜索内容" class="keyword text" autocomplete="off">
                 </div>
                 <input type="submit" value="" class="submit">
-                <input type="hidden" value="index_search_form_submit" name="sid">
+                <input type="hidden" value="index_search_form_submit" id="sid" name="sid">
             </form>
         </div>
     </div>
-    <div class="header-category"><a href="/Earliest/ListNavi/index.html"><em>更多</em></a></div>
+    <div class="header-category"><a href="~/earliest/listnavi/index.html"><em>更多</em></a></div>
     <div class="search_list"></div>
 </header>
 <div style="background-color: white; min-height: 500px; -ms-word-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all;">
@@ -32,8 +32,8 @@
 <footer class="footer new">
     <section class="status-bar">
         <div style="text-align: center;">
-            <a href="/User/Login" id="userlogin" style="float: none; width: 30%; margin-left: auto;">登录</a>
-            <a href="/User/Register" id="userregister" style="float: none; width: 30%; margin-left: auto;">注册</a>
+            <a href="/user/login" id="userlogin" style="float: none; width: 30%; margin-left: auto;">登录</a>
+            <a href="/user/register" id="userregister" style="float: none; width: 30%; margin-left: auto;">注册</a>
             <a style="float: right; margin-left: auto; padding: 0 15px 0 0;" href="javascript:scrollTo(0,0);">TOP</a>
         </div>
     </section>

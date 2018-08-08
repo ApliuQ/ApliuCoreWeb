@@ -47,15 +47,15 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
-    @RenderBody()
-
     @RenderSection("Scripts", required: false)
 
     <script src="~/js/script/zepto.min.js"></script>
     <script src="~/js/script/jquery-weui.min.js"></script>
     <script src="~/js/script/ydui.js"></script>
     <script src="~/js/script/apliualert.js"></script>
-    <script src="~/js/script/CommonJs.js"></script>
+    <script src="~/js/script/commonjs.js"></script>
+
+    @RenderBody()
 
 </body>
 </html>
