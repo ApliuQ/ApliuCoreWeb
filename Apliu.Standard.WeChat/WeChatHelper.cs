@@ -151,7 +151,7 @@ namespace Apliu.Standard.WeChat.Helper
         public WeChatHelper()
         {
             baseRequest = new BaseRequest();
-            //asyncOperation = AsyncOperationManager.CreateOperation(null);
+            asyncOperation = AsyncOperationManager.CreateOperation(null);
             source = new CancellationTokenSource();
             factory = new TaskFactory(source.Token);
         }
@@ -482,12 +482,14 @@ namespace Apliu.Standard.WeChat.Helper
             {
                 //反馈服务器
                 string webwxstatusnotifyUrl = host + "/cgi-bin/mmwebwx-bin/webwxstatusnotify";
-                StatusNotifyRequest statusNotifyRequest = new StatusNotifyRequest();
-                statusNotifyRequest.BaseRequest = baseRequest;
-                statusNotifyRequest.Code = 3;
-                statusNotifyRequest.FromUserName = user.UserName;
-                statusNotifyRequest.ToUserName = user.UserName;
-                statusNotifyRequest.ClientMsgId = OtherUtils.GetJavaTimeStamp();
+                StatusNotifyRequest statusNotifyRequest = new StatusNotifyRequest
+                {
+                    BaseRequest = baseRequest,
+                    Code = 3,
+                    FromUserName = user.UserName,
+                    ToUserName = user.UserName,
+                    ClientMsgId = OtherUtils.GetJavaTimeStamp()
+                };
                 //反馈结果可以不理
                 httpClient.PostJson<StatusNotifyResponse>(webwxstatusnotifyUrl, statusNotifyRequest);
             }
@@ -517,8 +519,10 @@ namespace Apliu.Standard.WeChat.Helper
                     string webwxbatchgetcontactUrl = string.Format(host + "/cgi-bin/mmwebwx-bin/webwxbatchgetcontact?type=ex&r={0}", OtherUtils.GetJavaTimeStamp());
                     string[] chatNameArr = statusNotifyUserName.Split(',');
                     bool finishGetChatList = false;
-                    BatchGetContactRequest batchGetContactRequest = new BatchGetContactRequest();
-                    batchGetContactRequest.BaseRequest = baseRequest;
+                    BatchGetContactRequest batchGetContactRequest = new BatchGetContactRequest
+                    {
+                        BaseRequest = baseRequest
+                    };
                     int count = chatNameArr.Length;
                     int index = 0;
                     //一批次最多获取50条，多出来分批获取
@@ -655,10 +659,12 @@ namespace Apliu.Standard.WeChat.Helper
                             if (selector != "0")
                             {
                                 //有新消息，拉取信息。
-                                SyncRequest syncRequest = new SyncRequest();
-                                syncRequest.BaseRequest = baseRequest;
-                                syncRequest.SyncKey = syncKey;
-                                syncRequest.rr = OtherUtils.Get_r();
+                                SyncRequest syncRequest = new SyncRequest
+                                {
+                                    BaseRequest = baseRequest,
+                                    SyncKey = syncKey,
+                                    rr = OtherUtils.Get_r()
+                                };
                                 string syncUrl = string.Format(host + "/cgi-bin/mmwebwx-bin/webwxsync?sid={0}&skey={1}", baseRequest.Sid, baseRequest.Skey);
                                 SyncResponse syncResponse = httpClient.PostJson<SyncResponse>(syncUrl, syncRequest);
                                 if (!syncPolling)
@@ -731,7 +737,6 @@ namespace Apliu.Standard.WeChat.Helper
                                 LogoutComplete?.Invoke(this, new TEventArgs<User>((User)obj));
                             }), user);
                             throw new Exception("1101可能其他地方登录/登出了 WEB 版微信，请检查手机端已登出WEB微信，然后稍后再试");
-                            break;
                         case "1102":
                             Close();
                             asyncOperation.Post(
@@ -740,11 +745,9 @@ namespace Apliu.Standard.WeChat.Helper
                                 LogoutComplete?.Invoke(this, new TEventArgs<User>((User)obj));
                             }), user);
                             throw new Exception("1102被强制登出（很可能cookie冲突），请检查手机端已登出WEB微信，然后稍后再试");
-                            break;
                         default:
                             //有其他任何异常，取消轮询
                             throw new Exception("轮询结果异常，停止轮询:" + syncCheckResult);
-                            break;
                     }
                     Thread.Sleep(1000);
                 }
@@ -1060,12 +1063,14 @@ namespace Apliu.Standard.WeChat.Helper
         public SimpleResponse VerifyUser(RecommendInfo info)
         {
             string verifyUserUrl = host + "/cgi-bin/mmwebwx-bin/webwxverifyuser?r=" + OtherUtils.GetJavaTimeStamp();
-            VerifyUserRequest request = new VerifyUserRequest();
-            request.BaseRequest = baseRequest;
-            request.Opcode = VERIFYUSER_OPCODE.VERIFYUSER_OPCODE_VERIFYOK;
-            request.SceneList = new List<int>() { (int)ADDSCENE_PF.ADDSCENE_PF_WEB };
-            request.VerifyUserList = new List<Modal.Request.VerifyUser>() { new Modal.Request.VerifyUser { Value = info.UserName, VerifyUserTicket = info.Ticket } };
-            request.skey = baseRequest.Skey;
+            VerifyUserRequest request = new VerifyUserRequest
+            {
+                BaseRequest = baseRequest,
+                Opcode = VERIFYUSER_OPCODE.VERIFYUSER_OPCODE_VERIFYOK,
+                SceneList = new List<int>() { (int)ADDSCENE_PF.ADDSCENE_PF_WEB },
+                VerifyUserList = new List<Modal.Request.VerifyUser>() { new Modal.Request.VerifyUser { Value = info.UserName, VerifyUserTicket = info.Ticket } },
+                skey = baseRequest.Skey
+            };
             //反馈结果可以不理
             return httpClient.PostJson<SimpleResponse>(verifyUserUrl, request);
         }

@@ -150,7 +150,7 @@ namespace ApliuCoreWeb.Controllers
 
             string SendMsg = "发生异常";
             String sendLogSql = String.Empty;
-            SMSMessage sms = new TencentSMS();
+            ISMSMessage sms = new TencentSMS();
             bool sendresult = sms.SendSMS(Mobile, SMSContent, out SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);
             if (sendresult)
             {
@@ -172,7 +172,7 @@ namespace ApliuCoreWeb.Controllers
 
             string SendMsg = "发生异常";
             String sendLogSql = String.Empty;
-            SMSMessage sms = new TencentSMS();
+            ISMSMessage sms = new TencentSMS();
             bool sendresult = sms.SendSMS(Mobile, SMSContent, out SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);
             if (sendresult)
             {

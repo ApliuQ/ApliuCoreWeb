@@ -68,14 +68,11 @@ namespace ApliuCoreWeb.Models
             codeCase = new CodeCase();
 
             string smsContent = string.Empty;
-            string smsCode = getVerifyCode(codeSerialNum, 6);
+            string smsCode = GetVerifyCode(codeSerialNum, 6);
             long timeOut = 0L;
             SendMsg = "短信发送失败";
             switch (codeType)
             {
-                case CodeType.Null:
-                    return false;
-                    break;
                 case CodeType.Test:
                     timeOut = 120L;
                     smsContent = TimeHelper.DataTimeNow.ToString("yyyy年MM月dd日 HH:mm:ss") + ", 测试短信. --Apliu";
@@ -92,9 +89,9 @@ namespace ApliuCoreWeb.Models
                     timeOut = 120L;
                     smsContent = "您好, 您的修改密码验证码是: " + smsCode + ", 有效期" + timeOut / 60 + "分钟, 如非本人发送, 请忽略该短信。";
                     break;
+                case CodeType.Null:
                 default:
                     return false;
-                    break;
             }
             bool result = SendSMS(Mobile, smsContent, out SendMsg);
             if (result)
@@ -118,7 +115,7 @@ namespace ApliuCoreWeb.Models
             string TcSMSAppId = SiteConfig.GetConfigAppSettingsValue("TcSMSAppId");
             string TcSMSAppKey = SiteConfig.GetConfigAppSettingsValue("TcSMSAppKey");
             String sendLogSql = String.Empty;
-            SMSMessage sms = new TencentSMS();
+            ISMSMessage sms = new TencentSMS();
             bool resutl = sms.SendSMS(Mobile, SMSContent, out SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);
             bool logResult = DataAccess.Instance.PostData(sendLogSql);
             return resutl;
@@ -136,7 +133,7 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         /// <param name="codeLen"></param>
         /// <returns></returns>
-        public static string getVerifyCode(string codeSerial, int codeLen)
+        public static string GetVerifyCode(string codeSerial, int codeLen)
         {
             string[] arr = codeSerial.Split(',');
 

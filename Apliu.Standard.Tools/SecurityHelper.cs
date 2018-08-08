@@ -35,7 +35,7 @@ namespace Apliu.Standard.Tools
                     return Convert.ToBase64String(encryptedBinary);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -64,7 +64,7 @@ namespace Apliu.Standard.Tools
                     return DecryptTextFromMemory(buffer, provider.Key, provider.IV);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

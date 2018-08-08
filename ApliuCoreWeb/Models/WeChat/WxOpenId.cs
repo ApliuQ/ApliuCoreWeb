@@ -10,7 +10,7 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <summary>
         /// 获取OpenId的地址
         /// </summary>
-        private static string openIdUri
+        private static string OpenIdUri
         {
             get
             {
@@ -21,25 +21,11 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <summary>
         /// 获取UnionId的地址 需先获取OpenId
         /// </summary>
-        private static string unionIdUri
+        private static string UnionIdUri
         {
             get
             {
                 return "https://api.weixin.qq.com/cgi-bin/user/info?access_token={0}&openid={1}";
-            }
-        }
-
-        private static String _openId;
-        [Obsolete]
-        public static String openId
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(_openId))
-                {
-
-                }
-                return _openId;
             }
         }
 
@@ -51,7 +37,7 @@ namespace ApliuCoreWeb.Models.WeChat
         public static string GetOpenId(string code)
         {
             WebClient client = new WebClient();
-            Byte[] responseData = client.DownloadData(string.Format(openIdUri, code));
+            Byte[] responseData = client.DownloadData(string.Format(OpenIdUri, code));
             String content = WeChatBase.WxEncoding.GetString(responseData);
             try
             {
@@ -60,7 +46,7 @@ namespace ApliuCoreWeb.Models.WeChat
             }
             catch (Exception ex)
             {
-                Logger.WriteLogWeb("获取UnionId失败（Code：" + code + "），详情：" + ex.Message);
+                Logger.WriteLogWeb("获取OpenId失败（Code：" + code + "），详情：" + ex.Message);
                 return String.Empty;
             }
         }
@@ -73,7 +59,7 @@ namespace ApliuCoreWeb.Models.WeChat
         public static string GetUnionId(string openid)
         {
             WebClient client = new WebClient();
-            Byte[] responseData = client.DownloadData(string.Format(unionIdUri, WxTokenManager.AccessToken, openid));
+            Byte[] responseData = client.DownloadData(string.Format(UnionIdUri, WxTokenManager.AccessToken, openid));
             String content = WeChatBase.WxEncoding.GetString(responseData);
             try
             {

@@ -28,7 +28,7 @@ namespace Apliu.Standard.Tools
 
                 return value;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -58,7 +58,7 @@ namespace Apliu.Standard.Tools
                 //静态方法,Invoke的第一个参数为null  
                 return method.Invoke(obj, ParamsArgs);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -79,7 +79,7 @@ namespace Apliu.Standard.Tools
                 object obj = assembly.CreateInstance(NamespaceClassName);
                 return obj;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -99,7 +99,7 @@ namespace Apliu.Standard.Tools
                 object obj = Activator.CreateInstance(type);
                 return obj;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -127,7 +127,7 @@ namespace Apliu.Standard.Tools
                 }
                 else return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -153,7 +153,7 @@ namespace Apliu.Standard.Tools
                 }
                 else return null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

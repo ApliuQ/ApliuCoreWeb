@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Apliu.Standard.Tools
 {
-    public interface SMSMessage
+    public interface ISMSMessage
     {
         ///api/toolapi/sendsms?mobile=18779182730&smscontent=您正在使用短信服务，短信验证码是ACBXDFF，2分钟之内有效，如非本人操作，请忽略本短信。&smsappid=1400075540&smsappkey=b0a0f4466492c96fcd3d1d334cc01749
         bool SendSMS(string Mobile, string SMSContent, out string SendMsg, out string SendLogSql, params string[] Args);
     }
 
-    public class TencentSMS : SMSMessage
+    public class TencentSMS : ISMSMessage
     {
         /// <summary>
         /// 腾讯云 发送短信
@@ -72,11 +72,9 @@ namespace Apliu.Standard.Tools
                     ""time"": {6},
                     ""type"": {7}
                 }}";
-        private static string sqlInsertAll = @"insert into ApSMSHistory(SMSID,MobileNumber,SMSContent,SendTime,CreateUser,SMSType,Project,SendResult,SendMsg) 
+
+        private static readonly string sqlInsertAll = @"insert into ApSMSHistory(SMSID,MobileNumber,SMSContent,SendTime,CreateUser,SMSType,Project,SendResult,SendMsg) 
                         values('{0}','{1}','{2}','{3}','{4}','{5}','ApliuWeb','{6}','{7}');";
-        private static string sqlInsertHis = @"insert into ApSMSHistory(SMSID,MobileNumber,SMSContent,SendTime,CreateUser,SMSType,Project) 
-                        values('{0}','{1}','{2}','{3}','{4}','{5}','ApliuWeb');";
-        private static string sqlUpdateHis = @"update ApSMSHistory set SendResult='{0}',SendMsg='{1}' where SMSID='{2}'";
 
         /// <summary>
         /// 获取发送短信的Json
@@ -136,8 +134,7 @@ namespace Apliu.Standard.Tools
             bool result = false;
             try
             {
-                JObject jobj = JsonConvert.DeserializeObject(json) as JObject;
-                if (jobj != null)
+                if (JsonConvert.DeserializeObject(json) is JObject jobj)
                 {
                     result = jobj["result"].ToString() == "0";
                     errorMsg = jobj["errmsg"].ToString();

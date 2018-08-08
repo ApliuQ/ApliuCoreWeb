@@ -37,7 +37,7 @@ namespace Apliu.Core.Database
         /// <summary>
         /// 数据库链接字符串 System.Data.SqlClient.SqlConnectionStringBuilder
         /// </summary>
-        public string databaseConnection
+        public string DatabaseConnection
         {
             get
             {
@@ -92,11 +92,13 @@ namespace Apliu.Core.Database
         /// <param name="seconds">事务超时时间 单位秒</param>
         public void BeginTransaction(int seconds)
         {
-            TransactionOptions transactionOption = new TransactionOptions();
-            //设置事务隔离级别
-            transactionOption.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
-            // 设置事务超时时间
-            transactionOption.Timeout = new TimeSpan(0, 0, seconds);
+            TransactionOptions transactionOption = new TransactionOptions
+            {
+                //设置事务隔离级别
+                IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted,
+                // 设置事务超时时间
+                Timeout = new TimeSpan(0, 0, seconds)
+            };
             transactionScope = new TransactionScope(TransactionScopeOption.Required, transactionOption);
 
             //当时间超过之后，主动注销该事务
@@ -155,13 +157,11 @@ namespace Apliu.Core.Database
                         break;
                     case DatabaseType.MySql:
                         break;
-                    case DatabaseType.OleDb:
-                        break;
                     default:
                         break;
                 }
 
-                using (DbConnection dbConnection = CreateDbConnection(databaseConnection))
+                using (DbConnection dbConnection = CreateDbConnection(DatabaseConnection))
                 {
                     if (dbConnection.State != ConnectionState.Open) dbConnection.Open();
                     using (DbCommand dbCommand = dbConnection.CreateCommand())
@@ -219,7 +219,7 @@ namespace Apliu.Core.Database
             DataSet dsData = null;
             try
             {
-                using (DbConnection dbConnection = CreateDbConnection(databaseConnection))
+                using (DbConnection dbConnection = CreateDbConnection(DatabaseConnection))
                 {
                     if (dbConnection.State != ConnectionState.Open) dbConnection.Open();
                     using (DbCommand dbCommand = dbConnection.CreateCommand())
@@ -301,12 +301,8 @@ namespace Apliu.Core.Database
                                         + "CONNECTION LIFETIME=" + Conn_Lifetime + ";"
                                         + "POOLING=True;";
                     break;
-                case DatabaseType.OleDb:
-                    databaseConnectionStr = beginConnectionStr;
-                    break;
                 default:
                     throw new Exception("数据库类型有误或未初始化 databaseType：" + databaseType.ToString());
-                    break;
             }
             return databaseConnectionStr;
         }
@@ -336,10 +332,8 @@ namespace Apliu.Core.Database
 #else
                     throw new Exception("必须是.NET Framework框架才可以使用，Database Type：" + databaseType.ToString());
 #endif
-                    break;
                 default:
                     throw new Exception("数据库类型有误或未初始化，Database Type：" + databaseType.ToString());
-                    break;
             }
             return dbConnection;
         }
@@ -370,10 +364,8 @@ namespace Apliu.Core.Database
 #else
                     throw new Exception("必须是.NET Framework框架才可以使用，Database Type：" + databaseType.ToString());
 #endif
-                    break;
                 default:
                     throw new Exception("数据库类型有误或未初始化 databaseType：" + databaseType.ToString());
-                    break;
             }
 
             return dbDataAdapter;
@@ -411,7 +403,6 @@ namespace Apliu.Core.Database
 #else
                     throw new Exception("必须是.NET Framework框架才可以使用，Database Type：" + databaseType.ToString());
 #endif
-                    break;
                 default:
                     break;
             }

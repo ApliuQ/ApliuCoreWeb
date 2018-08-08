@@ -64,7 +64,7 @@ namespace Apliu.Standard.Tools
                     return serializer.Deserialize(sr) as EveryType;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return default(EveryType);
             }
@@ -137,8 +137,10 @@ namespace Apliu.Standard.Tools
             if (bytes == null)
                 return obj;
             //利用传来的byte[]创建一个内存流
-            MemoryStream ms = new MemoryStream(bytes);
-            ms.Position = 0;
+            MemoryStream ms = new MemoryStream(bytes)
+            {
+                Position = 0
+            };
             BinaryFormatter formatter = new BinaryFormatter();
             obj = formatter.Deserialize(ms);//把内存流反序列成对象  
             ms.Close();
@@ -173,8 +175,10 @@ namespace Apliu.Standard.Tools
             if (bytes == null)
                 return dic;
             //利用传来的byte[]创建一个内存流
-            MemoryStream ms = new MemoryStream(bytes);
-            ms.Position = 0;
+            MemoryStream ms = new MemoryStream(bytes)
+            {
+                Position = 0
+            };
             BinaryFormatter formatter = new BinaryFormatter();
             //把流中转换为Dictionary
             dic = (Dictionary<string, object>)formatter.Deserialize(ms);
