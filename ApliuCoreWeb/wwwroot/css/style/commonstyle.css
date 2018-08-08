@@ -25,6 +25,7 @@
     border: none;
     border-radius: .3rem;
     color: white;
+    font-size: .6rem;
 }
 
 .Biaoqian {
@@ -33,6 +34,10 @@
 
 body {
     font-family: 'microsoft yahei','华文细黑',Verdana,Arial,Helvetica,sans-serif;
+}
+
+a:hover{
+    text-decoration:none
 }
 
 .loginwelcome {
@@ -156,6 +161,7 @@ body {
 
 .commonselect {
     height: 1.1rem;
-    width: 5rem;
+    /*width: 5rem;*/
     border-radius: 5px;
+    font-size: .6rem;
 }

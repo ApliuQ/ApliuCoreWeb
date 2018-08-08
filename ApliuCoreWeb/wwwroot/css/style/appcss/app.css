@@ -19,6 +19,10 @@ a {
     text-decoration: none;
 }
 
+    a:hover {
+        text-decoration: none
+    }
+
 .hide {
     display: none
 }
@@ -244,7 +248,7 @@ header {
         width: 100%;
         height: 100%;
         text-indent: -999rem;
-        background: url(~/img/logo/logosqu.png) center center no-repeat;
+        background: url(/img/logo/logosqu.png) center center no-repeat;
         background-size: 1.5rem 1.05rem;
     }
 
@@ -271,7 +275,7 @@ header {
             display: block;
             width: 0.975rem;
             height: 0.925rem;
-            background: url(~/img/appimg/header-category.png) no-repeat center center;
+            background: url(/img/appimg/header-category.png) no-repeat center center;
             background-size: contain;
             content: "";
             margin: 0.35rem auto 0 auto;
@@ -333,7 +337,7 @@ header {
             position: absolute;
             right: 0px;
             top: 0px;
-            background: #ff463c url(~/img/appimg/search-btn.png) no-repeat center center;
+            background: #ff463c url(/img/appimg/search-btn.png) no-repeat center center;
             background-size: 40%;
             border: none;
             border-top-right-radius: .9rem;
@@ -373,7 +377,7 @@ header {
             width: 100%;
             height: 100%;
             text-indent: -999rem;
-            background: url(~/img/logo/logosqu.png) center center no-repeat;
+            background: url(/img/logo/logosqu.png) center center no-repeat;
             background-size: 30px 21px;
         }
 
@@ -400,7 +404,7 @@ header {
                 display: block;
                 width: 19.5px;
                 height: 18.5px;
-                background: url(~/img/appimg/header-category.png) no-repeat center center;
+                background: url(/img/appimg/header-category.png) no-repeat center center;
                 background-size: contain;
                 content: "";
                 margin: 7px auto 0 auto;
@@ -462,7 +466,7 @@ header {
                 position: absolute;
                 right: 0;
                 top: 0;
-                background: #ff463c url(~/img/appimg/search-btn.png) no-repeat center center;
+                background: #ff463c url(/img/appimg/search-btn.png) no-repeat center center;
                 background-size: 40%;
                 border: none;
                 border-top-right-radius: 18px;

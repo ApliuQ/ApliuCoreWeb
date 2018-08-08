@@ -3,16 +3,16 @@
     ViewBag.Title = "Drawing 画板";
 }
 
-<link rel="stylesheet" href="/CssStyle/drawing.css">
-<link rel="stylesheet" type="text/css" href="/CssStyle/jquery.bigcolorpicker.css">
-<script type="text/javascript" src="/JsScript/jquery.bigcolorpicker.min.js"></script>
+<link rel="stylesheet" href="~/css/style/drawing.css">
+<link rel="stylesheet" type="text/css" href="~/css/style/jquery.bigcolorpicker.css">
+<script type="text/javascript" src="~/js/script/jquery.bigcolorpicker.min.js"></script>
 
 <canvas id="xxx"></canvas>
 
 <div id="actions" class="actions">
 
     <a href="/">
-        <img src="~/Images/Logo/logosqu.png" style="width: 40px;" title="返回主页" /></a>
+        <img src="~/img/logo/logosqu.png" style="width: 40px;" title="返回主页" /></a>
 
     <svg id="pen" class="active icon">
         <use xlink:href="#icon-pen"></use>
@@ -49,7 +49,7 @@
     </select>
 </ol>
 
-<script type="text/javascript" src="/JsScript/drawing.js"></script>
+<script type="text/javascript" src="~/js/script/drawing.js"></script>
 <div id="none"></div>
 <script type="text/javascript">
     document.addEventListener('touchmove', function (e) { e.preventDefault() }, false);

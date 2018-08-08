@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApliuCoreWeb.Models;
-using ApliuCoreWeb.Models.WeChat;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,18 +30,16 @@ namespace ApliuCoreWeb
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            
             //注册HttpContext
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //注册缓存服务
-            services.AddMemoryCache();
-            services.AddSingleton<MemoryCacheCore>();//自定义缓存
+            //services.AddMemoryCache();
+            //services.AddSingleton<Models.MemoryCacheCore>();//自定义缓存
 
             //注册SignalR
-            services.AddSignalR();
+            //services.AddSignalR();
 
             //注册Session
             services.AddSession(options =>
@@ -52,6 +48,10 @@ namespace ApliuCoreWeb
                 options.IdleTimeout = TimeSpan.FromSeconds(300);
                 options.Cookie.HttpOnly = true;
             });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            Apliu.Standard.Tools.Logger.WriteLogWeb("Services Configure 配置完成");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,22 +67,13 @@ namespace ApliuCoreWeb
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();//关闭Https重定向
+            //开启Https重定向
+            //app.UseHttpsRedirection();
+
+            //使用wwwroot中的静态文件
             app.UseStaticFiles();
+
             app.UseCookiePolicy();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            //添加Hub路由
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<WeChatHub>("/weChatHub");
-            });
 
             //开启Session
             app.UseSession();
@@ -96,10 +87,18 @@ namespace ApliuCoreWeb
             //    return null;
             //});
 
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            Apliu.Standard.Tools.Logger.WriteLogWeb("App Configure 配置完成");
+
             //启动自定义初始化事件
             UserDefinedStartup();
         }
-
         /// <summary>
         /// 自定义初始化事件
         /// </summary>
@@ -113,7 +112,7 @@ namespace ApliuCoreWeb
                 Config.SiteConfig.LoadConfig();
 
                 //初始化程序跟目录
-                Common.RootDirectory = Apliu.Standard.Tools.Web.ServerInfo.SitePath + @"\";
+                ApliuCoreWeb.Models.Common.RootDirectory = Apliu.Standard.Tools.Web.ServerInfo.SitePath + @"\";
 
                 //启动access_token管理任务
                 //Models.WeChat.WxTokenManager.TokenTaskStart();
@@ -128,5 +127,6 @@ namespace ApliuCoreWeb
                 Apliu.Standard.Tools.Logger.WriteLogWeb("自定义初始化事件执行失败，详情：" + ex.Message);
             }
         }
+
     }
 }

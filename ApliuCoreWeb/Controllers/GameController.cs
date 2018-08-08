@@ -4,7 +4,7 @@ namespace ApliuCoreWeb.Controllers
 {
     public class GameController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Pins()
         {
             return View();
         }

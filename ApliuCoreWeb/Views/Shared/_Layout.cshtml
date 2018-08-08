@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>@ViewData["Title"]</title>
 
     <link rel="stylesheet" href="~/css/style/commonstyle.css">
@@ -25,8 +26,6 @@
 
     <partial name="_CookieConsentPartial" />
 
-    @RenderBody()
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -47,6 +46,8 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+
+    @RenderBody()
 
     @RenderSection("Scripts", required: false)
 

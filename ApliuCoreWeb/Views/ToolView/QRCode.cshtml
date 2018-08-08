@@ -11,7 +11,7 @@
             apliualert("请输入需要生成二维码的内容");
             return;
         }
-        var srcapi = "/api/tools/GetQRCode?Content=" + content + "&random" + Math.random();
+        var srcapi = "/api/tools/getqrcode?content=" + content + "&random" + Math.random();
         $("#qrcodeimg").attr("src", srcapi);
     }
 </script>
@@ -21,7 +21,7 @@
         <span class="Biaoqian">API介绍</span><br />
         <div style="padding-left: 1rem; font-size: 0.7rem;">
             1. 方法类型 Get<br />
-            2. 接口地址：https://www.apliu.xyz/api/tools/GetQRCode?Content=string <br />
+            2. 接口地址：https://www.apliu.xyz/api/tools/getqrcode?content=string <br />
             3. 接口参数：一个默认参数Content，如上“string”是需要生成二维码的内容<br />
         </div>
     </div>
@@ -32,7 +32,7 @@
             <input onclick="createqrcode()" class="qrcodebutton" type="button" value="生成二维码" />
         </div>
         <div style="text-align: center; padding: 20px;">
-            <img id="qrcodeimg" height="300" src="/images/logo/logosqu.png" />
+            <img id="qrcodeimg" height="200" src="/img/logo/logosqu.png" />
         </div>
     </div>
 </div>

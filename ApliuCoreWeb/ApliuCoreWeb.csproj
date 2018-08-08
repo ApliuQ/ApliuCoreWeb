@@ -2,102 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RuntimeIdentifiers>win-x86;win-x64;linux-x64;osx-x64</RuntimeIdentifiers><!--android-->
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\img\appimg\108-700-270.jpg" />
-    <Content Remove="wwwroot\img\appimg\10banner-620X1501.jpg" />
-    <Content Remove="wwwroot\img\appimg\1199158435-1_b.jpg" />
-    <Content Remove="wwwroot\img\appimg\1231286936-1_b.jpg" />
-    <Content Remove="wwwroot\img\appimg\1317267830-1_b.jpg" />
-    <Content Remove="wwwroot\img\appimg\15923shipinh5.jpg" />
-    <Content Remove="wwwroot\img\appimg\309x224ts0929_01.jpg" />
-    <Content Remove="wwwroot\img\appimg\309x224ts0929_02.jpg" />
-    <Content Remove="wwwroot\img\appimg\310x449ts929.jpg" />
-    <Content Remove="wwwroot\img\appimg\4.jpg" />
-    <Content Remove="wwwroot\img\appimg\5.jpg" />
-    <Content Remove="wwwroot\img\appimg\6.jpg" />
-    <Content Remove="wwwroot\img\appimg\700-270-0801.jpg" />
-    <Content Remove="wwwroot\img\appimg\700270jinse922.jpg" />
-    <Content Remove="wwwroot\img\appimg\88590011636295_y.jpg" />
-    <Content Remove="wwwroot\img\appimg\9.9.png" />
-    <Content Remove="wwwroot\img\appimg\928mezkth5.jpg" />
-    <Content Remove="wwwroot\img\appimg\b.jpg" />
-    <Content Remove="wwwroot\img\appimg\dd-logo.png" />
-    <Content Remove="wwwroot\img\appimg\DHC-h51.jpg" />
-    <Content Remove="wwwroot\img\appimg\dianzihsu.png" />
-    <Content Remove="wwwroot\img\appimg\doujiangjih52.jpg" />
-    <Content Remove="wwwroot\img\appimg\f.jpg" />
-    <Content Remove="wwwroot\img\appimg\fenlei.png" />
-    <Content Remove="wwwroot\img\appimg\go-top.png" />
-    <Content Remove="wwwroot\img\appimg\gouwuche.png" />
-    <Content Remove="wwwroot\img\appimg\h5-grk-0921-zyx.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-guants0807.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-k1-1008-nbewxj2015.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-k2-1008-slbdmj.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-K2-909.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-k3-1008-xsqxk.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-nazhuang.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-nvzhuang.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-w1-1009.jpg" />
-    <Content Remove="wwwroot\img\appimg\H5-xiebaopeishi.jpg" />
-    <Content Remove="wwwroot\img\appimg\h5-yundonghuwai.jpg" />
-    <Content Remove="wwwroot\img\appimg\haoshubang.png" />
-    <Content Remove="wwwroot\img\appimg\header-category.png" />
-    <Content Remove="wwwroot\img\appimg\iphone6sh5.jpg" />
-    <Content Remove="wwwroot\img\appimg\liangpinpuzih53.jpg" />
-    <Content Remove="wwwroot\img\appimg\lppz600-150.jpg" />
-    <Content Remove="wwwroot\img\appimg\lxqj-0929-700-270.jpg" />
-    <Content Remove="wwwroot\img\appimg\nbewxj-1008-700x270.jpg" />
-    <Content Remove="wwwroot\img\appimg\search-btn.png" />
-    <Content Remove="wwwroot\img\appimg\tognshubang-0604.png" />
-    <Content Remove="wwwroot\img\appimg\wodedangdang-h5.png" />
-    <Content Remove="wwwroot\img\appimg\ww_h5_9.30.jpg" />
-    <Content Remove="wwwroot\img\appimg\xiazai-0605.png" />
-    <Content Remove="wwwroot\img\appimg\YD108H5.jpg.jpg" />
-    <Content Remove="wwwroot\js\appjs\fastclick.min.js" />
-    <Content Remove="wwwroot\js\appjs\iscroll5.min.js" />
-    <Content Remove="wwwroot\js\appjs\js_tracker.js" />
-    <Content Remove="wwwroot\js\appjs\mdd_index.min.js" />
-    <Content Remove="wwwroot\js\appjs\mod_countdown.min.js" />
-    <Content Remove="wwwroot\js\appjs\mod_suggest.min.js" />
-    <Content Remove="wwwroot\js\appjs\underscore.min.js" />
-    <Content Remove="wwwroot\js\appjs\zepto.min.js" />
-    <Content Remove="wwwroot\js\script\app.css" />
-    <Content Remove="wwwroot\js\script\common.css" />
-    <Content Remove="wwwroot\js\script\zepto.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\css\style\appcss\app.css" />
-    <None Include="wwwroot\css\style\appcss\common.css" />
-    <None Include="wwwroot\img\appimg\9.9.png" />
-    <None Include="wwwroot\img\appimg\dianzihsu.png" />
-    <None Include="wwwroot\img\appimg\fenlei.png" />
-    <None Include="wwwroot\img\appimg\go-top.png" />
-    <None Include="wwwroot\img\appimg\gouwuche.png" />
-    <None Include="wwwroot\img\appimg\haoshubang.png" />
-    <None Include="wwwroot\img\appimg\header-category.png" />
-    <None Include="wwwroot\img\appimg\search-btn.png" />
-    <None Include="wwwroot\img\appimg\tognshubang-0604.png" />
-    <None Include="wwwroot\img\appimg\wodedangdang-h5.png" />
-    <None Include="wwwroot\img\appimg\xiazai-0605.png" />
-    <None Include="wwwroot\js\appjs\fastclick.min.js" />
-    <None Include="wwwroot\js\appjs\iscroll5.min.js" />
-    <None Include="wwwroot\js\appjs\js_tracker.js" />
-    <None Include="wwwroot\js\appjs\mdd_index.min.js" />
-    <None Include="wwwroot\js\appjs\mod_countdown.min.js" />
-    <None Include="wwwroot\js\appjs\mod_suggest.min.js" />
-    <None Include="wwwroot\js\appjs\underscore.min.js" />
-    <None Include="wwwroot\js\appjs\zepto.min.js" />
-    <None Include="wwwroot\js\script\zepto.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
-    <PackageReference Include="Npm" Version="3.5.2" />
   </ItemGroup>
 
   <ItemGroup>

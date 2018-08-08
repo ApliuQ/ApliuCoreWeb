@@ -1,0 +1,142 @@
+﻿<!doctype html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>3D正方体</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: large;
+        }
+h1{
+ width:100%;
+text-align: center;
+margin-top: 10px;
+}
+
+        @keyframes boxxz {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateX(3600deg) rotateY(3600deg) rotateZ(3600deg);
+            }
+        }
+
+        .box {
+            height: 10rem;
+            width: 10rem; 
+            margin: 15rem auto;
+            -moz-perspective: 1200px;
+            -ms-perspective: 1200px;
+            -webkit-perspective: 1200px;
+            perspective: 1200px;
+        }
+
+        .squ {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            display: block;
+        }
+
+        /*.squ:hover {
+                -moz-animation: boxxz 50s linear;
+                -o-animation: boxxz 50s linear;
+                -webkit-animation: boxxz 50s linear;
+                animation: boxxz 50s linear;
+            }*/
+
+        .squhover {
+            -moz-animation: boxxz 50s linear;
+            -o-animation: boxxz 50s linear;
+            -webkit-animation: boxxz 50s linear;
+            animation: boxxz 50s linear;
+        }
+
+
+        .squ li {
+            width: 11rem;
+            height: 11rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            line-height: 11rem;
+            text-align: center;
+        }
+
+            .squ li:first-child {
+                -moz-transform: translateZ(-100px);
+                -ms-transform: translateZ(-100px);
+                -o-transform: translateZ(-100px);
+                -webkit-transform: translateZ(-100px);
+                transform: translateZ(-100px);
+                background-color: rgba(249, 0, 255, 0.6);
+            }
+
+            .squ li:nth-child(2) {
+                -moz-transform: rotateX(-90deg) translateZ(100px);
+                -ms-transform: rotateX(-90deg) translateZ(100px);
+                -o-transform: rotateX(-90deg) translateZ(100px);
+                -webkit-transform: rotateX(-90deg) translateZ(100px);
+                transform: rotateX(-90deg) translateZ(100px);
+                background-color: rgba(156, 39, 176, 0.6);
+            }
+
+            .squ li:nth-child(3) {
+                -moz-transform: rotateY(-270deg) translateZ(100px);
+                -ms-transform: rotateY(-270deg) translateZ(100px);
+                -o-transform: rotateY(-270deg) translateZ(100px);
+                -webkit-transform: rotateY(-270deg) translateZ(100px);
+                transform: rotateY(-270deg) translateZ(100px);
+                background-color: rgba(255, 235, 59,0.6);
+            }
+
+            .squ li:nth-child(4) {
+                -moz-transform: rotateY(-90deg) translateZ(100px);
+                -ms-transform: rotateY(-90deg) translateZ(100px);
+                -o-transform: rotateY(-90deg) translateZ(100px);
+                -webkit-transform: rotateY(-90deg) translateZ(100px);
+                transform: rotateY(-90deg) translateZ(100px);
+                background-color: rgba(63, 81, 181, 0.6);
+            }
+
+            .squ li:nth-child(5) {
+                -moz-transform: rotateX(-90deg) translateZ(-100px);
+                -ms-transform: rotateX(-90deg) translateZ(-100px);
+                -o-transform: rotateX(-90deg) translateZ(-100px);
+                -webkit-transform: rotateX(-90deg) translateZ(-100px);
+                transform: rotateX(-90deg) translateZ(-100px);
+                background-color: rgba(76, 175, 80, 0.6);
+            }
+
+            .squ li:last-child {
+                -moz-transform: translateZ(100px);
+                -ms-transform: translateZ(100px);
+                -o-transform: translateZ(100px);
+                -webkit-transform: translateZ(100px);
+                transform: translateZ(100px);
+                background-color: rgba(244, 67, 54, 0.6);
+            }
+    </style>
+</head>
+<body>
+<h1>纯CSS编写 3D正方体</h1>
+    <div class="box">
+        <ul class="squ" onmousemove="this.className='squ squhover'">
+            <li>我</li>
+            <li>是</li>
+            <li>正</li>
+            <li>方</li>
+            <li>体</li>
+            <li>点击旋转</li>
+        </ul>
+    </div>
+</body>
+</html>

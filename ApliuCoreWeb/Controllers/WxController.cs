@@ -1,6 +1,7 @@
 ﻿using Apliu.Standard.Tools;
 using ApliuCoreWeb.Models;
 using ApliuCoreWeb.Models.WeChat;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
@@ -111,7 +112,8 @@ namespace ApliuCoreWeb.Controllers
             String respContent = "ERROR";
             try
             {
-                return respContent;
+                HttpContext.Session.SetString("a", "agqwefqwevqwerv");
+                return HttpContext.Session.GetString("a");
 
                 //DataAccess.Instance.TestCeshi();
 

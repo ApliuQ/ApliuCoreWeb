@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApliuCoreWeb", "ApliuCoreWeb\ApliuCoreWeb.csproj", "{9B26EE7E-03BE-4F25-925A-BF9854286960}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apliu.Data.OleDb", "Apliu.Data.OleDb\Apliu.Data.OleDb.csproj", "{E2C2766A-646B-4C5B-8412-59444794956F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apliu.Core.Database", "Apliu.Core.Database\Apliu.Core.Database.csproj", "{918750BB-71A8-425A-999C-4CFABAB03605}"
@@ -13,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApliuCoreConsole", "ApliuCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apliu.Standard.Tools", "Apliu.Standard.Tools\Apliu.Standard.Tools.csproj", "{334D5251-367C-426E-8831-F9081F2E2076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apliu.Standard.WeChat", "Apliu.Standard.WeChat\Apliu.Standard.WeChat.csproj", "{3AE00275-74F2-4E4D-83E9-44C669A4ADE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apliu.Standard.WeChat", "Apliu.Standard.WeChat\Apliu.Standard.WeChat.csproj", "{3AE00275-74F2-4E4D-83E9-44C669A4ADE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApliuCoreWeb", "ApliuCoreWeb\ApliuCoreWeb.csproj", "{05E47FD3-7159-469E-BC75-99B3D1D1F106}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9B26EE7E-03BE-4F25-925A-BF9854286960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B26EE7E-03BE-4F25-925A-BF9854286960}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B26EE7E-03BE-4F25-925A-BF9854286960}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B26EE7E-03BE-4F25-925A-BF9854286960}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2C2766A-646B-4C5B-8412-59444794956F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2C2766A-646B-4C5B-8412-59444794956F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2C2766A-646B-4C5B-8412-59444794956F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{3AE00275-74F2-4E4D-83E9-44C669A4ADE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AE00275-74F2-4E4D-83E9-44C669A4ADE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AE00275-74F2-4E4D-83E9-44C669A4ADE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E47FD3-7159-469E-BC75-99B3D1D1F106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E47FD3-7159-469E-BC75-99B3D1D1F106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E47FD3-7159-469E-BC75-99B3D1D1F106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E47FD3-7159-469E-BC75-99B3D1D1F106}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
