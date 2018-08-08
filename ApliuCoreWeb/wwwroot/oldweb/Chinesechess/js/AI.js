@@ -159,21 +159,21 @@ AI.getAlphaBeta = function (A, B, depth, map ,my) {
 		var oldY= move[1];
 		var newX= move[2];
 		var newY= move[3];
-		var clearKey = map[ newY ][ newX ]||"";
+		var clearKey = map[newY][newX]||"";
 
-		map[ newY ][ newX ] = key;
-		delete map[ oldY ][ oldX ];
+		map[newY][newX] = key;
+		delete map[oldY][oldX];
 		play.mans[key].x = newX;
 		play.mans[key].y = newY;
 		
 	　　if (clearKey=="j0"||clearKey=="J0") {//被吃老将,撤消这个走法; 
-			play.mans[key]	.x = oldX;
-			play.mans[key]	.y = oldY;
-			map[ oldY ][ oldX ] = key;
-			delete map[ newY ][ newX ];
+			play.mans[key].x = oldX;
+			play.mans[key].y = oldY;
+			map[oldY][oldX] = key;
+			delete map[newY][newX];
 			if (clearKey){
-				 map[ newY ][ newX ] = clearKey;
-				// play.mans[ clearKey ].isShow = false;
+				 map[newY][newX] = clearKey;
+				// play.mans[clearKey].isShow = false;
 			}
 
 			return {"key":key,"x":newX,"y":newY,"value":8888};
@@ -183,13 +183,13 @@ AI.getAlphaBeta = function (A, B, depth, map ,my) {
 			//val = val || val.value;
 	
 	　　	//撤消这个走法;　 
-			play.mans[key]	.x = oldX;
-			play.mans[key]	.y = oldY;
-			map[ oldY ][ oldX ] = key;
-			delete map[ newY ][ newX ];
+			play.mans[key].x = oldX;
+			play.mans[key].y = oldY;
+			map[oldY][oldX] = key;
+			delete map[newY][newX];
 			if (clearKey){
-				 map[ newY ][ newX ] = clearKey;
-				 //play.mans[ clearKey ].isShow = true;
+				 map[newY][newX] = clearKey;
+				 //play.mans[clearKey].isShow = true;
 			}
 	　　	if (val >= B) { 
 				//将这个走法记录到历史表中; 
