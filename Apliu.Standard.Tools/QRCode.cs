@@ -34,14 +34,14 @@ namespace Apliu.Standard.Tools
             return ms?.ToArray();
         }
 
-        private static Bitmap CreateCodeSimpleBitmap(string content)
+        public static Bitmap CreateCodeSimpleBitmap(string content)
         {
             if (string.IsNullOrEmpty(content)) return null;
 
             QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
             QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCoder.QRCodeGenerator.ECCLevel.Q);
             QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Red, Color.White, true);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Black, Color.White, true);
             return qrCodeImage;
         }
     }

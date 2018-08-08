@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Data;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ApliuCoreWeb.Controllers
 {
@@ -20,22 +21,23 @@ namespace ApliuCoreWeb.Controllers
         /// <param name="Content"></param>
         /// <returns></returns>
         [HttpGet]
-        public System.Net.Http.HttpResponseMessage GetQRCode(string Content)
+        public void GetQRCode(string Content)
         {
-            return QRCode.CreateCodeSimple(Content);
-        }
-
-        // GET api/tools/SearchTool?Keyword=content
-        [HttpGet]
-        public System.Net.Http.HttpResponseMessage SearchTool(string Keyword)
-        {
-            return HttpRequestHelper.encapResult(Keyword);
+            var qrcode = QRCode.CreateCodeSimpleBitmap(Content);
+            Response.ContentType = "image/jpeg";
+            qrcode.Save(Response.Body, System.Drawing.Imaging.ImageFormat.Jpeg);
         }
 
         [HttpGet]
-        public System.Net.Http.HttpResponseMessage SearchSubmit(string sid, string keyword)
+        public async Task SearchTool(string Keyword)
         {
-            return HttpRequestHelper.encapResult(sid + keyword);
+            await Response.SetBodyContent(Keyword);
+        }
+
+        [HttpGet]
+        public async Task SearchSubmit(string sid, string keyword)
+        {
+            await Response.SetBodyContent(sid + keyword);
         }
 
         /// <summary>

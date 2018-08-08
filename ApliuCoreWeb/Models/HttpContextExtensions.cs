@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ApliuCoreWeb.Models
 {
@@ -35,6 +37,18 @@ namespace ApliuCoreWeb.Models
                 ip = context.Connection.RemoteIpAddress.ToString();
             }
             return ip;
+        }
+
+        /// <summary>
+        /// 设置HttpResponse的Body内容，格式：text/html，编码：utf-8
+        /// </summary>
+        /// <param name="httpResponse"></param>
+        /// <param name="content"></param>
+        public static async Task SetBodyContent(this HttpResponse httpResponse, String content)
+        {
+            httpResponse.ContentType = "text/html";
+            Byte[] byteContent = System.Text.ASCIIEncoding.UTF8.GetBytes(content);
+            await httpResponse.Body.WriteAsync(byteContent, 0, byteContent.Length);
         }
     }
 }

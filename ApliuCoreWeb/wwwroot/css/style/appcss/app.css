@@ -321,7 +321,7 @@ header {
         .search_box .search .text {
             width: 100%;
             border: none;
-            height: 1rem;
+            /*height: 1rem;*/
             line-height: 1rem;
             outline: none;
             font-size: .7rem;
