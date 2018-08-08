@@ -17,9 +17,10 @@ namespace ApliuCoreWeb.Controllers
         /// /api/wx
         /// </summary>
         /// <returns></returns>
+        [Route("")]
         [HttpGet]
         [HttpPost]
-        public HttpResponseMessage Main()
+        public HttpResponseMessage Index()
         {
             String respContent = "Error: 非法请求";
             string signature = HttpContext.Request.Query["signature"];
@@ -103,8 +104,8 @@ namespace ApliuCoreWeb.Controllers
         /// 默认是Post
         /// </summary>
         /// <returns></returns>
+        [Route("test")]
         [HttpGet]
-        [HttpPost]
         public String Test()
         {
             String respContent = "ERROR";

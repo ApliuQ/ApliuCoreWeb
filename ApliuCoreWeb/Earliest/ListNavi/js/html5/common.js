@@ -1048,7 +1048,7 @@ function searchSuggestionContent() {
         if (d == search_old || d == search_old2) { } else {
             d = $("#newkeyword").val().trim();
             search_old = d;
-            jQuery.get("/api/toolapi/SearchTool?", {
+            jQuery.get("/api/tools/SearchTool?", {
                 Keyword: d
             },
             function (i) {

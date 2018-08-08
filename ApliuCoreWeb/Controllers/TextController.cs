@@ -2,6 +2,7 @@
 
 namespace ApliuCoreWeb.Controllers
 {
+    [Route("text/{id?}")]
     public class TextController : Controller
     {
         public IActionResult Index(string id)

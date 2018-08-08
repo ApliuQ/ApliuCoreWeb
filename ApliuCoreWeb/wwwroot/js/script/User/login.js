@@ -176,7 +176,7 @@ var changepassword = function () {
         // ajax 成功发送验证码后调用【start】
         var codetypevalue = $getCode.attr("codetype");
         var data = ApliuCommon.getoptions("Post", { Mobile: phone, codeType: codetypevalue }, "false");
-        $.when(ApliuCommon.HttpSend("/api/toolapi/sendsmscode", data)).then(function (rst) {
+        $.when(ApliuCommon.HttpSend("/api/tools/sendsmscode", data)).then(function (rst) {
             if (rst.code == "0") {
                 dialog.loading.close();
                 $this.sendCode('start');

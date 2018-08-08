@@ -13,7 +13,7 @@
             return;
         }
         $(".qrcodebutton").attr("background", "#b8b8b8");
-        var apiurl = "/api/toolapi/baseconver?from=" + from + "&to=" + to + "&content=" + content;
+        var apiurl = "/api/tools/baseconver?from=" + from + "&to=" + to + "&content=" + content;
         $.when(ApliuCommon.HttpSend(apiurl)).then(function (rst) {
             var data = "执行结果：" + rst.result + "\r\n返回码：" + rst.code + "\r\n返回信息：" + rst.msg;
 
@@ -32,7 +32,7 @@
         <span class="Biaoqian">Api介绍</span><br />
         <div style="padding-left: 1rem; font-size: 0.7rem;">
             1.接口报文（地址）：<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://www.apliu.xyz/api/toolapi/security?from=2&to=10&content=请输入需要转换的数值
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://www.apliu.xyz/api/tools/security?from=2&to=10&content=请输入需要转换的数值
             <br />
             <br />
             2.接口参数：<br />

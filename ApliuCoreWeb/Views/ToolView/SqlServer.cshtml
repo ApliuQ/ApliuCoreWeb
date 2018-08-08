@@ -11,7 +11,7 @@
             return;
         }
         $(".qrcodebutton").attr("background", "#b8b8b8");
-        var apiurl = "/api/toolapi/ExecuteSql?Sql=" + content + "&Type=" + type;
+        var apiurl = "/api/tools/ExecuteSql?Sql=" + content + "&Type=" + type;
         $.when(ApliuCommon.HttpSend(apiurl)).then(function (rst) {
             var data;
             if (type == "Post") {
@@ -57,7 +57,7 @@
         <span class="Biaoqian">Api介绍</span><br />
         <div style="padding-left: 1rem; font-size: 0.7rem;">
             1.接口地址：<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.apliu.xyz/api/toolapi/ExecuteDatabseSql?source=127.0.0.1\SQLEXPRESS&userid=sa&password=1&database=test&sql=sql
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.apliu.xyz/api/tools/ExecuteDatabseSql?source=127.0.0.1\SQLEXPRESS&userid=sa&password=1&database=test&sql=sql
             <br />
             2.接口参数：<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. source -> 数据库地址以及实例名<br />

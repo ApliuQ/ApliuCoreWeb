@@ -71,13 +71,6 @@ namespace ApliuCoreWeb
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //    name: "text",
-            //    template: "{controller=text}/{action=Index}/{id?}");
-            //});
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

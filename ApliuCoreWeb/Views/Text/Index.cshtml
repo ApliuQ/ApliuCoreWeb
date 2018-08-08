@@ -25,7 +25,7 @@
 
     var getcontent = function () {
         $(".qrcodebutton").attr("background", "#b8b8b8");
-        var apiurl = "/api/toolapi/GetTempContent?Key=" + Key;
+        var apiurl = "/api/tools/GetTempContent?Key=" + Key;
         $.when(ApliuCommon.HttpSend(apiurl)).then(function (rst) {
             if (rst.code == "0") {
                 $("#content").val(decodeURI(rst.msg));
@@ -47,7 +47,7 @@
             return;
         }
         $(".qrcodebutton").attr("background", "#b8b8b8");
-        var apiurl = "/api/toolapi/SetTempContent";
+        var apiurl = "/api/tools/SetTempContent";
         var params = { Content: encodeURI(content), Key: Key };
         $.when(ApliuCommon.HttpSend(apiurl, ApliuCommon.getoptions("Post", params, false))).then(function (rst) {
             if (rst.code == "0") {

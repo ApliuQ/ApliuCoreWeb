@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ApliuCoreWeb.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CommonController : ControllerBase
     {

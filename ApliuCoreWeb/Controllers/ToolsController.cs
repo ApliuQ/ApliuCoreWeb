@@ -10,18 +10,12 @@ using System.Text;
 
 namespace ApliuCoreWeb.Controllers
 {
-    [Route("api/tools")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ToolsController : ControllerBase
     {
-        [HttpGet]
-        public String Get()
-        {
-            return "ToolsController OK";
-        }
-
         /// <summary>
-        /// GET api/toolapi/GetQRCode?Content=content
+        /// GET api/tools/GetQRCode?Content=content
         /// </summary>
         /// <param name="Content"></param>
         /// <returns></returns>
@@ -31,7 +25,7 @@ namespace ApliuCoreWeb.Controllers
             return QRCode.CreateCodeSimple(Content);
         }
 
-        // GET api/toolapi/SearchTool?Keyword=content
+        // GET api/tools/SearchTool?Keyword=content
         [HttpGet]
         public System.Net.Http.HttpResponseMessage SearchTool(string Keyword)
         {
@@ -145,7 +139,7 @@ namespace ApliuCoreWeb.Controllers
             return result.ToString();
         }
 
-        ///https://www.apliu.xyz/api/toolapi/sendsms?mobile=18779182730&smscontent=您正在使用短信服务，短信验证码是ACBXDFF，2分钟之内有效，如非本人操作，请忽略本短信。&smsappid=1400075540&smsappkey=b0a0f4466492c96fcd3d1d334cc01749
+        ///https://www.apliu.xyz/api/tools/sendsms?mobile=18779182730&smscontent=您正在使用短信服务，短信验证码是ACBXDFF，2分钟之内有效，如非本人操作，请忽略本短信。&smsappid=1400075540&smsappkey=b0a0f4466492c96fcd3d1d334cc01749
         [HttpPost]
         public string SendSMS(string Mobile, string SMSContent, string TcSMSAppId, string TcSMSAppKey)
         {
