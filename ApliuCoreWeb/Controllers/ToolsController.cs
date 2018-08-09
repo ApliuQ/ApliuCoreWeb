@@ -31,7 +31,15 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public async Task SearchTool(string Keyword)
         {
-            await Response.SetBodyContent(Keyword);
+            String json = @"{""errorCode"":""0"",
+                                  ""word"":[
+                                        {""key"":""" + Keyword + @""",""count"":""3""}
+                             ]}";
+
+            String js = @"$('#sid').attr('type','text');
+                          $('#sid').val('" + Keyword + @"');
+                          //Suggest.prototype.updateList(JSON.parse('" + json.Replace(System.Environment.NewLine, "") + "'));";
+            await Response.SetBodyContent(js);
         }
 
         [HttpGet]
