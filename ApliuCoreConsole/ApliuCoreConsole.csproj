@@ -5,9 +5,4 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Apliu.Core.Database\Apliu.Core.Database.csproj" />
-    <ProjectReference Include="..\Apliu.Standard.Tools\Apliu.Standard.Tools.csproj" />
-  </ItemGroup>
-
 </Project>

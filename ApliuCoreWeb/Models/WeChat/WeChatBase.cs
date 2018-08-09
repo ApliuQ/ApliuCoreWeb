@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using Apliu.Standard.Tools;
@@ -131,22 +130,6 @@ namespace ApliuCoreWeb.Models.WeChat
             }
             signature = hash;
             return 0;
-        }
-        /// <summary>
-        /// 返回HTTP响应消息
-        /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        public static HttpResponseMessage encapResult(string content)
-        {
-            return new HttpResponseMessage()
-            {
-                Content = new StringContent(
-                    content,
-                    WxEncoding,
-                    "text/html"
-                )
-            };
         }
     }
 }

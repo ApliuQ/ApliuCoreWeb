@@ -2,7 +2,6 @@
 using Apliu.Standard.Tools.Web;
 using ApliuCoreWeb.Config;
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -121,7 +120,7 @@ namespace ApliuCoreWeb.Models.WeChat
         {1}";
             content = string.Format(content, new string[] { "{", "}", openId, tempId, redirectUrl, reqData });
 
-            HttpResponseMessage response = await HttpRequestHelper.HttpPostAsync(requestUrl, WeChatBase.WxEncoding, content);
+            System.Net.Http.HttpResponseMessage response = await HttpRequestHelper.HttpPostAsync(requestUrl, WeChatBase.WxEncoding, content);
             String result = await response.Content.ReadAsStringAsync();
             //JObject jObj = Newtonsoft.Json.JsonConvert.DeserializeObject(result) as JObject;
             return result;

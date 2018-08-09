@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
-using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ApliuCoreWeb.Controllers
 {
@@ -21,7 +21,7 @@ namespace ApliuCoreWeb.Controllers
         [Route("")]
         [HttpGet]
         [HttpPost]
-        public HttpResponseMessage Index()
+        public async Task Index()
         {
             String respContent = "Error: 非法请求";
             string signature = HttpContext.Request.Query["signature"];
@@ -97,8 +97,7 @@ namespace ApliuCoreWeb.Controllers
                     }
                 }
             }
-
-            return WeChatBase.encapResult(respContent);
+            await Response.WriteAsync(respContent);
         }
 
         /// <summary>
@@ -107,14 +106,11 @@ namespace ApliuCoreWeb.Controllers
         /// <returns></returns>
         [Route("test")]
         [HttpGet]
-        public String Test()
+        public async Task Test()
         {
             String respContent = "ERROR";
             try
             {
-                HttpContext.Session.SetString("a", "agqwefqwevqwerv");
-                return HttpContext.Session.GetString("a");
-
                 //DataAccess.Instance.TestCeshi();
 
                 #region 测试数据库事务
@@ -147,7 +143,7 @@ namespace ApliuCoreWeb.Controllers
 
             //MsgCryptTest.Sample.Main(null);
             //Logger.WriteLog("Api Wx Test");
-            return respContent;
+            await Response.WriteAsync(respContent);
         }
     }
 }

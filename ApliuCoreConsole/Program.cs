@@ -1,9 +1,7 @@
-﻿using Apliu.Core.Database;
-using Apliu.Standard.Tools;
-using System;
-using System.Data;
+﻿using System;
 using System.IO;
-using System.Reflection;
+using System.Net;
+using System.Net.Http;
 
 namespace ApliuCoreConsole
 {
@@ -11,7 +9,10 @@ namespace ApliuCoreConsole
     {
         static void Run()
         {
-            Logger.WriteLogDesktop("WriteLogDesktop");
+            String ddd = HttpGet("http://apliu.xyz/api/wx");
+            String dddA = HttpGetA("http://apliu.xyz/api/wx");
+            Console.WriteLine("HttpWebRequest:" + ddd);
+            Console.WriteLine("HttpClient:" + dddA);
         }
 
         static void Main(string[] args)
@@ -29,6 +30,51 @@ namespace ApliuCoreConsole
             Console.WriteLine("Apliu Core Console Hello World!");
             Run();
             Console.ReadKey();
+        }
+
+        public static string HttpGetA(string getUrl)
+        {
+            string result = string.Empty;
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+
+                var ddd = httpClient.GetAsync(getUrl).Result;
+                result = ddd.Content.ReadAsStringAsync().Result;
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Get请求
+        /// </summary>
+        /// <param name="getUrl"></param>
+        /// <returns></returns>
+        public static string HttpGet(string getUrl)
+        {
+            string result = string.Empty;
+            try
+            {
+                HttpWebRequest wbRequest = (HttpWebRequest)WebRequest.Create(getUrl);
+                wbRequest.Method = "GET";
+                HttpWebResponse wbResponse = (HttpWebResponse)wbRequest.GetResponse();
+                using (Stream responseStream = wbResponse.GetResponseStream())
+                {
+                    using (StreamReader sReader = new StreamReader(responseStream))
+                    {
+                        result = sReader.ReadToEnd();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
         }
     }
 }

@@ -2,7 +2,6 @@
 using Apliu.Standard.Tools.Web;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Net.Http;
 using System.Threading;
 
 namespace ApliuCoreWeb.Models.WeChat
@@ -67,7 +66,7 @@ namespace ApliuCoreWeb.Models.WeChat
             try
             {
                 //AccessToken
-                HttpResponseMessage respAccessToken = HttpRequestHelper.HttpGetAsync(requestAccessTokenUri).Result;
+                System.Net.Http.HttpResponseMessage respAccessToken = HttpRequestHelper.HttpGetAsync(requestAccessTokenUri).Result;
                 respAccessToken.EnsureSuccessStatusCode();
                 String accessTokenContent = respAccessToken.Content.ReadAsStringAsync().Result;
                 JObject jObjAccessToken = Newtonsoft.Json.JsonConvert.DeserializeObject(accessTokenContent) as JObject;
@@ -80,7 +79,7 @@ namespace ApliuCoreWeb.Models.WeChat
                 if (timer == null) Logger.WriteLog("初始化Access_Token完成，Access_Token：" + AccessToken);
 
                 //JsApiTicket
-                HttpResponseMessage respJsTicket = HttpRequestHelper.HttpGetAsync(requestJsTicketUri).Result;
+                System.Net.Http.HttpResponseMessage respJsTicket = HttpRequestHelper.HttpGetAsync(requestJsTicketUri).Result;
                 respJsTicket.EnsureSuccessStatusCode();
                 String jsTicketContent = respJsTicket.Content.ReadAsStringAsync().Result;
                 JObject jObjJsTicket = Newtonsoft.Json.JsonConvert.DeserializeObject(jsTicketContent) as JObject;

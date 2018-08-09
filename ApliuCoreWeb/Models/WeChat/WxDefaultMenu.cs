@@ -1,7 +1,6 @@
 ﻿using Apliu.Standard.Tools;
 using Apliu.Standard.Tools.Web;
 using System;
-using System.Net.Http;
 
 namespace ApliuCoreWeb.Models.WeChat
 {
@@ -85,7 +84,7 @@ namespace ApliuCoreWeb.Models.WeChat
             //""url"":""https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={0}%2Fwx%2Fbind.html&response_type=code&scope=snsapi_base&state=%2Fwx%2Frepay.html""
             String defaultMenuContent = string.Format(menuStr, WeChatBase.WxDomain);//HttpUtility.UrlEncode(WeChatBase.WxDomain)
 
-            HttpResponseMessage response = await HttpRequestHelper.HttpPostAsync(reqUri, WeChatBase.WxEncoding, defaultMenuContent);
+            System.Net.Http.HttpResponseMessage response = await HttpRequestHelper.HttpPostAsync(reqUri, WeChatBase.WxEncoding, defaultMenuContent);
             String content = await response.Content.ReadAsStringAsync();
             Logger.WriteLog("微信公众号创建自定义菜单完成，详情：" + content);
         }
