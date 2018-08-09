@@ -68,7 +68,7 @@ namespace ApliuCoreWeb
             }
 
             //开启Https重定向
-            //app.UseHttpsRedirection();
+            if(ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://")) app.UseHttpsRedirection();
 
             //使用wwwroot中的静态文件
             app.UseStaticFiles();
