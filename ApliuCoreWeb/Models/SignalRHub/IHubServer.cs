@@ -27,7 +27,7 @@ namespace ApliuCoreWeb.Models.SignalRHub
         /// </summary>
         public override Task OnConnectedAsync()
         {
-            String userName = MemoryCacheCore.GetValue(Context.ConnectionId).ToString();
+            String userName = "";// MemoryCacheCore.GetValue(Context.ConnectionId)?.ToString();
             if (userName != null)
             {
                 Clients.All.OnConnectedAsync(userName);   //调用客户端用户上线线通知
@@ -40,11 +40,11 @@ namespace ApliuCoreWeb.Models.SignalRHub
         /// </summary>
         public override Task OnDisconnectedAsync(Exception stopCalled)
         {
-            String userName = MemoryCacheCore.GetValue(Context.ConnectionId).ToString();
+            String userName = "";// MemoryCacheCore.GetValue(Context.ConnectionId)?.ToString();
             if (userName != null)
             {
                 Clients.All.OnDisconnectedAsync(userName);   //调用客户端用户离线通知
-                MemoryCacheCore.Remove(Context.ConnectionId);
+                //MemoryCacheCore.Remove(Context.ConnectionId);
             }
             return base.OnDisconnectedAsync(stopCalled);
         }

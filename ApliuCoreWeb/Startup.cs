@@ -30,16 +30,16 @@ namespace ApliuCoreWeb
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
             //注册HttpContext
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //注册缓存服务
-            //services.AddMemoryCache();
-            //services.AddSingleton<Models.MemoryCacheCore>();//自定义缓存
+            services.AddMemoryCache();
+            //services.AddSingleton<Models.WeChat.WeChatHub>();//自定义缓存
 
             //注册SignalR
-            //services.AddSignalR();
+            services.AddSignalR();
 
             //注册Session
             services.AddSession(options =>
@@ -86,6 +86,11 @@ namespace ApliuCoreWeb
             //                        .GetServices<Microsoft.AspNetCore.SignalR.IHubContext<WeChatHub>>();
             //    return null;
             //});
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<Models.WeChat.WeChatHub>("/weChatHub");
+            });
 
             app.UseMvc(routes =>
             {

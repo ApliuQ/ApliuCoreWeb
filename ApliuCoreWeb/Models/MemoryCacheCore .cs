@@ -8,14 +8,14 @@ namespace ApliuCoreWeb.Models
 {
     public class MemoryCacheCore
     {
-        private static MemoryCache Cache { get; set; } = new MemoryCache(new MemoryCacheOptions { SizeLimit = 1024 });
+        private static IMemoryCache Cache { get; set; } = new MemoryCache(new MemoryCacheOptions());
 
         /// <summary>
         /// 缓存指定对象
         /// </summary>
-        public static void Create(String key, Object value)
+        public static void SetValue(String key, Object value)
         {
-            Cache.CreateEntry(key).Value = value;
+            Cache.Set(key, value);
         }
 
         /// <summary>
@@ -23,8 +23,7 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         public static Object GetValue(String key)
         {
-            Object value = default(Object);
-            Boolean getCache = Cache.TryGetValue(key, out value);
+            Object value = Cache.Get(key);
             return value;
         }
 
@@ -36,15 +35,6 @@ namespace ApliuCoreWeb.Models
         public static void Remove(String key)
         {
             Cache.Remove(key);
-        }
-
-        /// <summary>
-        /// 获取缓存对象数量
-        /// </summary>
-        /// <returns></returns>
-        public static Int32 GetCount()
-        {
-            return Cache.Count;
         }
 
         /// <summary>
