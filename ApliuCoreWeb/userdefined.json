@@ -1,5 +1,5 @@
 ﻿{
-  "UseUrls": "http://0.0.0.0:80",
+  "UseUrls": "https://0.0.0.0:80",
   "DatabaseType": "MySql",
   "ConnectionString": {
     "SqlServer": "Data Source=140.143.5.141;Initial Catalog=ApliuWeb;User ID=sa;Password=apliu@2018",

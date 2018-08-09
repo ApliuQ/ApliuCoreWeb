@@ -29,7 +29,7 @@ namespace ApliuCoreWeb.Models.WeChat
             MessageModel messageModel = new MessageModel();
             messageModel.username = MemoryCacheCore.GetValue(Context.ConnectionId)?.ToString();
             messageModel.message = Message;
-            String chatLogSql = String.Format(@"insert into ChatMessage (CshatMsgID,UserName,Message,SendTime,HubConnectionId,IP)
+            String chatLogSql = String.Format(@"insert into ChatMessage (ChatMsgID,UserName,Message,SendTime,HubConnectionId,IP)
                 values('{0}','{1}','{2}','{3}','{4}','{5}');", Guid.NewGuid().ToString(), messageModel.username, messageModel.message,
                 messageModel.datetimenow, Context.ConnectionId, "0.0.0.0");
             Boolean logResult = DataAccess.Instance.PostData(chatLogSql);

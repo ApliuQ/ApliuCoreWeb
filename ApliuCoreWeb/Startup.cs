@@ -34,6 +34,15 @@ namespace ApliuCoreWeb
             //注册HttpContext
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            if (ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://"))
+            {
+                services.AddHttpsRedirection(options =>
+                {
+                    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                    options.HttpsPort = 443;
+                });
+            }
+
             //注册缓存服务
             services.AddMemoryCache();
             //services.AddSingleton<Models.WeChat.WeChatHub>();//自定义缓存
@@ -44,8 +53,8 @@ namespace ApliuCoreWeb
             //注册Session
             services.AddSession(options =>
             {
-                // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromSeconds(300);
+                    // Set a short timeout for easy testing.
+                    options.IdleTimeout = TimeSpan.FromSeconds(300);
                 options.Cookie.HttpOnly = true;
             });
 
@@ -68,7 +77,10 @@ namespace ApliuCoreWeb
             }
 
             //开启Https重定向
-            if(ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://")) app.UseHttpsRedirection();
+            if (ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://"))
+            {
+                app.UseHttpsRedirection();
+            }
 
             //使用wwwroot中的静态文件
             app.UseStaticFiles();
