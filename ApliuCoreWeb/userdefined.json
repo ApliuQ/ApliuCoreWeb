@@ -13,7 +13,7 @@
         "Port": "443",
         "Certificate": {
           "Source": "File",
-          "Path": "apliu.xyz.pfx",
+          "Path": "wwwroot/apliu.xyz.pfx",
           "Password": "0t048b973d8ugq"
         }
       }
@@ -24,7 +24,7 @@
   "Domain": "https://www.apliu.xyz",
 
   /*是否开启HTTPS重定向服务*/
-  "IsUseHttps": true,
+  "IsUseHttps": false,
 
   /*业务数据库类型: SqlServer / Oracle / MySql */
   "DatabaseType": "SqlServer",

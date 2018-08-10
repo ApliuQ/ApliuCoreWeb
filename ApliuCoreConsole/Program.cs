@@ -28,7 +28,14 @@ namespace ApliuCoreConsole
             //DataSet ds = databaseHelper.GetData("select * from test ");
 
             Console.WriteLine("Apliu Core Console Hello World!");
-            Run();
+            try
+            {
+                Run();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Run：" + ex.Message);
+            }
             Console.ReadKey();
         }
 

@@ -2,6 +2,7 @@
 using ApliuCoreWeb.Models;
 using ApliuCoreWeb.Models.WeChat;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
@@ -50,6 +51,8 @@ namespace ApliuCoreWeb.Controllers
                     respContent = "Error: 处理失败";
                     try
                     {
+                        Request.EnableRewind();
+                        Request.Body.Position = 0;
                         using (Stream stream = Request.Body)
                         {
                             Byte[] postBytes = new Byte[stream.Length];
