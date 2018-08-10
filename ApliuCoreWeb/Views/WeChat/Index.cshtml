@@ -8,15 +8,15 @@
 
 <script>
     var weChatUserName;
-    var connection = new signalR.HubConnectionBuilder()
+    var wechatconnection = new signalR.HubConnectionBuilder()
         .withUrl("/weChatHub")
         .build();
 
-    connection.on("ReceiveMessage", (message) => {
+    wechatconnection.on("ReceiveMessage", (message) => {
         document.getElementById('chatbox').innerHTML += '<li class="other"><spanuser style = "font-size:0.2rem;" > ' + message.username + '</spanuser><img src="/img/chatroom/chatwomen.jpg" title="other"><span>' + message.message + '</span></li>';
     });
 
-    connection.start().finally(
+    wechatconnection.start().then(
         suc => {
             $.prompt({
                 text: "名字不能超过6个字符",
@@ -33,14 +33,13 @@
                     }
 
                     //$.alert("您的名字是:" + tempUserName, "设定成功");
-                    connection.invoke("chatLogin", tempUserName, tempUserName).catch(err => console.error($.alert("设置名称失败，详情：" + err.toString())));
+                    wechatconnection.invoke("chatLogin", tempUserName, tempUserName).catch(err => console.error($.alert("设置名称失败，详情：" + err.toString())));
 
                     weChatUserName = tempUserName;
                 },
                 onCancel: function () {
                     $.alert("放弃连接聊天");
                     weChatHub = null;
-                    //$.connection.
                 },
                 input: 'Mr ' + Math.random().toString().substring(2, 4)
             });
@@ -69,7 +68,7 @@
                 $("#input_box").focus();
             } else {
                 document.getElementById('chatbox').innerHTML += '<li class="me"><spanuser style="font-size:0.2rem;">' + weChatUserName + '</spanuser><img src="/img/chatroom/chatmen.jpg" title="other"><span>' + sendMessage + '</span></li>';
-                connection.invoke("sendOthersMessage", sendMessage).catch(err => console.error($.alert("发送消息失败，详情：" + err.toString())));
+                wechatconnection.invoke("sendOthersMessage", sendMessage).catch(err => console.error($.alert("发送消息失败，详情：" + err.toString())));
                 $("#input_box").val('');
             }
             event.preventDefault();
