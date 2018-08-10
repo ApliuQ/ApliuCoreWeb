@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace ApliuCoreWeb.Models
 {
@@ -53,6 +54,26 @@ namespace ApliuCoreWeb.Models
                     }
                 }
                 return _HostUrl;
+            }
+        }
+
+        public static Boolean IsUseHttps
+        {
+            get
+            {
+                bool use = false;
+                foreach (var endpoint in HostUrl.Endpoints.Where(a => a.Value != null && a.Value.IsEnabled))
+                {
+                    if (endpoint.Value.Certificate != null)//证书不为空使用UserHttps
+                    {
+                        if (endpoint.Value.Certificate.Source != "File" || File.Exists(endpoint.Value.Certificate?.Path))
+                        {
+                            use = true;
+                            break;
+                        }
+                    }
+                }
+                return use;
             }
         }
 
