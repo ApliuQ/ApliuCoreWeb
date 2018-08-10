@@ -37,7 +37,7 @@
     */
 
   /*各类业务数据*/
-  "appSettings": {
+  "AppSettings": {
     /*演示数据库*/
     "TesDatabaseTypet": "SqlServer",
     "TesDatabaseConnection": "Data Source=APLIUCVM\\SQLEXPRESS;Database=TestDb;User ID=dbtest;Password=qwer@1234",

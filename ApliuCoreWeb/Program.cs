@@ -26,7 +26,6 @@ namespace ApliuCoreWeb
                 .UseKestrel(SetHostUrl)//启用Kestrel
                 .UseStartup<Startup>();
 
-
         /// <summary>
         /// 配置Kestrel
         /// </summary>

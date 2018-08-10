@@ -66,8 +66,8 @@ namespace ApliuCoreWeb.Controllers
             Sql = Sql.Trim();
             if (string.IsNullOrEmpty(Sql)) return result.ToString();
 
-            string databaseType = ConfigurationJson.Appsetting.TesDatabaseTypet;
-            string databaseConnection = ConfigurationJson.Appsetting.TesDatabaseConnection;
+            string databaseType = ConfigurationJson.Appsettings.TesDatabaseTypet;
+            string databaseConnection = ConfigurationJson.Appsettings.TesDatabaseConnection;
             DataAccess.LoadDataAccess("TestDatabase", databaseType, databaseConnection);
             switch (Type.ToUpper())
             {

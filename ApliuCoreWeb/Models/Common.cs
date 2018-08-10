@@ -29,7 +29,7 @@ namespace ApliuCoreWeb.Models
         /// <summary>
         /// Session加密秘钥
         /// </summary>
-        private static readonly string SessionSecurityKey = ConfigurationJson.Appsetting.SessionSecurityKey;
+        private static readonly string SessionSecurityKey = ConfigurationJson.Appsettings.SessionSecurityKey;
 
         #region 身份证号验证
         public static bool CheckIDCard(string idNumber)

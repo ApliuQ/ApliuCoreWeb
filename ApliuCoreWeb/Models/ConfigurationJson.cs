@@ -28,7 +28,7 @@ namespace ApliuCoreWeb.Models
         /// <summary>
         /// userdefined.json 中的Appsetting节点信息
         /// </summary>
-        public static Appsetting Appsetting = new Appsetting();
+        public static Appsettings Appsettings = new Appsettings();
 
         /// <summary>
         /// 静态对象锁
@@ -42,10 +42,6 @@ namespace ApliuCoreWeb.Models
         {
             get
             {
-                return _HostUrl;
-            }
-            set
-            {
                 if (_HostUrl == null)
                 {
                     lock (objectLock)
@@ -56,6 +52,7 @@ namespace ApliuCoreWeb.Models
                         }
                     }
                 }
+                return _HostUrl;
             }
         }
 
@@ -64,7 +61,7 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         public static void LoadConfig()
         {
-            Appsetting = GetSetting<Appsetting>("Appsetting");
+            Appsettings = GetSetting<Appsettings>("Appsettings");
             Domain = GetSetting("Domain");
             DatabaseType = GetSetting("DatabaseType");
             DatabaseConnection = GetSetting("DatabaseConnection");
@@ -125,7 +122,7 @@ namespace ApliuCoreWeb.Models
         }
     }
 
-    public class Appsetting
+    public class Appsettings
     {
         /// <summary>
         /// 演示数据库类型

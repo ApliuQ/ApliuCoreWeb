@@ -16,7 +16,7 @@ namespace ApliuCoreWeb.Models.WeChat
         {
             get
             {
-                String wxDomain = ConfigurationJson.Appsetting.WxDomain.Trim();
+                String wxDomain = ConfigurationJson.Appsettings.WxDomain.Trim();
                 if (wxDomain.EndsWith("/")) wxDomain = wxDomain.Substring(0, wxDomain.Length - 1);
                 return wxDomain;
             }
@@ -25,19 +25,19 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <summary>
         /// 开发者ID
         /// </summary>
-        public static String WxAppId = ConfigurationJson.Appsetting.WxAppId.Trim();
+        public static String WxAppId = ConfigurationJson.Appsettings.WxAppId.Trim();
         /// <summary>
         /// 开发者密码
         /// </summary>
-        public static String WxAppSecret = ConfigurationJson.Appsetting.WxAppSecret.Trim();
+        public static String WxAppSecret = ConfigurationJson.Appsettings.WxAppSecret.Trim();
         /// <summary>
         /// 用户设置的令牌(Token)
         /// </summary>
-        public static String WxToken = ConfigurationJson.Appsetting.WxToken.Trim();
+        public static String WxToken = ConfigurationJson.Appsettings.WxToken.Trim();
         /// <summary>
         /// 消息加解密密钥
         /// </summary>
-        public static String WxEncodingAESKey = ConfigurationJson.Appsetting.WxEncodingAESKey.Trim();
+        public static String WxEncodingAESKey = ConfigurationJson.Appsettings.WxEncodingAESKey.Trim();
 
         /// <summary>
         /// 微信公众号解析统一编码
@@ -48,7 +48,7 @@ namespace ApliuCoreWeb.Models.WeChat
         /// 微信公众号消息模式是否是安全模式（加密消息），更改设置由公众号配置决定是否加密
         /// </summary>
         [Obsolete]
-        public static Boolean IsSecurity = ConfigurationJson.Appsetting.IsSecurity.ToBoolean();
+        public static Boolean IsSecurity = ConfigurationJson.Appsettings.IsSecurity.ToBoolean();
 
         /// <summary>
         /// 验证消息是否来自微信服务器
