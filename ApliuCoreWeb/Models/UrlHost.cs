@@ -64,7 +64,7 @@ namespace ApliuCoreWeb.Models
             {
                 if (!String.IsNullOrEmpty(_Path?.Trim()))
                 {
-                    String pathLine = ServerInfo.SitePath + "/" + _Path;
+                    String pathLine = ServerInfo.SitePath + "/wwwroot/" + _Path;
                     return pathLine.ToLinuxOrWinPath();
                 }
                 else return _Path;

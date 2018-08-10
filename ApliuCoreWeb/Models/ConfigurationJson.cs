@@ -64,19 +64,19 @@ namespace ApliuCoreWeb.Models
         {
             get
             {
-                bool use = false;
+                bool isUseHttps = false;
                 foreach (var endpoint in HostUrl.Endpoints.Where(a => a.Value != null && a.Value.IsEnabled))
                 {
                     if (endpoint.Value.Certificate != null)//证书不为空使用UserHttps
                     {
                         if (endpoint.Value.Certificate.Source != "File" || File.Exists(endpoint.Value.Certificate?.Path))
                         {
-                            use = true;
+                            isUseHttps = true;
                             break;
                         }
                     }
                 }
-                return use;
+                return isUseHttps;
             }
         }
 

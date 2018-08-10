@@ -78,7 +78,11 @@ namespace ApliuCoreWeb
             }
 
             //开启Https重定向
-            if (Models.ConfigurationJson.IsUseHttps) app.UseHttpsRedirection();
+            if (Models.ConfigurationJson.IsUseHttps)
+            {
+                app.UseHttpsRedirection();
+                Apliu.Standard.Tools.Logger.WriteLogWeb("开启请求重定向到HTTPS的服务");
+            }
 
             //使用wwwroot中的静态文件
             app.UseStaticFiles();
