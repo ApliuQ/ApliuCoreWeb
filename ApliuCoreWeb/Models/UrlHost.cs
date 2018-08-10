@@ -61,7 +61,7 @@ namespace ApliuCoreWeb.Models
         {
             get
             {
-                if (!String.IsNullOrEmpty(_Path.Trim()))
+                if (!String.IsNullOrEmpty(_Path?.Trim()))
                 {
                     String pathLine = String.Empty;
                     if (ServerInfo.SitePath.Contains(@"/")) pathLine = @"/";

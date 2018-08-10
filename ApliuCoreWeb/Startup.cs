@@ -34,14 +34,15 @@ namespace ApliuCoreWeb
             //注册HttpContext
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            //if (ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://"))
-            //{
-            //    services.AddHttpsRedirection(options =>
-            //    {
-            //        options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-            //        options.HttpsPort = 443;
-            //    });
-            //}
+            //启用Https 则添加重新向443端口
+            if (Models.ConfigurationJson.IsUseHttps)
+            {
+                services.AddHttpsRedirection(options =>
+                {
+                    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                    options.HttpsPort = 443;
+                });
+            }
 
             //注册缓存服务
             services.AddMemoryCache();
@@ -53,8 +54,8 @@ namespace ApliuCoreWeb
             //注册Session
             services.AddSession(options =>
             {
-                    // Set a short timeout for easy testing.
-                    options.IdleTimeout = TimeSpan.FromSeconds(300);
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(300);
                 options.Cookie.HttpOnly = true;
             });
 
@@ -77,7 +78,7 @@ namespace ApliuCoreWeb
             }
 
             //开启Https重定向
-           if(Models.ConfigurationJson.IsUseHttps) app.UseHttpsRedirection();
+            if (Models.ConfigurationJson.IsUseHttps) app.UseHttpsRedirection();
 
             //使用wwwroot中的静态文件
             app.UseStaticFiles();

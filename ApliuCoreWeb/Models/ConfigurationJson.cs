@@ -57,6 +57,9 @@ namespace ApliuCoreWeb.Models
             }
         }
 
+        /// <summary>
+        /// 是否启用Https 证书
+        /// </summary>
         public static Boolean IsUseHttps
         {
             get

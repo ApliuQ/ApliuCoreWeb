@@ -22,7 +22,6 @@ namespace ApliuCoreWeb
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                //.UseUrls(ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls"))
                 .UseKestrel(SetHostUrl)//启用Kestrel
                 .UseStartup<Startup>();
 
