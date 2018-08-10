@@ -34,7 +34,7 @@ namespace ApliuCoreWeb
         private static void SetHostUrl(Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions options)
         {
             //依据Host类反序列化appsettings.json中指定节点
-            var hostUrl = ConfigurationJson.GetSetting<HostUrl>("HostUrl", "userdefined.json");
+            var hostUrl = ConfigurationJson.HostUrl;
             foreach (var endpointKvp in hostUrl.Endpoints)
             {
                 var endpointName = endpointKvp.Key;

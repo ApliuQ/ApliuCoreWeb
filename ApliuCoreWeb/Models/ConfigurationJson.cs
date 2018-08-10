@@ -30,6 +30,38 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         public static Appsetting Appsetting = new Appsetting();
 
+        /// <summary>
+        /// 静态对象锁
+        /// </summary>
+        private readonly static Object objectLock = new Object();
+        private static HostUrl _HostUrl;
+        /// <summary>
+        /// 网站访问URL
+        /// </summary>
+        public static HostUrl HostUrl
+        {
+            get
+            {
+                return _HostUrl;
+            }
+            set
+            {
+                if (_HostUrl == null)
+                {
+                    lock (objectLock)
+                    {
+                        if (_HostUrl == null)
+                        {
+                            _HostUrl = GetSetting<HostUrl>("HostUrl");
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 初始化配置信息
+        /// </summary>
         public static void LoadConfig()
         {
             Appsetting = GetSetting<Appsetting>("Appsetting");
