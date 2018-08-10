@@ -24,7 +24,7 @@
   "Domain": "https://www.apliu.xyz",
 
   /*是否开启HTTPS重定向服务*/
-  "IsUseHttps": false,
+  "IsUseHttps": true,
 
   /*业务数据库类型: SqlServer / Oracle / MySql */
   "DatabaseType": "SqlServer",
