@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -51,46 +52,48 @@ namespace ApliuCoreWeb.Controllers
                     respContent = "Error: 处理失败";
                     try
                     {
-                        Request.EnableRewind();
-                        Request.Body.Position = 0;
-                        using (Stream stream = Request.Body)
+                        //采用流的方式去读数据会出现问题，故改用循环读取字节
+                        List<Byte> reqContent = new List<byte>();
+                        while (true)
                         {
-                            Byte[] postBytes = new Byte[stream.Length];
-                            stream.Read(postBytes, 0, (Int32)stream.Length);
-                            string beforeReqData = WeChatBase.WxEncoding.GetString(postBytes);
-                            if (!string.IsNullOrEmpty(beforeReqData))
+                            int readInt = Request.Body.ReadByte();
+                            if (readInt == -1) break;
+                            else reqContent.Add((Byte)readInt);
+                        }
+                        Byte[] postBytes = reqContent.ToArray();
+                        string beforeReqData = WeChatBase.WxEncoding.GetString(postBytes);
+                        if (!string.IsNullOrEmpty(beforeReqData))
+                        {
+                            if ("aes".Equals(encrypt_type))//(WeChatBase.IsSecurity)
                             {
-                                if ("aes".Equals(encrypt_type))//(WeChatBase.IsSecurity)
+                                Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(WeChatBase.WxToken, WeChatBase.WxEncodingAESKey, WeChatBase.WxAppId);
+                                string afterReqData = String.Empty;  //解析之后的明文
+                                int reqRet = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, beforeReqData, ref afterReqData);
+                                if (reqRet == 0)
                                 {
-                                    Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(WeChatBase.WxToken, WeChatBase.WxEncodingAESKey, WeChatBase.WxAppId);
-                                    string afterReqData = String.Empty;  //解析之后的明文
-                                    int reqRet = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, beforeReqData, ref afterReqData);
-                                    if (reqRet == 0)
+                                    WxMessageHelp wxMsgHelp = new WxMessageHelp();
+                                    String retMessage = wxMsgHelp.MessageHandle(afterReqData);
+                                    string respData = String.Empty; //xml格式的密文
+                                    int resqRet = wxcpt.EncryptMsg(retMessage, timestamp, nonce, ref respData);
+                                    if (resqRet == 0)
                                     {
-                                        WxMessageHelp wxMsgHelp = new WxMessageHelp();
-                                        String retMessage = wxMsgHelp.MessageHandle(afterReqData);
-                                        string respData = String.Empty; //xml格式的密文
-                                        int resqRet = wxcpt.EncryptMsg(retMessage, timestamp, nonce, ref respData);
-                                        if (resqRet == 0)
-                                        {
-                                            respContent = respData;
-                                        }
-                                        else
-                                        {
-                                            Logger.WriteLogAsync("Error：接收微信服务器推送的消息，加密报文失败，ret: " + resqRet);
-                                        }
+                                        respContent = respData;
                                     }
                                     else
                                     {
-                                        Logger.WriteLogAsync("Error：接收微信服务器推送的消息，解密报文失败，ret: " + reqRet);
+                                        Logger.WriteLogAsync("Error：接收微信服务器推送的消息，加密报文失败，ret: " + resqRet);
                                     }
                                 }
                                 else
                                 {
-                                    WxMessageHelp wxMsgHelp = new WxMessageHelp();
-                                    String retMessage = wxMsgHelp.MessageHandle(beforeReqData);
-                                    respContent = retMessage;
+                                    Logger.WriteLogAsync("Error：接收微信服务器推送的消息，解密报文失败，ret: " + reqRet);
                                 }
+                            }
+                            else
+                            {
+                                WxMessageHelp wxMsgHelp = new WxMessageHelp();
+                                String retMessage = wxMsgHelp.MessageHandle(beforeReqData);
+                                respContent = retMessage;
                             }
                         }
                     }
