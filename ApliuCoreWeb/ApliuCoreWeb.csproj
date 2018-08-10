@@ -13,4 +13,6 @@
     <ProjectReference Include="..\Apliu.Standard.Tools\Apliu.Standard.Tools.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>

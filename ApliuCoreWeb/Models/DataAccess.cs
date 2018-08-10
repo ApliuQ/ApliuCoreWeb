@@ -1,6 +1,5 @@
 ﻿using Apliu.Core.Database;
 using Apliu.Standard.Tools;
-using ApliuCoreWeb.Config;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +15,7 @@ namespace ApliuCoreWeb.Models
         /// <summary>
         /// 静态锁确保不重复
         /// </summary>
-        private static Object objectInstanceLock = new Object();
+        private static readonly Object objectInstanceLock = new Object();
         /// <summary>
         /// 获取默认的数据库链接对象 key=Default 从配置文件中读取
         /// </summary>
@@ -35,7 +34,7 @@ namespace ApliuCoreWeb.Models
                         if (_Instance.ContainsKey("Default")) return _Instance["Default"];
                         else
                         {
-                            LoadDataAccess("Default", SiteConfig.Instance.DatabaseType, SiteConfig.Instance.DatabaseConnection);
+                            LoadDataAccess("Default", ConfigurationJson.DatabaseType, ConfigurationJson.DatabaseConnection);
                             return _Instance["Default"];
                         }
                     }
@@ -64,7 +63,7 @@ namespace ApliuCoreWeb.Models
             dbHelper = new DatabaseHelper((DatabaseType)Enum.Parse(typeof(DatabaseType), databaseType), databaseConnection);
         }
 
-        private static Object objectLoadDataAccessLock = new Object();
+        private static readonly Object objectLoadDataAccessLock = new Object();
         /// <summary>
         /// 初始化数据库连接通道
         /// </summary>

@@ -1,6 +1,5 @@
 ﻿using Apliu.Standard.Tools;
 using Apliu.Standard.Tools.Web;
-using ApliuCoreWeb.Config;
 using System;
 using System.Threading.Tasks;
 using System.Xml;
@@ -93,7 +92,7 @@ namespace ApliuCoreWeb.Models.WeChat
                    FromUserName.InnerText,
                     ToUserName.InnerText,
                     DateTime.Now.Ticks,
-                    "欢迎使用ApliuTools微信公众号，功能主页：" + SiteConfig.Instance.Domain);
+                    "欢迎使用ApliuTools微信公众号，功能主页：" +ConfigurationJson.Domain);
             }
             Logger.WriteLog("接收文本消息日志，开发者微信号：" + ToUserName.InnerText + "，用户OpenId：" + FromUserName.InnerText + "，消息内容：" + Content.InnerText);
             return responseContent;

@@ -34,14 +34,14 @@ namespace ApliuCoreWeb
             //注册HttpContext
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            if (ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://"))
-            {
-                services.AddHttpsRedirection(options =>
-                {
-                    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-                    options.HttpsPort = 443;
-                });
-            }
+            //if (ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://"))
+            //{
+            //    services.AddHttpsRedirection(options =>
+            //    {
+            //        options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+            //        options.HttpsPort = 443;
+            //    });
+            //}
 
             //注册缓存服务
             services.AddMemoryCache();
@@ -77,10 +77,10 @@ namespace ApliuCoreWeb
             }
 
             //开启Https重定向
-            if (ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://"))
-            {
-                app.UseHttpsRedirection();
-            }
+            //if (ApliuCoreWeb.Models.AppsettingJson.GetuUserDefinedSetting("UseUrls").ToUpper().Contains("HTTPS://"))
+            //{
+            //    app.UseHttpsRedirection();
+            //}
 
             //使用wwwroot中的静态文件
             app.UseStaticFiles();
@@ -126,7 +126,7 @@ namespace ApliuCoreWeb
                 Apliu.Standard.Tools.Logger.WriteLogWeb("开始执行自定义初始化事件");
 
                 //加载配置文件
-                Config.SiteConfig.LoadConfig();
+                Models.ConfigurationJson.LoadConfig();
 
                 //初始化程序跟目录
                 ApliuCoreWeb.Models.Common.RootDirectory = Apliu.Standard.Tools.Web.ServerInfo.SitePath + @"\";

@@ -1,10 +1,9 @@
-﻿using ApliuCoreWeb.Config;
+﻿using Apliu.Standard.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using Apliu.Standard.Tools;
 
 namespace ApliuCoreWeb.Models.WeChat
 {
@@ -17,7 +16,7 @@ namespace ApliuCoreWeb.Models.WeChat
         {
             get
             {
-                String wxDomain = SiteConfig.GetConfigAppSettingsValue("WxDomain").Trim();
+                String wxDomain = ConfigurationJson.Appsetting.WxDomain.Trim();
                 if (wxDomain.EndsWith("/")) wxDomain = wxDomain.Substring(0, wxDomain.Length - 1);
                 return wxDomain;
             }
@@ -26,19 +25,19 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <summary>
         /// 开发者ID
         /// </summary>
-        public static String WxAppId = SiteConfig.GetConfigAppSettingsValue("WxAppId").Trim();
+        public static String WxAppId = ConfigurationJson.Appsetting.WxAppId.Trim();
         /// <summary>
         /// 开发者密码
         /// </summary>
-        public static String WxAppSecret = SiteConfig.GetConfigAppSettingsValue("WxAppSecret").Trim();
+        public static String WxAppSecret = ConfigurationJson.Appsetting.WxAppSecret.Trim();
         /// <summary>
         /// 用户设置的令牌(Token)
         /// </summary>
-        public static String WxToken = SiteConfig.GetConfigAppSettingsValue("WxToken").Trim();
+        public static String WxToken = ConfigurationJson.Appsetting.WxToken.Trim();
         /// <summary>
         /// 消息加解密密钥
         /// </summary>
-        public static String WxEncodingAESKey = SiteConfig.GetConfigAppSettingsValue("WxEncodingAESKey").Trim();
+        public static String WxEncodingAESKey = ConfigurationJson.Appsetting.WxEncodingAESKey.Trim();
 
         /// <summary>
         /// 微信公众号解析统一编码
@@ -46,11 +45,10 @@ namespace ApliuCoreWeb.Models.WeChat
         public static Encoding WxEncoding = Encoding.UTF8;
 
         /// <summary>
-        /// 微信公众号消息模式是否是安全模式（加密消息）
-        /// 更改设置由公众号配置决定是否加密
+        /// 微信公众号消息模式是否是安全模式（加密消息），更改设置由公众号配置决定是否加密
         /// </summary>
         [Obsolete]
-        public static Boolean IsSecurity = SiteConfig.GetConfigAppSettingsValue("IsSecurity").ToBoolean();
+        public static Boolean IsSecurity = ConfigurationJson.Appsetting.IsSecurity.ToBoolean();
 
         /// <summary>
         /// 验证消息是否来自微信服务器
@@ -68,10 +66,12 @@ namespace ApliuCoreWeb.Models.WeChat
                 return false;
             }
 
-            List<string> sortList = new List<string>();
-            sortList.Add(timestamp);
-            sortList.Add(nonce);
-            sortList.Add(WxToken);
+            List<string> sortList = new List<string>
+            {
+                timestamp,
+                nonce,
+                WxToken
+            };
             sortList.Sort();
 
             byte[] data = WxEncoding.GetBytes(string.Join("", sortList));
@@ -100,11 +100,13 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <returns></returns>
         public static int GenarateSinature(string nonceStr, string jsApiTicket, string timesamp, string reqUrl, String signature)
         {
-            ArrayList AL = new ArrayList();
-            AL.Add(nonceStr);
-            AL.Add(jsApiTicket);
-            AL.Add(timesamp);
-            AL.Add(reqUrl);
+            ArrayList AL = new ArrayList
+            {
+                nonceStr,
+                jsApiTicket,
+                timesamp,
+                reqUrl
+            };
             AL.Sort(new Tencent.WXBizMsgCrypt.DictionarySort());
             string raw = "";
             for (int i = 0; i < AL.Count; ++i)

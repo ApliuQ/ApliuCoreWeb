@@ -43,7 +43,7 @@ namespace ApliuCoreConsole
                 result = ddd.Content.ReadAsStringAsync().Result;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return result;
@@ -71,7 +71,7 @@ namespace ApliuCoreConsole
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return result;

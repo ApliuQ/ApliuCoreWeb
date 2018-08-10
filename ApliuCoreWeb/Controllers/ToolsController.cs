@@ -1,6 +1,5 @@
 ﻿using Apliu.Standard.Tools;
 using Apliu.Standard.Tools.Web;
-using ApliuCoreWeb.Config;
 using ApliuCoreWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -57,16 +56,18 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public string ExecuteSql(string Sql, string Type)
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
             Sql = Sql.Trim();
             if (string.IsNullOrEmpty(Sql)) return result.ToString();
 
-            string databaseType = SiteConfig.GetConfigAppSettingsValue("TesDatabaseTypet");
-            string databaseConnection = SiteConfig.GetConfigAppSettingsValue("TesDatabaseConnection");
+            string databaseType = ConfigurationJson.Appsetting.TesDatabaseTypet;
+            string databaseConnection = ConfigurationJson.Appsetting.TesDatabaseConnection;
             DataAccess.LoadDataAccess("TestDatabase", databaseType, databaseConnection);
             switch (Type.ToUpper())
             {
@@ -106,10 +107,12 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public string ExecuteDatabseSql(string source, string userid, string password, string database, string sql)
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
             sql = sql.Trim();
             if (string.IsNullOrEmpty(sql)) return result.ToString();
@@ -153,15 +156,16 @@ namespace ApliuCoreWeb.Controllers
         [HttpPost]
         public string SendSMS(string Mobile, string SMSContent, string TcSMSAppId, string TcSMSAppKey)
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
-            string SendMsg = "发生异常";
             String sendLogSql = String.Empty;
             ISMSMessage sms = new TencentSMS();
-            bool sendresult = sms.SendSMS(Mobile, SMSContent, out SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);
+            bool sendresult = sms.SendSMS(Mobile, SMSContent, out string SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);
             if (sendresult)
             {
                 result.code = "0";
@@ -175,15 +179,16 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public string SendSMSGet(string Mobile, string SMSContent, string TcSMSAppId, string TcSMSAppKey)
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
-            string SendMsg = "发生异常";
             String sendLogSql = String.Empty;
             ISMSMessage sms = new TencentSMS();
-            bool sendresult = sms.SendSMS(Mobile, SMSContent, out SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);
+            bool sendresult = sms.SendSMS(Mobile, SMSContent, out string SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);
             if (sendresult)
             {
                 result.code = "0";
@@ -197,10 +202,12 @@ namespace ApliuCoreWeb.Controllers
         [HttpPost]
         public string SendSMSCode()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
             string Mobile = HttpContext.Request.Form["Mobile"];
             CodeType codeType = (CodeType)HttpContext.Request.Form["codeType"].ToString().ToInt();
@@ -217,9 +224,7 @@ namespace ApliuCoreWeb.Controllers
                 return result.ToString();
             }
 
-            string SendMsg = "发生异常";
-            CodeCase codeCase = null;
-            bool sendresult = VerificationCode.SendSMS(Mobile, codeType, out SendMsg, out codeCase);
+            bool sendresult = VerificationCode.SendSMS(Mobile, codeType, out string SendMsg, out CodeCase codeCase);
             if (sendresult)
             {
                 HttpContext.Session.SetValue(codeCase.Type.ToString(), codeCase);
@@ -250,10 +255,12 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public string GetTempContent()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
             string Key = HttpContext.Request.Query["Key"];
             if (!string.IsNullOrEmpty(Key) && Key.Trim().Length >= 100)
@@ -291,10 +298,12 @@ namespace ApliuCoreWeb.Controllers
         [HttpPost]
         public string SetTempContent()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
             string Content = HttpContext.Request.Form["Content"];
             string Key = HttpContext.Request.Form["Key"];//不存在key的时候，Key值为null
@@ -337,10 +346,12 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public string Security()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
             string type = HttpContext.Request.Query["type"];
             string content = HttpContext.Request.Query["content"];
@@ -408,10 +419,12 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public string BaseConver()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
-            result.result = "执行失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常",
+                result = "执行失败"
+            };
 
             Int32 from = HttpContext.Request.Query["from"].ToString().ToInt();
             Int32 to = HttpContext.Request.Query["to"].ToString().ToInt();

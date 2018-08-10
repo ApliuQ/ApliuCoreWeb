@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apliu.Standard.Tools", "Apl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apliu.Standard.WeChat", "Apliu.Standard.WeChat\Apliu.Standard.WeChat.csproj", "{3AE00275-74F2-4E4D-83E9-44C669A4ADE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApliuCoreWeb", "ApliuCoreWeb\ApliuCoreWeb.csproj", "{05E47FD3-7159-469E-BC75-99B3D1D1F106}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApliuCoreWeb", "ApliuCoreWeb\ApliuCoreWeb.csproj", "{05E47FD3-7159-469E-BC75-99B3D1D1F106}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

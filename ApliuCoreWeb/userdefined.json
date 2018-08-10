@@ -1,10 +1,73 @@
 ﻿{
-  "UseUrls": "http://0.0.0.0:80",
-  "DatabaseType": "MySql",
+  /*Kestrel配置Host Url信息,同时支持https和HTTP*/
+  "HostUrl": {
+    "Endpoints": {
+      "Http": {
+        "IsEnabled": true,
+        "Address": "0.0.0.0",
+        "Port": "80"
+      },
+      "Https": {
+        "IsEnabled": true,
+        "Address": "0.0.0.0",
+        "Port": "443",
+        "Certificate": {
+          "Source": "File",
+          "Path": "apliu.xyz.pfx",
+          "Password": "0t048b973d8ugq"
+        }
+      }
+    }
+  },
+
+  /*网站域名*/
+  "Domain": "https://www.apliu.xyz",
+
+  /*业务数据库类型: SqlServer / Oracle / MySql */
+  "DatabaseType": "SqlServer",
+  "DatabaseConnection": "Data Source=APLIUCVM\\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=apliu@2018",
+
+  /*
+    Public:
+        "DatabaseConnection": "Data Source=APLIUCVM\\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=apliu@2018",
+        "TesDatabaseConnection": "Data Source=APLIUCVM\\SQLEXPRESS;Database=TestDb;User ID=dbtest;Password=qwer@1234",
+    Debug:
+        "DatabaseConnection": "Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa",
+        "TesDatabaseConnection": "Data Source=APLIUDELL\SQLEXPRESS;Database=TestDb;User ID=sa;Password=sa",
+    */
+
+  /*各类业务数据*/
+  "appSettings": {
+    /*演示数据库*/
+    "TesDatabaseTypet": "SqlServer",
+    "TesDatabaseConnection": "Data Source=APLIUCVM\\SQLEXPRESS;Database=TestDb;User ID=dbtest;Password=qwer@1234",
+
+    /*Session加密秘钥*/
+    "SessionSecurityKey": "Apliu",
+
+    /*微信公众号绑定域名*/
+    "WxDomain": "https://apliu.xyz",
+    "WxAppId": "wx42b1ba627b298cdd",
+    "WxAppSecret": "a1bcff01a2a19e3b5884dbc0720c496f",
+    "WxToken": "apliutoolstoken",
+    "IsSecurity": "true", //已更改至由微信公众号设置决定是否启用加密，故此字段暂未使用（已过期）
+    "WxEncodingAESKey": "MLOzScgA47lmhqxHrILUJ91kwuU3iTwwGxwjMZD74ts",
+
+    /*腾讯云ID*/
+    "TcAppId": "1256268361",
+    "TcSecretId": "AKIDaWTM2f1QdGW5bxzXDQCspcRD6rcI9CNj",
+    "TcSecretKey": "OCrOkxjSMCsU5mMm6HHB32qLl3A6xknl",
+
+    /*SDK AppID是短信应用的唯一标识，调用短信API接口时需要提供该参数*/
+    "TcSMSAppId": "1400075540",
+    /*用来校验短信发送请求合法性的密码，与SDK AppID对应*/
+    "TcSMSAppKey": "b0a0f4466492c96fcd3d1d334cc01749"
+  },
+
+  /*测试各类数据库连接使用，暂时无效已过期*/
   "ConnectionString": {
     "SqlServer": "Data Source=140.143.5.141;Initial Catalog=ApliuWeb;User ID=sa;Password=apliu@2018",
     "Oracle": "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=140.143.5.141)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCL)));User Id=APLIUWEB;Password=apliu2018",
-    "MySql": "Server=140.143.5.141;Database=apliuweb;User ID=root;Password=apliu@2018",
-    "OleDb": "D:\\apliuweb.accdb"
+    "MySql": "Server=140.143.5.141;Database=apliuweb;User ID=root;Password=apliu@2018"
   }
 }

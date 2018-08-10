@@ -1,6 +1,4 @@
 ﻿using Apliu.Standard.Tools;
-using ApliuCoreWeb.Config;
-using Microsoft.AspNetCore.Http;
 using System;
 
 namespace ApliuCoreWeb.Models
@@ -112,8 +110,8 @@ namespace ApliuCoreWeb.Models
         /// <returns></returns>
         private static bool SendSMS(string Mobile, string SMSContent, out string SendMsg)
         {
-            string TcSMSAppId = SiteConfig.GetConfigAppSettingsValue("TcSMSAppId");
-            string TcSMSAppKey = SiteConfig.GetConfigAppSettingsValue("TcSMSAppKey");
+            string TcSMSAppId = ConfigurationJson.Appsetting.TcSMSAppId;
+            string TcSMSAppKey = ConfigurationJson.Appsetting.TcSMSAppKey;
             String sendLogSql = String.Empty;
             ISMSMessage sms = new TencentSMS();
             bool resutl = sms.SendSMS(Mobile, SMSContent, out SendMsg, out sendLogSql, TcSMSAppId, TcSMSAppKey);

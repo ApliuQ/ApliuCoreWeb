@@ -1,5 +1,4 @@
 ﻿using Apliu.Standard.Tools;
-using ApliuCoreWeb.Config;
 using System;
 
 namespace ApliuCoreWeb.Models
@@ -30,7 +29,7 @@ namespace ApliuCoreWeb.Models
         /// <summary>
         /// Session加密秘钥
         /// </summary>
-        private static string SessionSecurityKey = SiteConfig.GetConfigAppSettingsValue("SessionSecurityKey");
+        private static readonly string SessionSecurityKey = ConfigurationJson.Appsetting.SessionSecurityKey;
 
         #region 身份证号验证
         public static bool CheckIDCard(string idNumber)
@@ -49,8 +48,7 @@ namespace ApliuCoreWeb.Models
         }
         private static bool CheckIDCard18(string idNumber)
         {
-            long n = 0;
-            if (long.TryParse(idNumber.Remove(17), out n) == false || n < Math.Pow(10, 16)
+            if (long.TryParse(idNumber.Remove(17), out long n) == false || n < Math.Pow(10, 16)
                 || long.TryParse(idNumber.Replace('x', '0').Replace('X', '0'), out n) == false)
             {
                 return false;//数字验证  
@@ -88,8 +86,7 @@ namespace ApliuCoreWeb.Models
         }
         private static bool CheckIDCard15(string idNumber)
         {
-            long n = 0;
-            if (long.TryParse(idNumber, out n) == false || n < Math.Pow(10, 14))
+            if (long.TryParse(idNumber, out long n) == false || n < Math.Pow(10, 14))
             {
                 return false;//数字验证  
             }
@@ -134,8 +131,7 @@ namespace ApliuCoreWeb.Models
                 Birthday = "19" + CertId.Substring(6, 2) + "-" + CertId.Substring(8, 2) + "-" + CertId.Substring(10, 2);
 
                 TimeSpan ts = DateTime.Now.Subtract(Convert.ToDateTime(Birthday));
-                int tempsex = 0;
-                int.TryParse(CertId.Substring(CertId.Length - 3, 1), out tempsex);
+                int.TryParse(CertId.Substring(CertId.Length - 3, 1), out int tempsex);
                 if (tempsex == 0)
                 {
                     Sex = "1";
@@ -154,8 +150,7 @@ namespace ApliuCoreWeb.Models
 
                 string Sub_str = CertId.Substring(6, 8).Insert(4, "-").Insert(7, "-");
                 TimeSpan ts = DateTime.Now.Subtract(Convert.ToDateTime(Sub_str));
-                int tempsex = 0;
-                int.TryParse(CertId.Substring(CertId.Length - 3, 1), out tempsex);
+                int.TryParse(CertId.Substring(CertId.Length - 3, 1), out int tempsex);
                 if (tempsex == 0)
                 {
                     Sex = "1";
