@@ -35,5 +35,10 @@ namespace Apliu.Standard.Tools
                 return DateTime.Now;
             }
         }
+
+        /// <summary>
+        /// 获取当前时间的刻度
+        /// </summary>
+        public static long Ticks = DataTimeNow.Ticks;
     }
 }
