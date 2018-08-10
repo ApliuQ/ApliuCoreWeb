@@ -66,8 +66,8 @@
 
   /*测试各类数据库连接使用，暂时无效已过期*/
   "ConnectionString": {
-    "SqlServer": "Data Source=140.143.5.141;Initial Catalog=ApliuWeb;User ID=sa;Password=apliu@2018",
-    "Oracle": "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=140.143.5.141)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCL)));User Id=APLIUWEB;Password=apliu2018",
-    "MySql": "Server=140.143.5.141;Database=apliuweb;User ID=root;Password=apliu@2018"
+    "SqlServer": "Data Source=140.143.5.141;Initial Catalog=ApliuWeb;User ID=sa;Password=",
+    "Oracle": "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=140.143.5.141)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCL)));User Id=APLIUWEB;Password=",
+    "MySql": "Server=140.143.5.141;Database=apliuweb;User ID=root;Password="
   }
 }
