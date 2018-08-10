@@ -34,16 +34,6 @@ namespace ApliuCoreWeb
             //注册HttpContext
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            //启用Https 则添加重新向443端口
-            if (Models.ConfigurationJson.IsUseHttps)
-            {
-                services.AddHttpsRedirection(options =>
-                {
-                    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-                    options.HttpsPort = 443;
-                });
-            }
-
             //注册缓存服务
             services.AddMemoryCache();
             //services.AddSingleton<Models.WeChat.WeChatHub>();//自定义缓存

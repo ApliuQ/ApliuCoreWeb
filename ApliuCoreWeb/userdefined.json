@@ -1,5 +1,5 @@
 ﻿{
-  /*Kestrel配置Host Url信息,同时支持https和HTTP*/
+  /*Kestrel配置Host Url信息,同时支持HTTPS和HTTP*/
   "HostUrl": {
     "Endpoints": {
       "Http": {
@@ -22,6 +22,9 @@
 
   /*网站域名*/
   "Domain": "https://www.apliu.xyz",
+
+  /*是否开启HTTPS重定向服务*/
+  "IsUseHttps": true,
 
   /*业务数据库类型: SqlServer / Oracle / MySql */
   "DatabaseType": "SqlServer",
