@@ -3,12 +3,13 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Apliu.Standard.Tools
 {
     public class Logger
     {
-        private static readonly string logPath = @"Log\";
+        private static readonly string logPath = @"log\";
         private static SemaphoreSlim sthread = new SemaphoreSlim(1);
 
         private static string _RootDirectory = String.Empty;
@@ -32,7 +33,7 @@ namespace Apliu.Standard.Tools
         /// 使用初始化的程序跟目录写日志
         /// </summary>
         /// <param name="Msg"></param>
-        public static void WriteLog(string Msg)
+        public static async Task WriteLogAsync(string Msg)
         {
             try
             {
@@ -40,13 +41,14 @@ namespace Apliu.Standard.Tools
                 string filePath = RootDirectory + logPath;
                 if (!Directory.Exists(filePath))
                 {
-                    Directory.CreateDirectory(filePath);
+                    Directory.CreateDirectory(filePath.ToLinuxOrWinPath());
                 }
 
                 string fileName = filePath + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-                using (StreamWriter sw = new StreamWriter(fileName, true))
+
+                using (StreamWriter sw = new StreamWriter(fileName.ToLinuxOrWinPath(), true))
                 {
-                    sw.WriteLine(DateTime.Now.ToString() + " : " + Msg);
+                    await sw.WriteLineAsyncOnLinuxOrWin(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : " + Msg);
                     sw.Flush();
                     sw.Close();
                 }
@@ -61,7 +63,7 @@ namespace Apliu.Standard.Tools
         /// 日记记录 Web应用
         /// </summary>
         /// <param name="Msg"></param>
-        public static void WriteLogWeb(string Msg)
+        public static async Task WriteLogWeb(string Msg)
         {
             try
             {
@@ -71,13 +73,13 @@ namespace Apliu.Standard.Tools
                 string filePath = directoryInfo.FullName + @"\" + logPath;
                 if (!Directory.Exists(filePath))
                 {
-                    Directory.CreateDirectory(filePath);
+                    Directory.CreateDirectory(filePath.ToLinuxOrWinPath());
                 }
 
                 string fileName = filePath + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-                using (StreamWriter sw = new StreamWriter(fileName, true))
+                using (StreamWriter sw = new StreamWriter(fileName.ToLinuxOrWinPath(), true))
                 {
-                    sw.WriteLine(DateTime.Now.ToString() + " : " + Msg);
+                    await sw.WriteLineAsyncOnLinuxOrWin(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : " + Msg);
                     sw.Flush();
                     sw.Close();
                 }
@@ -92,7 +94,7 @@ namespace Apliu.Standard.Tools
         /// 日志记录 桌面应用
         /// </summary>
         /// <param name="Msg"></param>
-        public static void WriteLogDesktop(string Msg)
+        public static async Task WriteLogDesktop(string Msg)
         {
             try
             {
@@ -103,13 +105,13 @@ namespace Apliu.Standard.Tools
                 string filePath = Path.Combine(assemDir, logPath);
                 if (!Directory.Exists(filePath))
                 {
-                    Directory.CreateDirectory(filePath);
+                    Directory.CreateDirectory(filePath.ToLinuxOrWinPath());
                 }
 
                 string fileName = filePath + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-                using (StreamWriter sw = new StreamWriter(fileName, true, Encoding.UTF8))
+                using (StreamWriter sw = new StreamWriter(fileName.ToLinuxOrWinPath(), true, Encoding.UTF8))
                 {
-                    sw.WriteLine(DateTime.Now.ToString() + " : " + Msg);
+                    await sw.WriteLineAsyncOnLinuxOrWin(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " : " + Msg);
                     sw.Flush();
                     sw.Close();
                 }

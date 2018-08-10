@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Apliu.Standard.Tools
 {
@@ -130,6 +133,31 @@ namespace Apliu.Standard.Tools
         {
             string[] sArray = System.Text.RegularExpressions.Regex.Split(content, separator);
             return sArray;
+        }
+
+        /// <summary>
+        /// 将文件路径更正成兼容Linux和Windows系统，主要因为Linux系统 '/' 可做文件夹名称
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static String ToLinuxOrWinPath(this String filePath)
+        {
+            if (String.IsNullOrEmpty(filePath)) return default;
+            if (filePath.Contains(@":/") || filePath.Contains(@"./") || filePath.StartsWith(@"/")) return filePath.Replace(@"\", @"/");
+            else if (filePath.Contains(@":\") || filePath.Contains(@".\") || filePath.StartsWith(@"/")) return filePath.Replace(@"/", @"\");
+            else return filePath;
+        }
+
+        /// <summary>
+        /// 在其他平台系统上写入文本并且换行
+        /// </summary>
+        /// <param name="streamWriter"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static async Task WriteLineAsyncOnLinuxOrWin(this StreamWriter streamWriter, String content)
+        {
+            await streamWriter.WriteAsync(content);
+            await streamWriter.WriteAsync(Encoding.UTF8.GetChars(new byte[] { 13, 10 }));
         }
     }
 }

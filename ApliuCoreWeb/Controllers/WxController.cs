@@ -33,7 +33,7 @@ namespace ApliuCoreWeb.Controllers
             string msg_signature = HttpContext.Request.Query["msg_signature"];
             string encrypt_type = HttpContext.Request.Query["encrypt_type"];
 
-            Logger.WriteLog("请求方式：" + HttpContext.Request.Method.ToUpper() + "，请求原地址：" + HttpContext.Request.GetAbsoluteUri().ToString());
+            Logger.WriteLogAsync("请求方式：" + HttpContext.Request.Method.ToUpper() + "，请求原地址：" + HttpContext.Request.GetAbsoluteUri().ToString());
 
             //验证消息是否来自微信服务器
             if (WeChatBase.CheckSignature(signature, timestamp, nonce))
@@ -74,12 +74,12 @@ namespace ApliuCoreWeb.Controllers
                                         }
                                         else
                                         {
-                                            Logger.WriteLog("Error：接收微信服务器推送的消息，加密报文失败，ret: " + resqRet);
+                                            Logger.WriteLogAsync("Error：接收微信服务器推送的消息，加密报文失败，ret: " + resqRet);
                                         }
                                     }
                                     else
                                     {
-                                        Logger.WriteLog("Error：接收微信服务器推送的消息，解密报文失败，ret: " + reqRet);
+                                        Logger.WriteLogAsync("Error：接收微信服务器推送的消息，解密报文失败，ret: " + reqRet);
                                     }
                                 }
                                 else
@@ -93,7 +93,7 @@ namespace ApliuCoreWeb.Controllers
                     }
                     catch (Exception ex)
                     {
-                        Logger.WriteLog("Error：接收微信服务器推送的消息，处理失败，详情: " + ex.Message);
+                        Logger.WriteLogAsync("Error：接收微信服务器推送的消息，处理失败，详情: " + ex.Message);
                     }
                 }
             }

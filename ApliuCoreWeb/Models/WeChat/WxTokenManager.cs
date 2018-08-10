@@ -76,7 +76,7 @@ namespace ApliuCoreWeb.Models.WeChat
                 }
                 _accessToken = jObjAccessToken["access_token"].ToString();
                 expires_in = jObjAccessToken["expires_in"].ToString();
-                if (timer == null) Logger.WriteLog("初始化Access_Token完成，Access_Token：" + AccessToken);
+                if (timer == null) Logger.WriteLogAsync("初始化Access_Token完成，Access_Token：" + AccessToken);
 
                 //JsApiTicket
                 System.Net.Http.HttpResponseMessage respJsTicket = HttpRequestHelper.HttpGetAsync(requestJsTicketUri).Result;
@@ -88,11 +88,11 @@ namespace ApliuCoreWeb.Models.WeChat
                     throw new Exception(jsTicketContent);
                 }
                 _jsApiTicket = jObjJsTicket["ticket"].ToString();
-                if (timer == null) Logger.WriteLog("初始化JsApiTicket完成，JsApiTicket：" + _jsApiTicket);
+                if (timer == null) Logger.WriteLogAsync("初始化JsApiTicket完成，JsApiTicket：" + _jsApiTicket);
             }
             catch (Exception ex)
             {
-                Logger.WriteLog("初始化access_token失败，详情：" + ex.Message);
+                Logger.WriteLogAsync("初始化access_token失败，详情：" + ex.Message);
             }
         }
 
@@ -120,7 +120,7 @@ namespace ApliuCoreWeb.Models.WeChat
                 timer.Elapsed += Timer_Elapsed;
                 timer.Start();
 
-                Logger.WriteLog("启动access_token管理任务完成");
+                Logger.WriteLogAsync("启动access_token管理任务完成");
             }
         }
 
@@ -132,7 +132,7 @@ namespace ApliuCoreWeb.Models.WeChat
         private static void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             GetAccessToken();
-            Logger.WriteLog("access_token管理任务自动刷新，access_token：" + AccessToken);
+            Logger.WriteLogAsync("access_token管理任务自动刷新，access_token：" + AccessToken);
         }
     }
 }

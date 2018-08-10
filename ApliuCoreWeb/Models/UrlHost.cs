@@ -1,4 +1,5 @@
-﻿using Apliu.Standard.Tools.Web;
+﻿using Apliu.Standard.Tools;
+using Apliu.Standard.Tools.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,10 +64,8 @@ namespace ApliuCoreWeb.Models
             {
                 if (!String.IsNullOrEmpty(_Path?.Trim()))
                 {
-                    String pathLine = String.Empty;
-                    if (ServerInfo.SitePath.Contains(@"/")) pathLine = @"/";
-                    else pathLine = @"\";
-                    return ServerInfo.SitePath + pathLine + _Path;
+                    String pathLine = ServerInfo.SitePath + "/" + _Path;
+                    return pathLine.ToLinuxOrWinPath();
                 }
                 else return _Path;
             }

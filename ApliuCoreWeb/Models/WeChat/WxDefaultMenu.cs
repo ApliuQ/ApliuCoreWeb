@@ -86,7 +86,7 @@ namespace ApliuCoreWeb.Models.WeChat
 
             System.Net.Http.HttpResponseMessage response = await HttpRequestHelper.HttpPostAsync(reqUri, WeChatBase.WxEncoding, defaultMenuContent);
             String content = await response.Content.ReadAsStringAsync();
-            Logger.WriteLog("微信公众号创建自定义菜单完成，详情：" + content);
+            Logger.WriteLogAsync("微信公众号创建自定义菜单完成，详情：" + content);
         }
     }
 }

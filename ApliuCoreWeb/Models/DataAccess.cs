@@ -86,7 +86,7 @@ namespace ApliuCoreWeb.Models
             }
             catch (Exception ex)
             {
-                Logger.WriteLog("加载数据库配置失败，详情：" + ex.Message);
+                Logger.WriteLogAsync("加载数据库配置失败，详情：" + ex.Message);
             }
         }
 
