@@ -320,12 +320,17 @@ namespace ApliuCoreWeb.Controllers
             DataSet dsText = DataAccess.Instance.GetData("select top 1 TEXTCONTENT from TempText where 1=1 " + sqlWhere);
             if (dsText != null && dsText.Tables.Count > 0 && dsText.Tables[0].Rows.Count > 0)
             {
-                updatesql = string.Format(@"update TempText set UserId='{0}',TextContent='{1}',UpdateTime='{2}',IP='{3}' where 1=1 {4} ", userid, SecurityHelper.UrlEncode(Content, Encoding.UTF8), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "0.0.0.0", sqlWhere);
+                updatesql = string.Format(@"update TempText set UserId='{0}',TextContent='{1}',UpdateTime='{2}',IP='{3}' where 1=1 {4} ", 
+                    userid, SecurityHelper.UrlEncode(Content, Encoding.UTF8), 
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), HttpContext.GetClientIP(), sqlWhere);
             }
             else
             {
                 string guid = Guid.NewGuid().ToString().ToUpper();
-                updatesql = string.Format(@"insert into TempText(TempId,UserId,TextContent,UpdateTime,IP,TextKey) values('{0}','{1}','{2}','{3}','{4}',{5}) ", guid, userid, SecurityHelper.UrlEncode(Content, Encoding.UTF8), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "0.0.0.0", string.IsNullOrEmpty(Key) ? "null" : ("'" + Key + "'"));
+                updatesql = string.Format(@"insert into TempText(TempId,UserId,TextContent,UpdateTime,IP,TextKey) values('{0}','{1}','{2}','{3}','{4}',{5}) ", 
+                    guid, userid, SecurityHelper.UrlEncode(Content, Encoding.UTF8), 
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), HttpContext.GetClientIP(), 
+                    string.IsNullOrEmpty(Key) ? "null" : ("'" + Key + "'"));
             }
 
             bool setResult = DataAccess.Instance.PostData(updatesql);

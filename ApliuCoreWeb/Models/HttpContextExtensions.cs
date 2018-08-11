@@ -29,12 +29,16 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static string GetClientUserIp(this HttpContext context)
+        public static string GetClientIP(this HttpContext context)
         {
             var ip = context.Request.Headers["X-Forwarded-For"];
             if (string.IsNullOrEmpty(ip))
             {
                 ip = context.Connection.RemoteIpAddress.ToString();
+            }
+            else if (string.IsNullOrEmpty(ip))
+            {
+                ip = "0.0.0.0";
             }
             return ip;
         }

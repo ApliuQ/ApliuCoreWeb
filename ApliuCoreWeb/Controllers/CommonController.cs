@@ -243,7 +243,9 @@ namespace ApliuCoreWeb.Controllers
 
             string id = Guid.NewGuid().ToString().ToUpper();
             string insertgame = string.Format(@"INSERT INTO GameData (ID ,UserId ,GameName ,Score,Stage ,UseTime
-,Remark,CreateTime, IP)  VALUES ('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}')", id, userid, gamename, score, stage, usetime, "", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "0.0.0.0");
+,Remark,CreateTime, IP)  VALUES ('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}')",
+id, userid, gamename, score, stage, usetime, "",
+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), HttpContext.GetClientIP());
             if (DataAccess.Instance.PostData(insertgame))
             {
                 if (result.code == "-1") result.code = "0";
