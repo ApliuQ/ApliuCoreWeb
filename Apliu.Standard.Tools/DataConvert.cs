@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,6 +123,30 @@ namespace Apliu.Standard.Tools
         {
             await streamWriter.WriteAsync(content);
             await streamWriter.WriteAsync(Encoding.UTF8.GetChars(new byte[] { 13, 10 }));
+        }
+
+        /// <summary>
+        /// 获取Bitmap字节流
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
+        public static Byte[] GetBytes(this Bitmap bitmap)
+        {
+            Byte[] content = null;
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                content = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(content, 0, (int)ms.Length);
+                ms.Close();
+                ms.Dispose();
+            }
+            catch (Exception)
+            {
+            }
+            return content;
         }
     }
 }
