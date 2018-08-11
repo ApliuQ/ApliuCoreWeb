@@ -1,7 +1,12 @@
 ﻿@{
+    Layout = "~/Views/Shared/Templet.cshtml";
     ViewBag.Title = "文本临时保存";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    body {
+        max-width: none;
+    }
+</style>
 <script>
     @{var _Key = Model == null ? "" : Model.ToString();}
     var Key = '@_Key';
@@ -63,27 +68,16 @@
         });
     }
 </script>
-<div style="text-align: center;">
-    <div>
-        <span style="font-weight: bold; font-size: 1rem;">文本临时保存</span>
-    </div>
-    <div style="font-size: .5rem; text-align: right; width: 90%; margin: .4rem 0rem;">
-        <span>最后更新时间：</span><span id="updatetime"></span>
-    </div>
-    <div>
-        <textarea id="content" class="qrcodecontentinput" style="height: 12rem;" placeholder="请输入文本内容"></textarea>
-    </div>
-    <div>
-        <input id="clear" class="qrcodebutton" style="background-color: #3ca6ff;" type="button" value="清空" />
-        <input id="getcontent" class="qrcodebutton" style="background-color: #3ca6ff;" type="button" value="恢复" />
-        <input id="save" class="qrcodebutton" style="background-color: #3ca6ff;" type="button" value="保存" />
-    </div>
-    <div><a href="/" class="common_a_calss">返回主页</a></div>
-    <section style="color: #999; font-size: .6rem;">
-        <p>
-            Copyright © Apliu 2018 all rights reserved<br />
-            赣ICP备18003600号-1 | 工信部
-        </p>
-    </section>
-</div>
 
+<div style="padding: 10px; background-color: white;">
+    <div style="margin-top: 0px;text-align:center;">
+        <span style="font-size:1rem;">文本临时内容</span>
+    </div>
+    <div style="margin-top: 20px; text-align: center;">
+        <textarea id="content" class="qrcodecontentinput" style="height:13rem;" placeholder="请输入文本内容"></textarea>
+
+        <input id="clear" class="qrcodebutton" style="width:25%;max-width:5rem;" type="button" value="清空" />
+        <input id="getcontent" class="qrcodebutton" style="width:25%;max-width:5rem;" type="button" value="恢复" />
+        <input id="save" class="qrcodebutton" style="width:25%;max-width:5rem;" type="button" value="保存" />
+    </div>
+</div>

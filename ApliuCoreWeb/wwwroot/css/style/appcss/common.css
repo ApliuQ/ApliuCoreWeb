@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*1px线问题（ios8）*/
 html.hairlines * {
     border-width: .5px !important;
@@ -407,7 +407,7 @@ html, body {
 .footer {
     width: 100%;
     overflow: hidden;
-    padding: 0 0 1rem;
+    padding: 0 0 10px;
     background-color: #fff;
 }
 
