@@ -12,23 +12,24 @@ namespace ApliuCoreWeb.Controllers
     public class CommonController : ControllerBase
     {
         [HttpPost]
-        public string changepassword()
+        public string ChangePassword()
         {
             string username = HttpContext.Request.Form["username"];
             string smscode = HttpContext.Request.Form["smscode"];
             string password = HttpContext.Request.Form["password"];
             string passwordag = HttpContext.Request.Form["passwordag"];
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常"
+            };
 
             if (string.IsNullOrEmpty(username))
             {
                 result.msg = "用户名不能为空";
                 return result.ToString();
             }
-            CodeCase cc = HttpContext.Session.GetValue(CodeType.ChangePassword.ToString()) as CodeCase;
-            if (cc == null || (TimeHelper.DataTimeNow - cc.CreateTime).Seconds > cc.Timeout)
+            if (!(HttpContext.Session.GetValue(CodeType.ChangePassword.ToString()) is CodeCase cc) || (TimeHelper.DataTimeNow - cc.CreateTime).Seconds > cc.Timeout)
             {
                 result.msg = "请重新获取短信验证码";
                 return result.ToString();
@@ -81,17 +82,18 @@ namespace ApliuCoreWeb.Controllers
             string smscode = HttpContext.Request.Form["smscode"];
             string password = HttpContext.Request.Form["password"];
             string passwordag = HttpContext.Request.Form["passwordag"];
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常"
+            };
 
             if (string.IsNullOrEmpty(username))
             {
                 result.msg = "用户名不能为空";
                 return result.ToString();
             }
-            CodeCase cc = HttpContext.Session.GetValue(CodeType.Register.ToString()) as CodeCase;
-            if (cc == null || (TimeHelper.DataTimeNow - cc.CreateTime).Seconds > cc.Timeout)
+            if (!(HttpContext.Session.GetValue(CodeType.Register.ToString()) is CodeCase cc) || (TimeHelper.DataTimeNow - cc.CreateTime).Seconds > cc.Timeout)
             {
                 result.msg = "请重新获取短信验证码";
                 return result.ToString();
@@ -149,9 +151,11 @@ namespace ApliuCoreWeb.Controllers
         {
             string username = HttpContext.Request.Form["username"];
             string password = HttpContext.Request.Form["password"];
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "发生异常";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "发生异常"
+            };
 
             if (string.IsNullOrEmpty(username))
             {
@@ -181,9 +185,11 @@ namespace ApliuCoreWeb.Controllers
         [HttpGet]
         public new string User()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "用户未登录";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "用户未登录"
+            };
             string userid = HttpContext.Session.GetUserInfo()?.UserId;
             string username = HttpContext.Session.GetUserInfo()?.UserName;
             if (!string.IsNullOrEmpty(userid) && !string.IsNullOrEmpty(username))
@@ -197,9 +203,11 @@ namespace ApliuCoreWeb.Controllers
         [HttpPost]
         public string Logout()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "0";
-            result.msg = "";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "0",
+                msg = ""
+            };
             HttpContext.Session.Logout();
             return result.ToString();
         }
@@ -207,9 +215,11 @@ namespace ApliuCoreWeb.Controllers
         [HttpPost]
         public string SetGameData()
         {
-            ResponseMessage result = new ResponseMessage();
-            result.code = "-1";
-            result.msg = "设置失败";
+            ResponseMessage result = new ResponseMessage
+            {
+                code = "-1",
+                msg = "设置失败"
+            };
 
             string gamename = HttpContext.Request.Form["gamename"];
             string score = HttpContext.Request.Form["score"];

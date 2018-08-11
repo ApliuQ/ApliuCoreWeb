@@ -15,26 +15,9 @@ namespace Apliu.Standard.Tools
         /// <returns></returns>
         public static decimal ToDecimal(this string stringtemp, int decimals)
         {
-            decimal temp = 0;
-            decimal.TryParse(stringtemp, out temp);
-
+            decimal.TryParse(stringtemp, out var temp);
             temp = Math.Round(temp, decimals);
-
             return temp;
-        }
-
-        /// <summary>
-        /// 转换为decimal，如果不能转换，返回NULL
-        /// </summary>
-        /// <param name="stringtemp"></param>
-        /// <returns></returns>
-        public static decimal? ToDecimalN(this string stringtemp)
-        {
-            decimal temp = 0;
-            if (decimal.TryParse(stringtemp, out temp))
-                return temp;
-            else
-                return null;
         }
 
         /// <summary>
@@ -44,8 +27,7 @@ namespace Apliu.Standard.Tools
         /// <returns></returns>
         public static decimal ToDecimal(this string stringtemp)
         {
-            decimal temp = 0;
-            decimal.TryParse(stringtemp, out temp);
+            decimal.TryParse(stringtemp, out var temp);
             return temp;
         }
 
@@ -56,8 +38,7 @@ namespace Apliu.Standard.Tools
         /// <returns></returns>
         public static int ToInt(this string stringtemp)
         {
-            int temp = 0;
-            int.TryParse(stringtemp, out temp);
+            int.TryParse(stringtemp, out var temp);
             return temp;
         }
 
@@ -68,8 +49,7 @@ namespace Apliu.Standard.Tools
         /// <returns></returns>
         public static Boolean ToBoolean(this string stringtemp)
         {
-            Boolean temp = false;
-            Boolean.TryParse(stringtemp, out temp);
+            Boolean.TryParse(stringtemp, out var temp);
             return temp;
         }
 
@@ -80,8 +60,7 @@ namespace Apliu.Standard.Tools
         /// <returns></returns>
         public static Byte ToByte(this string stringtemp)
         {
-            Byte temp = 0;
-            Byte.TryParse(stringtemp, out temp);
+            Byte.TryParse(stringtemp, out var temp);
             return temp;
         }
 
@@ -92,23 +71,8 @@ namespace Apliu.Standard.Tools
         /// <returns></returns>
         public static double ToDouble(this string stringtemp)
         {
-            double temp = 0;
-            double.TryParse(stringtemp, out temp);
+            double.TryParse(stringtemp, out var temp);
             return temp;
-        }
-
-        /// <summary>
-        /// 将字符串转换为日期，不符合的返回NULL
-        /// </summary>
-        /// <param name="stringtemp"></param>
-        /// <returns></returns>
-        public static DateTime? ToDateTimeN(this string stringtemp)
-        {
-            DateTime temp = new DateTime();
-            if (DateTime.TryParse(stringtemp, out temp))//如果能够转换成功
-                return temp;
-            else
-                return null;
         }
 
         /// <summary>

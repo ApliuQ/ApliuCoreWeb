@@ -16,19 +16,16 @@ namespace ApliuCoreWeb.Controllers
         /// <summary>
         /// 缓存对象
         /// </summary>
-        private readonly IMemoryCache iMemoryCache;
+        private readonly IMemoryCache IMemoryCache;
 
-        public CacheController(IMemoryCache iMemoryCache)
-        {
-            this.iMemoryCache = iMemoryCache;
-        }
+        public CacheController(IMemoryCache iMemoryCache)=> IMemoryCache = iMemoryCache;
 
         [HttpPost]
         public void ChatLogin()
         {
             string connectionId = HttpContext.Request.Form["ConnectionId"];
             string userName = HttpContext.Request.Form["UserName"];
-            iMemoryCache.Set(connectionId, userName);
+            IMemoryCache.Set(connectionId, userName);
         }
     }
 }

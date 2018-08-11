@@ -53,12 +53,11 @@ namespace ApliuCoreWeb.Controllers
                     try
                     {
                         //采用流的方式去读数据会出现问题，故改用循环读取字节
-                        List<Byte> reqContent = new List<byte>();
-                        while (true)
+                        List<Byte> reqContent = new List<Byte>();
+                        int readInt = -1;
+                        while ((readInt = Request.Body.ReadByte()) != -1)
                         {
-                            int readInt = Request.Body.ReadByte();
-                            if (readInt == -1) break;
-                            else reqContent.Add((Byte)readInt);
+                            reqContent.Add((Byte)readInt);
                         }
                         Byte[] postBytes = reqContent.ToArray();
                         string beforeReqData = WeChatBase.WxEncoding.GetString(postBytes);

@@ -11,7 +11,7 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <summary>
         /// 获取access_token的地址
         /// </summary>
-        public static string requestAccessTokenUri
+        public static string RequestAccessTokenUri
         {
             get
             {
@@ -41,7 +41,7 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <summary>
         /// 获取jsapi_ticket的地址
         /// </summary>
-        public static string requestJsTicketUri
+        public static string RequestJsTicketUri
         {
             get
             {
@@ -53,7 +53,7 @@ namespace ApliuCoreWeb.Models.WeChat
         /// <summary>
         /// jsapi_ticket是公众号用于调用微信JS接口的临时票据
         /// </summary>
-        public static string jsApiTicket
+        public static string JsApiTicket
         {
             get { return _jsApiTicket; }
         }
@@ -66,7 +66,7 @@ namespace ApliuCoreWeb.Models.WeChat
             try
             {
                 //AccessToken
-                System.Net.Http.HttpResponseMessage respAccessToken = HttpRequestHelper.HttpGetAsync(requestAccessTokenUri).Result;
+                System.Net.Http.HttpResponseMessage respAccessToken = HttpRequestHelper.HttpGetAsync(RequestAccessTokenUri).Result;
                 respAccessToken.EnsureSuccessStatusCode();
                 String accessTokenContent = respAccessToken.Content.ReadAsStringAsync().Result;
                 JObject jObjAccessToken = Newtonsoft.Json.JsonConvert.DeserializeObject(accessTokenContent) as JObject;
@@ -79,7 +79,7 @@ namespace ApliuCoreWeb.Models.WeChat
                 if (timer == null) Logger.WriteLogAsync("初始化Access_Token完成，Access_Token：" + AccessToken);
 
                 //JsApiTicket
-                System.Net.Http.HttpResponseMessage respJsTicket = HttpRequestHelper.HttpGetAsync(requestJsTicketUri).Result;
+                System.Net.Http.HttpResponseMessage respJsTicket = HttpRequestHelper.HttpGetAsync(RequestJsTicketUri).Result;
                 respJsTicket.EnsureSuccessStatusCode();
                 String jsTicketContent = respJsTicket.Content.ReadAsStringAsync().Result;
                 JObject jObjJsTicket = Newtonsoft.Json.JsonConvert.DeserializeObject(jsTicketContent) as JObject;
@@ -111,8 +111,7 @@ namespace ApliuCoreWeb.Models.WeChat
             //第一次运行创建计时器
             if (timer == null)
             {
-                int delaySecond = 0;
-                if (!Int32.TryParse(expires_in, out delaySecond))
+                if (!Int32.TryParse(expires_in, out var delaySecond))
                 {
                     delaySecond = 7200;
                 }

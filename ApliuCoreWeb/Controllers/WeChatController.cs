@@ -14,7 +14,7 @@ namespace ApliuCoreWeb.Controllers
             //获取随机码
             var nonceStr = WxJSSDKHelper.GetNoncestr();
             //获取票证
-            var jsticket = WxTokenManager.jsApiTicket;
+            var jsticket = WxTokenManager.JsApiTicket;
             //获取签名
             var signature = jssdk.GetSignature(jsticket, nonceStr, timestamp, HttpContext.Request.GetAbsoluteUri());
 

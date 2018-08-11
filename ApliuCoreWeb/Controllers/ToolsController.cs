@@ -126,9 +126,8 @@ namespace ApliuCoreWeb.Controllers
             //string key = SecurityHelper.MD5Encrypt(ip, System.Text.Encoding.UTF8);
             //if (string.IsNullOrEmpty(ip)) key = Guid.NewGuid().ToString().Replace("-", "");
             //DataAccess.LoadDataAccess(key, databaseType, databaseConnection);
-
-            DataAccess dataAccess = new DataAccess(databaseType, databaseConnection);
             #endregion
+            DataAccess dataAccess = new DataAccess(databaseType, databaseConnection);
             if (sql.ToUpper().Contains("UPDATE") || sql.ToUpper().Contains("DELETE") || sql.ToUpper().Contains("INSERT"))
             {
                 int rank = dataAccess.PostDataExecute(CommandType.Text, sql, 30, null);//DataAccess.InstanceKey[key].PostDataExecute(CommandType.Text, sql, 30, null);

@@ -207,22 +207,5 @@ namespace Apliu.Standard.Tools.Web
             HttpResponseMessage response = await http.GetAsync(reqUrl);
             return response;
         }
-
-        /// <summary>
-        /// 返回HTTP响应消息
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static HttpResponseMessage encapResult(string s)
-        {
-            return new HttpResponseMessage()
-            {
-                Content = new StringContent(
-                    s,
-                    Encoding.UTF8,
-                    "text/html"
-                )
-            };
-        }
     }
 }
