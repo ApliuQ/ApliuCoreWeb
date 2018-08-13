@@ -2,8 +2,11 @@
 using Apliu.Standard.ORM;
 using Apliu.Standard.Tools;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -12,30 +15,25 @@ namespace ApliuCoreConsole
 {
     class Program
     {
-        static void exSql01()
-        {
-            DatabaseType databaseType = DatabaseType.SqlServer;
-            String databaseConnection = @"Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa";
-            DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
-            string sql01 = "insert into test (ID,NAME,MSG) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','0001');";
-            databaseHelper.BeginTransaction(60);
-            int p1 = databaseHelper.PostData(sql01);
-            Thread.Sleep(1000);
-            databaseHelper.Complete();
-        }
-        static void exSql02()
-        {
-            DatabaseType databaseType = DatabaseType.SqlServer;
-            String databaseConnection = @"Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa";
-            DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
-            string sql01 = "insert into test (ID,NAME,MSG) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','0002');";
-            databaseHelper.BeginTransaction(60);
-            int p1 = databaseHelper.PostData(sql01);
-            Thread.Sleep(1000);
-            databaseHelper.Dispose();
-        }
         static void Run()
         {
+            List<Test> list = new List<Test>() { new Test("3", "w"), new Test("1", "q"), new Test("1", null), new Test("2", "w") };
+
+
+            var query = from a in list
+                        let b = a.Name
+                        group a by b into c
+                        where c.Key is null
+                        orderby c ascending
+                        select c;
+
+            var temp02 = from a in list
+                         where a.Name is null
+                         orderby a.Id ascending
+                         select a;
+
+
+            return;
             Thread thread01 = new Thread(exSql01);
             Thread thread02 = new Thread(exSql02);
             thread01.Start();
@@ -107,6 +105,28 @@ namespace ApliuCoreConsole
             Console.ReadKey();
         }
 
+        static void exSql01()
+        {
+            DatabaseType databaseType = DatabaseType.SqlServer;
+            String databaseConnection = @"Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa";
+            DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
+            string sql01 = "insert into test (ID,NAME,MSG) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','0001');";
+            databaseHelper.BeginTransaction(60);
+            int p1 = databaseHelper.PostData(sql01);
+            Thread.Sleep(1000);
+            databaseHelper.Complete();
+        }
+        static void exSql02()
+        {
+            DatabaseType databaseType = DatabaseType.SqlServer;
+            String databaseConnection = @"Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa";
+            DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
+            string sql01 = "insert into test (ID,NAME,MSG) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','0002');";
+            databaseHelper.BeginTransaction(60);
+            int p1 = databaseHelper.PostData(sql01);
+            Thread.Sleep(1000);
+            databaseHelper.Dispose();
+        }
         public static string HttpGetA(string getUrl)
         {
             string result = string.Empty;
