@@ -11,7 +11,7 @@ namespace ApliuCoreWeb.Models.SignalRHub
     {
         public String username;
         public String message;
-        public String datetimenow = TimeHelper.DataTimeNow.ToString("yyyy-MM-dd HH:mm:ss");
+        public String datetimenow = DateTimeHelper.DataTimeNow.ToString("yyyy-MM-dd HH:mm:ss");
     }
 
     /// <summary>

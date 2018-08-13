@@ -2,7 +2,7 @@
 
 namespace Apliu.Standard.Tools
 {
-    public class TimeHelper
+    public class DateTimeHelper
     {
         /// <summary>
         /// 获取系统当前时间戳 Unix

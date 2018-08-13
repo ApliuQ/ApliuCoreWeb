@@ -106,7 +106,7 @@ namespace Apliu.Standard.Tools
         /// <returns></returns>
         private static string GetSendJson(string Mobile, string Message, string SMSAppKey, string Random)
         {
-            string json = GetSendJson("", "", Message, Mobile, "86", TimeHelper.getCurrentUnixTime(), SMSAppKey, "0", Random);
+            string json = GetSendJson("", "", Message, Mobile, "86", DateTimeHelper.getCurrentUnixTime(), SMSAppKey, "0", Random);
             return json;
         }
 

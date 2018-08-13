@@ -29,7 +29,7 @@ namespace Apliu.Standard.Tools
         private static string GetSendJson(string SecretId, string sourceText, string source, string target)
         {
             int rand = new Random().Next(1000, 9999);
-            return GetSendJson("TextTranslate", rand.ToString(), "gz", SecretId, TimeHelper.getCurrentUnixTime().ToString(), sourceText, SecurityHelper.UrlEncode(source, Encoding.UTF8), target);
+            return GetSendJson("TextTranslate", rand.ToString(), "gz", SecretId, DateTimeHelper.getCurrentUnixTime().ToString(), sourceText, SecurityHelper.UrlEncode(source, Encoding.UTF8), target);
         }
 
         /// <summary>

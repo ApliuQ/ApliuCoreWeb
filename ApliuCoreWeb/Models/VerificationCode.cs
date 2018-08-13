@@ -13,7 +13,7 @@ namespace ApliuCoreWeb.Models
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime = TimeHelper.DataTimeNow;
+        public DateTime CreateTime = DateTimeHelper.DataTimeNow;
         /// <summary>
         /// 有效期 秒
         /// </summary>
@@ -73,7 +73,7 @@ namespace ApliuCoreWeb.Models
             {
                 case CodeType.Test:
                     timeOut = 120L;
-                    smsContent = TimeHelper.DataTimeNow.ToString("yyyy年MM月dd日 HH:mm:ss") + ", 测试短信. --Apliu";
+                    smsContent = DateTimeHelper.DataTimeNow.ToString("yyyy年MM月dd日 HH:mm:ss") + ", 测试短信. --Apliu";
                     break;
                 case CodeType.Register:
                     timeOut = 120L;
