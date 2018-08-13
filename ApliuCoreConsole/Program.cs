@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Apliu.Standard.ORM;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -9,6 +10,20 @@ namespace ApliuCoreConsole
     {
         static void Run()
         {
+            ModelClass modelClass = new ModelClass()
+            {
+                Id = Guid.NewGuid().ToString().ToUpper(),
+                Name = "modelname",
+                Count = 8
+            };
+            String insertSql = modelClass.GetInsertSql();
+            String updateSql = modelClass.GetUpdateSql();
+            String deleteSql = modelClass.GetDeleteSql();
+
+            Console.WriteLine(insertSql);
+            Console.WriteLine(updateSql);
+            Console.WriteLine(deleteSql);
+            return;
             String ddd = HttpGet("http://apliu.xyz/api/wx");
             String dddA = HttpGetA("http://apliu.xyz/api/wx");
             Console.WriteLine("HttpWebRequest:" + ddd);
