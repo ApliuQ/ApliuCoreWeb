@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace ApliuCoreWeb.Models
 {
@@ -150,6 +151,7 @@ namespace ApliuCoreWeb.Models
             catch (Exception ex)
             {
                 Logger.WriteLogWeb("数据库查询失败，Sql：" + commandText + "，详情：" + ex.Message);
+                Logger.WriteLogWeb("StackTrace：" + ex.StackTrace);
             }
             return dsData;
         }
@@ -172,10 +174,30 @@ namespace ApliuCoreWeb.Models
             catch (Exception ex)
             {
                 Logger.WriteLogWeb("数据库更新失败，Sql：" + commandText + "，详情：" + ex.Message);
+                Logger.WriteLogWeb("StackTrace：" + ex.StackTrace);
             }
             return result;
         }
 
+        /// <summary>
+        /// 批量插入DataTable到数据库，并返回受影响的行数
+        /// </summary>
+        /// <param name="dataSet"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
+        public async ValueTask<Int32> InsertTableAsync(DataTable dataTable, Int32 timeout)
+        {
+            try
+            {
+                return await dbHelper.InsertTableAsync(dataTable, timeout);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogWeb($"数据库批量插入失败，TableName：{dataTable?.TableName}，Count：{dataTable?.Rows?.Count}，详情：" + ex.Message);
+                Logger.WriteLogWeb("StackTrace：" + ex.StackTrace);
+                return -1;
+            }
+        }
 
         /// <summary>
         /// 开启数据库事务

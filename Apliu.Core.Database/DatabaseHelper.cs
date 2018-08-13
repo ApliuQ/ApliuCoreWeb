@@ -4,6 +4,8 @@ using System;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -133,7 +135,7 @@ namespace Apliu.Core.Database
 
         #region 执行Transact-SQL语句或存储过程，并返回查询结果或受影响的行数
         /// <summary>
-        /// 执行 Transact-SQL 语句并返回受影响的行数
+        /// 执行 Transact-SQL 语句，并返回受影响的行数
         /// </summary>
         /// <param name="commandType">指定如何解释命令字符串</param>
         /// <param name="commandText">Sql语句或存储过程</param>
@@ -142,7 +144,7 @@ namespace Apliu.Core.Database
         /// <returns>返回受影响的行数</returns>
         public int PostDataExecute(CommandType commandType, string commandText, int commandTimeout, params object[] commandParameters)
         {
-            int val = -1;
+            int affected = -1;
             try
             {
                 //SQL语句以分号结束
@@ -174,14 +176,14 @@ namespace Apliu.Core.Database
                             foreach (DbParameter parm in commandParameters)
                                 dbCommand.Parameters.Add(parm);
                         }
-                        val = dbCommand.ExecuteNonQuery();
+                        affected = dbCommand.ExecuteNonQuery();
                         dbConnection.Close();
                     }
                 }
             }
             catch (Exception ex)
             {
-                val = -1;
+                affected = -1;
                 throw ex;
             }
 
@@ -203,7 +205,7 @@ namespace Apliu.Core.Database
             //}
             #endregion
 
-            return val;
+            return affected;
         }
 
         /// <summary>
@@ -264,6 +266,80 @@ namespace Apliu.Core.Database
             #endregion
 
             return dsData;
+        }
+
+        /// <summary>
+        /// 执行BulkCopy指令将DataTable插入到数据库，并返回受影响的行数
+        /// </summary>
+        /// <param name="dataSet"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
+        public async ValueTask<Int32> InsertTableAsync(DataTable dataTable, Int32 timeout)
+        {
+            /*注意必须要有：Persist Security Info=True
+            SqlBulkCopy
+            OracleBulkCopy
+            MySqlBulkLoader*/
+            if (dataTable == null || dataTable.Rows.Count <= 0) return 0;
+            if (string.IsNullOrEmpty(dataTable.TableName)) throw new ArgumentException("TableName不能为空");
+
+            Int32 affected = -1;
+            try
+            {
+                using (DbConnection dbConnection = CreateDbConnection(DatabaseConnection))
+                {
+                    if (dbConnection.State != ConnectionState.Open) dbConnection.Open();
+                    switch (databaseType)
+                    {
+                        case DatabaseType.SqlServer:
+                            SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(dbConnection as SqlConnection)
+                            {
+                                //BatchSize = 2000,
+                                BulkCopyTimeout = timeout,
+                                DestinationTableName = dataTable.TableName
+                            };
+                            //sqlBulkCopy.SqlRowsCopied += SqlBulkCopy_SqlRowsCopied;
+                            await sqlBulkCopy.WriteToServerAsync(dataTable);
+                            affected = dataTable.Rows.Count;
+                            sqlBulkCopy.Close();
+                            break;
+                        case DatabaseType.MySql:
+                            String tempFilePath = Path.GetTempFileName();
+                            File.WriteAllText(tempFilePath, DataTableToCsv(dataTable));
+
+                            MySqlBulkLoader mySqlBulkLoader = new MySqlBulkLoader(dbConnection as MySqlConnection)
+                            {
+                                FieldTerminator = ",",
+                                FieldQuotationCharacter = '"',
+                                EscapeCharacter = '"',
+                                LineTerminator = "\r\n",
+                                FileName = tempFilePath,
+                                NumberOfLinesToSkip = 0,
+                                Timeout = timeout,
+                                TableName = dataTable.TableName,
+                            };
+                            affected = await mySqlBulkLoader.LoadAsync();
+                            if (File.Exists(tempFilePath)) File.Delete(tempFilePath);
+                            break;
+                        case DatabaseType.Oracle:
+                        //OracleBulkCopy bulkCopy = new OracleBulkCopy(connOrcleString, OracleBulkCopyOptions.UseInternalTransaction);   //用其它源的数据有效批量加载Oracle表中
+                        //bulkCopy.BatchSize = 100000;
+                        //bulkCopy.BulkCopyTimeout = 260;
+                        //bulkCopy.DestinationTableName = targetTable;    //服务器上目标表的名称
+                        //bulkCopy.BatchSize = dt.Rows.Count;   //每一批次中的行数
+                        //bulkCopy.WriteToServer(dt);   //将提供的数据源中的所有行复制到目标表中
+                        default:
+                            throw new Exception("暂不支持该数据库类型");
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return affected;
         }
         #endregion
 
@@ -369,6 +445,35 @@ namespace Apliu.Core.Database
             }
 
             return dbDataAdapter;
+        }
+
+        /// <summary>
+        ///将DataTable转换为标准的CSV
+        /// </summary>
+        /// <param name="table">数据表</param>
+        /// <returns>返回标准的CSV</returns>
+        private static string DataTableToCsv(DataTable table)
+        {
+            //以半角逗号（即,）作分隔符，列为空也要表达其存在。
+            //列内容如存在半角逗号（即,）则用半角引号（即""）将该字段值包含起来。
+            //列内容如存在半角引号（即"）则应替换成半角双引号（""）转义，并用半角引号（即""）将该字段值包含起来。
+            StringBuilder sb = new StringBuilder();
+            DataColumn colum;
+            foreach (DataRow row in table.Rows)
+            {
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    colum = table.Columns[i];
+                    if (i != 0) sb.Append(",");
+                    if (colum.DataType == typeof(string) && row[colum].ToString().Contains(","))
+                    {
+                        sb.Append("\"" + row[colum].ToString().Replace("\"", "\"\"") + "\"");
+                    }
+                    else sb.Append(row[colum].ToString());
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
         }
 
         /// <summary>

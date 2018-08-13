@@ -29,6 +29,7 @@ namespace Apliu.Standard.Tools
             }
             set { _RootDirectory = value; }
         }
+
         /// <summary>
         /// 使用初始化的程序跟目录写日志
         /// </summary>

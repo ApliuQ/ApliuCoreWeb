@@ -1,15 +1,78 @@
-﻿using Apliu.Standard.ORM;
+﻿using Apliu.Core.Database;
+using Apliu.Standard.ORM;
+using Apliu.Standard.Tools;
 using System;
+using System.Data;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 
 namespace ApliuCoreConsole
 {
     class Program
     {
+        static void exSql01()
+        {
+            DatabaseType databaseType = DatabaseType.SqlServer;
+            String databaseConnection = @"Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa";
+            DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
+            string sql01 = "insert into test (ID,NAME,MSG) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','0001');";
+            databaseHelper.BeginTransaction(60);
+            int p1 = databaseHelper.PostData(sql01);
+            Thread.Sleep(1000);
+            databaseHelper.Complete();
+        }
+        static void exSql02()
+        {
+            DatabaseType databaseType = DatabaseType.SqlServer;
+            String databaseConnection = @"Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa";
+            DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
+            string sql01 = "insert into test (ID,NAME,MSG) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','0002');";
+            databaseHelper.BeginTransaction(60);
+            int p1 = databaseHelper.PostData(sql01);
+            Thread.Sleep(1000);
+            databaseHelper.Dispose();
+        }
         static void Run()
         {
+            Thread thread01 = new Thread(exSql01);
+            Thread thread02 = new Thread(exSql02);
+            thread01.Start();
+            thread02.Start();
+            return;
+            DatabaseType databaseType = DatabaseType.SqlServer;
+            String databaseConnection = @"Data Source=APLIUDELL\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa";
+            DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
+            string sql01 = "insert into test (ID,NAME) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');";
+            databaseHelper.BeginTransaction(60);
+            int p1 = databaseHelper.PostData(sql01);
+            databaseHelper.Complete();
+
+            DataSet ds = databaseHelper.GetData("select * from test where name like '%2018-08-13%'");
+            return;
+            DataTable dataTable = new DataTable();
+            dataTable.TableName = "Test";
+            dataTable.Columns.Add("ID");
+            dataTable.Columns.Add("NAME");
+            DataRow dataRow01 = dataTable.NewRow();
+            dataRow01["ID"] = Guid.NewGuid().ToString().ToUpper();
+            dataRow01["NAME"] = DateTimeHelper.DataTimeNow.ToString("yyyy-MM-dd HH:mm:ss");
+            dataTable.Rows.Add(dataRow01);
+
+            DataRow dataRow02 = dataTable.NewRow();
+            dataRow02["ID"] = Guid.NewGuid().ToString().ToUpper();
+            dataRow02["NAME"] = DateTimeHelper.DataTimeNow.ToString("yyyy-MM-dd HH:mm:ss");
+            dataTable.Rows.Add(dataRow02);
+
+            databaseHelper.BeginTransaction(60);
+            int affected = databaseHelper.InsertTableAsync(dataTable, 60).Result;
+            databaseHelper.Dispose();
+
+            DataSet temp = databaseHelper.GetData("select * from test where name like '%2018-08-13%'");
+
+            return;
+
             ModelClass modelClass = new ModelClass()
             {
                 Id = Guid.NewGuid().ToString().ToUpper(),
@@ -32,16 +95,6 @@ namespace ApliuCoreConsole
 
         static void Main(string[] args)
         {
-            //DatabaseType databaseType = DatabaseType.SqlServer;
-            //String databaseConnection = "Data Source=140.143.5.141;Initial Catalog=ApliuWeb;User ID=sa;Password=apliu@2018";
-
-            //DatabaseHelper databaseHelper = new DatabaseHelper(databaseType, databaseConnection);
-
-            //string sql01 = "insert into test (ID,NAME) values('" + Guid.NewGuid().ToString().ToLower() + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');";
-            //int p1 = databaseHelper.PostData(sql01);
-
-            //DataSet ds = databaseHelper.GetData("select * from test ");
-
             Console.WriteLine("Apliu Core Console Hello World!");
             try
             {
