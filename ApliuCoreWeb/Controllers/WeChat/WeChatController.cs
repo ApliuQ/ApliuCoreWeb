@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ApliuCoreWeb.Models;
 
-namespace ApliuCoreWeb.Controllers
+namespace ApliuCoreWeb.Controllers.WeChat
 {
     public class WeChatController : Controller
     {

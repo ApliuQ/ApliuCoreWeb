@@ -55,13 +55,18 @@ namespace ApliuCoreWeb.Models
         }
 
         /// <summary>
+        /// 数据库类型
+        /// </summary>
+        public DatabaseType DbType => DbHelper.databaseType;
+
+        /// <summary>
         /// 数据库操作对象
         /// </summary>
-        private DatabaseHelper dbHelper;
+        private DatabaseHelper DbHelper;
 
         public DataAccess(string databaseType, string databaseConnection)
         {
-            dbHelper = new DatabaseHelper((DatabaseType)Enum.Parse(typeof(DatabaseType), databaseType), databaseConnection);
+            DbHelper = new DatabaseHelper((DatabaseType)Enum.Parse(typeof(DatabaseType), databaseType), databaseConnection);
         }
 
         private static readonly Object objectLoadDataAccessLock = new Object();
@@ -89,6 +94,32 @@ namespace ApliuCoreWeb.Models
             {
                 Logger.WriteLogAsync("加载数据库配置失败，详情：" + ex.Message);
             }
+        }
+
+        /// <summary>
+        /// 执行SQL语句查询数据库
+        /// </summary>
+        /// <param name="Sql">Sql语句</param>
+        /// <returns>结果集</returns>
+        public DataRow GetDataRow(string Sql)
+        {
+            DataRow dataRow = null;
+            DataSet dataSet = GetData(Sql);
+            if (dataSet != null && dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0) dataRow = dataSet.Tables[0].Rows[0];
+            return dataRow;
+        }
+
+        /// <summary>
+        /// 执行SQL语句查询数据库
+        /// </summary>
+        /// <param name="Sql">Sql语句</param>
+        /// <returns>结果集</returns>
+        public DataTable GetDataTable(string Sql)
+        {
+            DataTable dataTable = null;
+            DataSet dataSet = GetData(Sql);
+            if (dataSet != null && dataSet.Tables.Count > 0) dataTable = dataSet.Tables[0];
+            return dataTable;
         }
 
         /// <summary>
@@ -146,7 +177,7 @@ namespace ApliuCoreWeb.Models
             DataSet dsData = null;
             try
             {
-                dsData = dbHelper.GetDataExecute(commandType, commandText, commandTimeout, commandParameters);
+                dsData = DbHelper.GetDataExecute(commandType, commandText, commandTimeout, commandParameters);
             }
             catch (Exception ex)
             {
@@ -169,7 +200,7 @@ namespace ApliuCoreWeb.Models
             int result = -1;
             try
             {
-                result = dbHelper.PostDataExecute(commandType, commandText, commandTimeout, commandParameters);
+                result = DbHelper.PostDataExecute(commandType, commandText, commandTimeout, commandParameters);
             }
             catch (Exception ex)
             {
@@ -189,7 +220,7 @@ namespace ApliuCoreWeb.Models
         {
             try
             {
-                return await dbHelper.InsertTableAsync(dataTable, timeout);
+                return await DbHelper.InsertTableAsync(dataTable, timeout);
             }
             catch (Exception ex)
             {
@@ -205,7 +236,7 @@ namespace ApliuCoreWeb.Models
         /// <param name="seconds">事务超时时间 单位秒</param>
         public void BeginTransaction(int seconds)
         {
-            dbHelper.BeginTransaction(seconds);
+            DbHelper.BeginTransaction(seconds);
         }
 
         /// <summary>
@@ -213,7 +244,7 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         public void Commit()
         {
-            dbHelper.Complete();
+            DbHelper.Complete();
         }
 
         /// <summary>
@@ -221,7 +252,7 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         public void Rollback()
         {
-            dbHelper.Dispose();
+            DbHelper.Dispose();
         }
 
         /// Sql初始化参数 MakeParam("@name" , SqlDbType.VarChar.ToString() , 50 ,value) as SqlParameter
@@ -234,7 +265,7 @@ namespace ApliuCoreWeb.Models
         /// <returns>SqlParameter/MySqlParameter类型</returns>
         public DbParameter MakeParam(string paramName, String dbType, int size, object value)
         {
-            DbParameter sqlParams = dbHelper.MakeParam(paramName, dbType, size, ParameterDirection.Input, value);
+            DbParameter sqlParams = DbHelper.MakeParam(paramName, dbType, size, ParameterDirection.Input, value);
             return sqlParams;
         }
     }

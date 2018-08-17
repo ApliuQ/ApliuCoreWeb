@@ -330,7 +330,6 @@ namespace Apliu.Core.Database
                         //bulkCopy.WriteToServer(dt);   //将提供的数据源中的所有行复制到目标表中
                         default:
                             throw new Exception("暂不支持该数据库类型");
-                            break;
                     }
                 }
             }
@@ -402,7 +401,9 @@ namespace Apliu.Core.Database
                 case DatabaseType.MySql:
                     dbConnection = new MySqlConnection(databaseConnection);
                     break;
+#pragma warning disable CS0612 // #pragma 警告后应为 disable 或 restore
                 case DatabaseType.OleDb:
+#pragma warning restore CS0612
 #if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472 || NET48 || NET49
                     dbConnection = OleDbFactory.CreateOleDbConnection(databaseConnection);
 #else
@@ -434,7 +435,9 @@ namespace Apliu.Core.Database
                 case DatabaseType.MySql:
                     dbDataAdapter = new MySqlDataAdapter(dbCommand as MySqlCommand);
                     break;
+#pragma warning disable CS0612 // #pragma 警告后应为 disable 或 restore
                 case DatabaseType.OleDb:
+#pragma warning restore CS0612
 #if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472 || NET48 || NET49
                     dbDataAdapter = OleDbFactory.CreateOleDbDataAdapter(dbCommand);
 #else
@@ -502,7 +505,9 @@ namespace Apliu.Core.Database
                     dbParameter = new MySqlParameter();
                     ((MySqlParameter)dbParameter).MySqlDbType = (MySqlDbType)Enum.Parse(typeof(MySqlDbType), dbType);
                     break;
+#pragma warning disable CS0612 // #pragma 警告后应为 disable 或 restore
                 case DatabaseType.OleDb:
+#pragma warning restore CS0612
 #if NET20 || NET35 || NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472 || NET48 || NET49
                     dbParameter = OleDbFactory.CreateOleDbParameter(paramName, (DbType)Enum.Parse(typeof(DbType), dbType), size, value);
 #else

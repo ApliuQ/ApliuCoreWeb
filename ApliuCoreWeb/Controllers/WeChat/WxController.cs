@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace ApliuCoreWeb.Controllers
+namespace ApliuCoreWeb.Controllers.WeChat
 {
     [Route("api/[controller]")]
     [ApiController]

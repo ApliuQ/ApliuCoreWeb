@@ -1,5 +1,3 @@
-/*! 一叶孤舟 | qq:28701884 | 欢迎指教 */
-
 var AI = AI || {};
 
 AI.historyTable = {};		//历史表
@@ -32,16 +30,16 @@ AI.init = function (pace) {
     //AI.treeDepth=4;
 
     AI.number = 0;
-    AI.setHistoryTable.lenght = 0
+    AI.setHistoryTable.lenght = 0;
 
     var val = AI.getAlphaBeta(-99999, 99999, AI.treeDepth, com.arr2Clone(play.map), play.my);
     //var val = AI.iterativeSearch(com.arr2Clone(play.map),play.my)
-    if (!val || val.value == -8888) {
+    if (!val || val.value == -8888) {//eslint-disable-line
         AI.treeDepth = 2;
         val = AI.getAlphaBeta(-99999, 99999, AI.treeDepth, com.arr2Clone(play.map), play.my);
     }
     //var val = AI.iterativeSearch(com.arr2Clone(play.map),play.my);
-    if (val && val.value != -8888) {
+    if (val && val.value != -8888) {//eslint-disable-line
         var man = play.mans[val.key];
         var nowTime = new Date().getTime();
         com.get("moveInfo").innerHTML = '<h3>AI搜索结果：</h3>最佳着法：' +
@@ -50,12 +48,12 @@ AI.init = function (pace) {
             AI.number + '个 <br />最佳着法评估：' +
             val.value + '分' +
             ' <br />搜索用时：' +
-            (nowTime - initTime) + '毫秒'
-        return [man.x, man.y, val.x, val.y]
+            (nowTime - initTime) + '毫秒';
+        return [man.x, man.y, val.x, val.y];
     } else {
         return false;
     }
-}
+};
 
 //迭代加深搜索着法
 AI.iterativeSearch = function (map, my) {
@@ -69,13 +67,13 @@ AI.iterativeSearch = function (map, my) {
         var nowTime = new Date().getTime();
         AI.treeDepth = i;
         AI.aotuDepth = i;
-        var val = AI.getAlphaBeta(-99999, 99999, AI.treeDepth, map, my)
+        val = AI.getAlphaBeta(-99999, 99999, AI.treeDepth, map, my);
         if (nowTime - initTime > timeOut) {
             return val;
         }
     }
     return false;
-}
+};
 
 //取得棋盘上所有棋子
 AI.getMapAllMan = function (map, my) {
@@ -83,15 +81,15 @@ AI.getMapAllMan = function (map, my) {
     for (var i = 0; i < map.length; i++) {
         for (var n = 0; n < map[i].length; n++) {
             var key = map[i][n];
-            if (key && play.mans[key].my == my) {
+            if (key && play.mans[key].my == my) {//eslint-disable-line
                 play.mans[key].x = n;
                 play.mans[key].y = i;
-                mans.push(play.mans[key])
+                mans.push(play.mans[key]);
             }
         }
     }
     return mans;
-}
+};
 
 /*
 //取得棋谱所有己方棋子的着法
@@ -129,13 +127,13 @@ AI.getMoves = function (map, my) {
             var newX = val[n][0];
             var newY = val[n][1];
             //如果不是长将着法
-            if (foul[0] != x || foul[1] != y || foul[2] != newX || foul[3] != newY) {
-                moves.push([x, y, newX, newY, man.key])
+            if (foul[0] != x || foul[1] != y || foul[2] != newX || foul[3] != newY) {//eslint-disable-line
+                moves.push([x, y, newX, newY, man.key]);
             }
         }
     }
     return moves;
-}
+};
 //A:当前棋手value/B:对手value/depth：层级
 AI.getAlphaBeta = function (A, B, depth, map, my) {
     //var txtMap= map.join();
@@ -143,7 +141,7 @@ AI.getAlphaBeta = function (A, B, depth, map, my) {
     //	if (history && history.depth >= AI.treeDepth-depth+1){
     //		return 	history.value*my;
     //}
-    if (depth == 0) {
+    if (depth == 0) {//eslint-disable-line
         return { "value": AI.evaluate(map, my) }; //局面评价函数; 
     }
     var moves = AI.getMoves(map, my); //生成全部走法; 
@@ -165,8 +163,8 @@ AI.getAlphaBeta = function (A, B, depth, map, my) {
         delete map[oldY][oldX];
         play.mans[key].x = newX;
         play.mans[key].y = newY;
-
-        if (clearKey == "j0" || clearKey == "J0") {//被吃老将,撤消这个走法; 
+        //被吃老将,撤消这个走法; 
+        if (clearKey == "j0" || clearKey == "J0") {//eslint-disable-line
             play.mans[key].x = oldX;
             play.mans[key].y = oldY;
             map[oldY][oldX] = key;
@@ -198,13 +196,14 @@ AI.getAlphaBeta = function (A, B, depth, map, my) {
             }
             if (val > A) {
                 A = val; //设置最佳走法; 
-                if (AI.treeDepth == depth) var rootKey = { "key": key, "x": newX, "y": newY, "value": A };
+                if (AI.treeDepth == depth) var rootKey = { "key": key, "x": newX, "y": newY, "value": A };//eslint-disable-line
             }
         }
     }
     //将这个走法记录到历史表中; 
     //AI.setHistoryTable(txtMap,AI.treeDepth-depth+1,A,my);
-    if (AI.treeDepth == depth) {//已经递归回根了
+    //已经递归回根了
+    if (AI.treeDepth == depth) {//eslint-disable-line
         if (!rootKey) {
             //AI没有最佳走法，说明AI被将死了，返回false
             return false;
@@ -213,14 +212,14 @@ AI.getAlphaBeta = function (A, B, depth, map, my) {
             return rootKey;
         }
     }
-    　return { "key": key, "x": newX, "y": newY, "value": A };
-}
+    return { "key": key, "x": newX, "y": newY, "value": A };
+};
 
 //奖着法记录到历史表
 AI.setHistoryTable = function (txtMap, depth, value, my) {
     AI.setHistoryTable.lenght++;
-    AI.historyTable[txtMap] = { depth: depth, value: value }
-}
+    AI.historyTable[txtMap] = { depth: depth, value: value };
+};
 
 //评估棋局 取得棋盘双方棋子价值差
 AI.evaluate = function (map, my) {
@@ -238,7 +237,7 @@ AI.evaluate = function (map, my) {
     //z(val*my)
     AI.number++;
     return val * my;
-}
+};
 
 //评估棋局 取得棋盘双方棋子价值差
 AI.evaluate1 = function (map, my) {
@@ -254,6 +253,6 @@ AI.evaluate1 = function (map, my) {
     //z(val*my)
     AI.number++;
     return val * my;
-}
+};
 
 

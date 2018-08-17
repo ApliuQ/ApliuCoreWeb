@@ -93,7 +93,7 @@ namespace ApliuCoreWeb
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<Models.WeChat.WeChatHub>("/weChatHub");
+                routes.MapHub<Controllers.WeChat.WeChatHub>("/weChatHub");
             });
 
             app.UseMvc(routes =>
