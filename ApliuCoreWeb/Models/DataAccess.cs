@@ -1,4 +1,5 @@
 ﻿using Apliu.Core.Database;
+using Apliu.Standard.ORM;
 using Apliu.Standard.Tools;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,44 @@ using System.Threading.Tasks;
 
 namespace ApliuCoreWeb.Models
 {
+    /// <summary>
+    /// 使用Apliu.Standard.ORM进行对象/数据库映射
+    /// </summary>
+    public class ORM
+    {
+        private DataAccess DataAccess;
+        public ORM(DataAccess dataAccess) { this.DataAccess = dataAccess; }
+
+        /// <summary>
+        /// 插入IModelORM 对象到数据库
+        /// </summary>
+        /// <param name="modelORM"></param>
+        /// <returns></returns>
+        public bool Insert(IModelORM modelORM)
+        {
+            return DataAccess.PostData(modelORM.GetInsertSql());
+        }
+
+        /// <summary>
+        /// 从数据库删除IModelORM 对象
+        /// </summary>
+        /// <param name="modelORM"></param>
+        /// <returns></returns>
+        public bool Delete(IModelORM modelORM)
+        {
+            return DataAccess.PostData(modelORM.GetDeleteSql());
+        }
+
+        /// <summary>
+        /// 在数据库中更新IModelORM 对象
+        /// </summary>
+        /// <param name="modelORM"></param>
+        /// <returns></returns>
+        public bool Update(IModelORM modelORM)
+        {
+            return DataAccess.PostData(modelORM.GetUpdateSql());
+        }
+    }
     public class DataAccess
     {
         private static Dictionary<string, DataAccess> _Instance = new Dictionary<string, DataAccess>() { };
@@ -64,8 +103,14 @@ namespace ApliuCoreWeb.Models
         /// </summary>
         private DatabaseHelper DbHelper;
 
+        /// <summary>
+        /// IModelORM 对象/数据库映射
+        /// </summary>
+        public ORM ORM;
+
         public DataAccess(string databaseType, string databaseConnection)
         {
+            ORM = new ORM(this);
             DbHelper = new DatabaseHelper((DatabaseType)Enum.Parse(typeof(DatabaseType), databaseType), databaseConnection);
         }
 

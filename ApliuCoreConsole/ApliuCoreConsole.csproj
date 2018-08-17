@@ -5,6 +5,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Apliu.Core.Database\Apliu.Core.Database.csproj" />
     <ProjectReference Include="..\Apliu.Standard.ORM\Apliu.Standard.ORM.csproj" />

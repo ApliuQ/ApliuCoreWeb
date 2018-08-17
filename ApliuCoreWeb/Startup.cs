@@ -127,7 +127,7 @@ namespace ApliuCoreWeb
                 Models.WeChat.WxTokenManager.TokenTaskStart();
 
                 //创建自定义菜单
-                Models.WeChat.WxDefaultMenu.CreateMenus();
+                //Models.WeChat.WxDefaultMenu.CreateMenus();
 
                 Apliu.Standard.Tools.Logger.WriteLogWeb("自定义初始化事件执行完成");
             }

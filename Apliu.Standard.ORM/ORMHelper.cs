@@ -19,8 +19,8 @@ namespace Apliu.Standard.ORM
 
             StringBuilder columnSql = new StringBuilder($" insert into {tableName} (");
             StringBuilder valueSql = new StringBuilder($"values (");
-
-            PropertyInfo[] propertyInfos = modelORM.GetType().GetProperties();
+            //FieldInfo[] myfields = modelORM.GetType().GetFields();//字段
+            PropertyInfo[] propertyInfos = modelORM.GetType().GetProperties();//属性
             foreach (var proInfo in propertyInfos)
             {
                 IgnoreAttribute ignoreAttribute = Attribute.GetCustomAttribute(proInfo, typeof(IgnoreAttribute)) as IgnoreAttribute;

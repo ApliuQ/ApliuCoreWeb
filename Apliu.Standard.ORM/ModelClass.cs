@@ -5,7 +5,8 @@ using System.Text;
 namespace Apliu.Standard.ORM
 {
     /// <summary>
-    /// ORM框架 Model标志
+    /// ORM Model对象 属性中必须存在特性Identity,且必须存在get函数
+    /// 注意区分字段和属性的区别
     /// </summary>
     public interface IModelORM { }
 

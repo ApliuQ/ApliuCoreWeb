@@ -9,12 +9,13 @@ namespace ApliuCoreConsole
             Console.WriteLine("Apliu Core Console Hello World!");
             try
             {
-                //ApliuCoreConsole.RunFuction.Run();
+                ApliuCoreConsole.RunFuction.Run();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Run：" + ex.Message);
+                Console.WriteLine("End：" + ex.Message);
             }
+            Console.WriteLine("End");
             Console.ReadKey();
         }
     }

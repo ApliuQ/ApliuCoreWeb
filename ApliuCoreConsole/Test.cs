@@ -23,11 +23,25 @@ namespace ApliuCoreConsole
         public Test() { }
         public Test(String id, String name) { this.Id = id; this.Name = name; }
     }
-    /*
     public static class RunFuction
     {
         public static void Run()
         {
+            ModelClass modelClass = new ModelClass()
+            {
+                Id = Guid.NewGuid().ToString().ToUpper(),
+                Name = "modelname",
+                Count = 8
+            };
+            String insertSql = new WeChatMsg().GetInsertSql();
+            String updateSql = modelClass.GetUpdateSql();
+            String deleteSql = modelClass.GetDeleteSql();
+
+            Console.WriteLine(insertSql);
+            Console.WriteLine(updateSql);
+            Console.WriteLine(deleteSql);
+            return;
+
             List<Test> list = new List<Test>() { new Test("3", "w"), new Test("1", "q"), new Test("1", null), new Test("2", "w") };
 
 
@@ -84,20 +98,6 @@ namespace ApliuCoreConsole
 
             return;
 
-            ModelClass modelClass = new ModelClass()
-            {
-                Id = Guid.NewGuid().ToString().ToUpper(),
-                Name = "modelname",
-                Count = 8
-            };
-            String insertSql = modelClass.GetInsertSql();
-            String updateSql = modelClass.GetUpdateSql();
-            String deleteSql = modelClass.GetDeleteSql();
-
-            Console.WriteLine(insertSql);
-            Console.WriteLine(updateSql);
-            Console.WriteLine(deleteSql);
-            return;
             String ddd = HttpGet("http://apliu.xyz/api/wx");
             String dddA = HttpGetA("http://apliu.xyz/api/wx");
             Console.WriteLine("HttpWebRequest:" + ddd);
@@ -170,6 +170,4 @@ namespace ApliuCoreConsole
             return result;
         }
     }
-
-    */
 }

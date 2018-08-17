@@ -1,6 +1,7 @@
 ﻿using Apliu.Standard.Tools;
 using Apliu.Standard.Tools.Web;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -16,20 +17,52 @@ namespace ApliuCoreWeb.Models.WeChat
         public string MessageHandle(string reqData)
         {
             string responseContent = String.Empty;
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(new System.IO.MemoryStream(WeChatBase.WxEncoding.GetBytes(reqData)));
-            XmlNode MsgType = xmldoc.SelectSingleNode("/xml/MsgType");
-            if (MsgType != null)
+            try
             {
-                switch (MsgType.InnerText)
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.Load(new System.IO.MemoryStream(WeChatBase.WxEncoding.GetBytes(reqData)));
+                XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");//接收方帐号
+                XmlNode FromUserName = xmldoc.SelectSingleNode("/xml/FromUserName");//开发者微信号
+
+                XmlNode MsgType = xmldoc.SelectSingleNode("/xml/MsgType");
+                if (MsgType != null)
                 {
-                    case "event":
-                        responseContent = EventHandle(xmldoc);//事件处理
-                        break;
-                    case "text":
-                        responseContent = TextHandle(xmldoc);//接受文本消息处理
-                        break;
+                    switch (MsgType.InnerText)
+                    {
+                        case "event":
+                            responseContent = EventHandle(xmldoc);//事件处理
+                            break;
+                        case "text":
+                            responseContent = TextHandle(xmldoc);//接受文本消息处理
+                            break;
+                    }
                 }
+
+                XmlNode Content = xmldoc.SelectSingleNode("/xml/Content");
+                XmlNode Event = xmldoc.SelectSingleNode("/xml/Event");
+
+                XmlDocument respXml = new XmlDocument();
+                respXml.Load(new System.IO.MemoryStream(WeChatBase.WxEncoding.GetBytes(responseContent)));
+                XmlNode response = respXml.SelectSingleNode("/xml/Content");
+
+                WeChatMsg weChatMsg = new WeChatMsg()
+                {
+                    Id = Guid.NewGuid().ToString().ToUpper(),
+                    FromUserName = FromUserName.InnerText,
+                    ToUserName = ToUserName.InnerText,
+                    MsgType = MsgType.InnerText,
+                    Content = Content?.InnerText,
+                    Event = Event?.InnerText,
+                    Response = response?.InnerText,
+                    RespXmlBody = responseContent,
+                    MsgXmlBody = reqData
+                };
+                DataAccess.Instance.ORM.Insert(weChatMsg);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogAsync($"回复微信公众号消息失败,详情:{ex.Message}");
+                Logger.WriteLogAsync($"StackTrace:{ex.StackTrace}");
             }
             return responseContent;
         }
@@ -71,7 +104,7 @@ namespace ApliuCoreWeb.Models.WeChat
                         "欢迎关注ApliuTools");
                 }
             }
-            Logger.WriteLogAsync("接收事件日志，开发者微信号：" + ToUserName.InnerText + "，用户OpenId：" + FromUserName.InnerText + "，事件内容：" + Event.InnerText + "，EventKey：" + EventKey.InnerText);
+            //Logger.WriteLogAsync("接收事件日志，开发者微信号：" + ToUserName.InnerText + "，用户OpenId：" + FromUserName.InnerText + "，事件内容：" + Event.InnerText + "，EventKey：" + EventKey.InnerText);
             return responseContent;
         }
 
@@ -83,7 +116,7 @@ namespace ApliuCoreWeb.Models.WeChat
         public string TextHandle(XmlDocument xmldoc)
         {
             string responseContent = "";
-            XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");//接收方帐号（收到的OpenID）
+            XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");//接收方帐号
             XmlNode FromUserName = xmldoc.SelectSingleNode("/xml/FromUserName");//开发者微信号
             XmlNode Content = xmldoc.SelectSingleNode("/xml/Content");
             if (Content != null)
@@ -92,10 +125,26 @@ namespace ApliuCoreWeb.Models.WeChat
                    FromUserName.InnerText,
                     ToUserName.InnerText,
                     DateTimeHelper.Ticks,
-                    "欢迎使用ApliuTools微信公众号，功能主页：" + ConfigurationJson.Domain);
+                   RespondText(Content.InnerText));
             }
-            Logger.WriteLogAsync("接收文本消息日志，开发者微信号：" + ToUserName.InnerText + "，用户OpenId：" + FromUserName.InnerText + "，消息内容：" + Content.InnerText);
+            //Logger.WriteLogAsync("接收文本消息日志，开发者微信号：" + ToUserName.InnerText + "，用户OpenId：" + FromUserName.InnerText + "，消息内容：" + Content.InnerText);
             return responseContent;
+        }
+
+        /// <summary>
+        /// 针对消息进行回复
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public string RespondText(String content)
+        {
+            String resp = String.Empty;
+            DataRow dataTable = DataAccess.Instance.GetDataRow($"select Content from WeChatAutoReply where (IsFull=0 and Match like '%{content}%') or (IsFull=1 and Match = '{content}') order by IsFull desc,CreateTime desc;");
+
+            if (dataTable != null) resp = dataTable["Content"].ToString();
+            else resp = "欢迎使用ApliuTools微信公众号，功能主页：" + ConfigurationJson.Domain;
+
+            return resp;
         }
 
         /// <summary>
@@ -135,13 +184,7 @@ namespace ApliuCoreWeb.Models.WeChat
         {
             get
             {
-                return @"<xml>
-                            <ToUserName><![CDATA[{0}]]></ToUserName>
-                            <FromUserName><![CDATA[{1}]]></FromUserName>
-                            <CreateTime>{2}</CreateTime>
-                            <MsgType><![CDATA[text]]></MsgType>
-                            <Content><![CDATA[{3}]]></Content>
-                            </xml>";
+                return @"<xml><ToUserName><![CDATA[{0}]]></ToUserName><FromUserName><![CDATA[{1}]]></FromUserName><CreateTime>{2}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{3}]]></Content></xml>";
             }
         }
     }
