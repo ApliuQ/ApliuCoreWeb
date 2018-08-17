@@ -13,7 +13,11 @@
         .build();
 
     wechatconnection.on("ReceiveMessage", (message) => {
-        document.getElementById('chatbox').innerHTML += '<li class="other"><spanuser style = "font-size:0.2rem;" > ' + message.username + '</spanuser><img src="/img/chatroom/chatwomen.jpg" title="other"><span>' + message.message + '</span></li>';
+        for (var i = 0; i < message.length; i++) {
+            var msg = message[i];
+            document.getElementById('chatbox').innerHTML += '<li class="other"><spanuser style = "font-size:0.2rem;" > ' + msg.username + '</spanuser><img src="/img/chatroom/chatwomen.jpg" title="other"><span>' + msg.message + '</span></li>';
+        }
+        $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
     });
 
     wechatconnection.start().then(
@@ -70,6 +74,7 @@
                 document.getElementById('chatbox').innerHTML += '<li class="me"><spanuser style="font-size:0.2rem;">' + weChatUserName + '</spanuser><img src="/img/chatroom/chatmen.jpg" title="other"><span>' + sendMessage + '</span></li>';
                 wechatconnection.invoke("sendOthersMessage", sendMessage).catch(err => console.error($.alert("发送消息失败，详情：" + err.toString())));
                 $("#input_box").val('');
+                $('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
             }
             event.preventDefault();
         });

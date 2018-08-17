@@ -1,5 +1,6 @@
 ﻿using Apliu.Standard.Tools;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ApliuCoreWeb.Models.SignalRHub
@@ -23,7 +24,7 @@ namespace ApliuCoreWeb.Models.SignalRHub
         /// 客户端接收消息
         /// </summary>
         /// <param name="messageModel"></param>
-        Task ReceiveMessage(MessageModel messageModel);
+        Task ReceiveMessage(IEnumerable<MessageModel> messageModel);
 
         /// <summary>
         /// 用户上线通知
