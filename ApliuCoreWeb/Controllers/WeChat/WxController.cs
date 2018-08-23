@@ -63,7 +63,7 @@ namespace ApliuCoreWeb.Controllers.WeChat
                         string beforeReqData = WeChatBase.WxEncoding.GetString(postBytes);
                         if (!string.IsNullOrEmpty(beforeReqData))
                         {
-                            if ("aes".Equals(encrypt_type))//(WeChatBase.IsSecurity)
+                            if (encrypt_type is string a && a.Equals("aes"))//(WeChatBase.IsSecurity)
                             {
                                 Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(WeChatBase.WxToken, WeChatBase.WxEncodingAESKey, WeChatBase.WxAppId);
                                 string afterReqData = String.Empty;  //解析之后的明文
