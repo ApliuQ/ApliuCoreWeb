@@ -14,7 +14,9 @@ namespace ApliuFormsApp
     {
         private WebBrowser webBrowser = new WebBrowser();
         System.Windows.Forms.Timer timeDown = new System.Windows.Forms.Timer();
-        Uri uri = new Uri("https://www.baidu.com/s?wd=1");//("https://news.baidu.com");
+        //http://bbs.duowan.com/forum-2143-1.html
+        //("https://news.baidu.com");
+        Uri uri = new Uri("https://www.baidu.com/s?wd=1");
         List<String> arryImgUrl = new List<String>() { };//所有图片URL
         int current = 0;//用于记录浏览器滚动条往下翻页的数据
         int page = 1;//获取多少页内容
@@ -37,6 +39,8 @@ namespace ApliuFormsApp
             tbnextid.Text = Next_Page_Id;
             tbnexttext.Text = nextpageContent;
             tbpagecount.Text = page.ToString();
+            timeDown.Interval = 100;
+            timeDown.Tick += new EventHandler(TimeDown_Tick);
         }
 
         private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -46,10 +50,9 @@ namespace ApliuFormsApp
                 jxload = false;
                 GetImgUrl();
             }
-            if (timeDown != null)
+
+            if (!timeDown.Enabled)
             {
-                timeDown.Interval = 100;
-                timeDown.Tick += new EventHandler(timeDown_Tick);
                 timeDown.Start();
             }
         }
@@ -57,7 +60,7 @@ namespace ApliuFormsApp
         bool download = false;
         bool jxload = false;
         int getpage = 1;
-        private void timeDown_Tick(object sender, EventArgs e)
+        private void TimeDown_Tick(object sender, EventArgs e)
         {
             System.Windows.Forms.HtmlDocument doc = webBrowser.Document;
             int height = webBrowser.Document.Body.ScrollRectangle.Height;
@@ -65,76 +68,79 @@ namespace ApliuFormsApp
             if (current >= height)
             {
                 current = height;
-                RunCrawler();
-                if (timeDown != null)
+                if (timeDown.Enabled)
                 {
                     timeDown.Stop();
-                    timeDown.Dispose();
-                    timeDown = null;
                     btnGet.Enabled = true;
                     btnDownload.Enabled = true;
+                }
+                RunCrawler();
 
-                    //开始获取下一页内容
-                    if (int.TryParse(tbpagecount.Text.ToString(), out int a) && getpage < a)
+                //开始获取下一页内容
+                if (int.TryParse(tbpagecount.Text.ToString(), out int a) && getpage < a)
+                {
+                    if (!String.IsNullOrEmpty(tbnextid.Text.Trim()))
                     {
-                        if (!String.IsNullOrEmpty(tbnextid.Text.Trim()))
+                        HtmlElement temp = webBrowser.Document.GetElementById(tbnextid.Text);
+                        if (temp != null)
                         {
-                            HtmlElement temp = webBrowser.Document.GetElementById(tbnextid.Text);
-                            if (temp != null)
-                            {
-                                temp.InvokeMember("Click");
-                                jxload = true;
-                                getpage++;
-                            }
-                            else WriteLine($"找不到下一页的按钮，{nameof(Next_Page_Id)}：{tbnextid.Text}");
-                            return;
+                            temp.InvokeMember("Click");
+                            jxload = true;
+                            getpage++;
                         }
-                        else
-                        {
-                            foreach (HtmlElement temp in webBrowser.Document.All)
-                            {
-                                String attrclass = temp.GetAttribute("className");
-                                String content = temp.InnerText;
-                                if (!String.IsNullOrEmpty(tbnextclass.Text.Trim()) && !String.IsNullOrEmpty(tbnexttext.Text.Trim()))
-                                {
-                                    if (attrclass == tbnextclass.Text.Trim() && content == tbnexttext.Text.Trim())
-                                    {
-                                        temp.InvokeMember("Click");
-                                        jxload = true;
-                                        getpage++;
-                                        return;
-                                    }
-                                }
-                                else if (!String.IsNullOrEmpty(tbnextclass.Text.Trim()))
-                                {
-                                    if (attrclass == tbnextclass.Text.Trim())
-                                    {
-                                        temp.InvokeMember("Click");
-                                        jxload = true;
-                                        getpage++;
-                                        return;
-                                    }
-                                }
-                                else if (!String.IsNullOrEmpty(tbnexttext.Text.Trim()))
-                                {
-                                    if (content == tbnexttext.Text.Trim())
-                                    {
-                                        temp.InvokeMember("Click");
-                                        jxload = true;
-                                        getpage++;
-                                        return;
-                                    }
-                                }
-                            }
-                        }
+                        else WriteLine($"找不到下一页的按钮，{nameof(Next_Page_Id)}：{tbnextid.Text}");
+                        return;
                     }
                     else
                     {
+                        foreach (HtmlElement temp in webBrowser.Document.All)
+                        {
+                            String attrclass = temp.GetAttribute("className");
+                            String content = temp.InnerText;
+                            if (!String.IsNullOrEmpty(tbnextclass.Text.Trim()) && !String.IsNullOrEmpty(tbnexttext.Text.Trim()))
+                            {
+                                if (attrclass == tbnextclass.Text.Trim() && content == tbnexttext.Text.Trim())
+                                {
+                                    temp.InvokeMember("Click");
+                                    jxload = true;
+                                    getpage++;
+                                    return;
+                                }
+                            }
+                            else if (!String.IsNullOrEmpty(tbnextclass.Text.Trim()))
+                            {
+                                if (attrclass == tbnextclass.Text.Trim())
+                                {
+                                    temp.InvokeMember("Click");
+                                    jxload = true;
+                                    getpage++;
+                                    return;
+                                }
+                            }
+                            else if (!String.IsNullOrEmpty(tbnexttext.Text.Trim()))
+                            {
+                                if (content == tbnexttext.Text.Trim())
+                                {
+                                    temp.InvokeMember("Click");
+                                    jxload = true;
+                                    getpage++;
+                                    return;
+                                }
+                            }
+                        }
                         if (download)
                         {
                             download = false;
                             DownloadImg();
                         }
+                    }
+                }
+                else
+                {
+                    if (download)
+                    {
+                        download = false;
+                        DownloadImg();
                     }
                 }
             }
@@ -198,17 +204,17 @@ namespace ApliuFormsApp
 
         private void GetImgUrl()
         {
-            WriteLine($"开始获取第{(getpage > 0 ? getpage : 1)}页图片 {webBrowser.Url?.ToString()}");
+            WriteLine($"开始获取第{(getpage > 0 ? getpage : 1)}页图片 {uri}");
             current = 0;
-            timeDown = new System.Windows.Forms.Timer();
             btnGet.Enabled = false;
             btnDownload.Enabled = false;
         }
 
-        private void btnGet_Click(object sender, EventArgs e)
+        private void BtnGet_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(textUrl.Text))
             {
+                uri = new Uri(textUrl.Text);
                 getpage = 1;
                 arryImgUrl.Clear();
                 webBrowser.Url = uri;
@@ -238,6 +244,7 @@ namespace ApliuFormsApp
             WriteLine($"开始下载图片，共{arryImgUrl.Count}张图片");
             WriteLine("--------------------------------------------------------");
             HttpClient httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromSeconds(0.5);
             Int32 intDown = 0;
             Task.Factory.StartNew(async () =>
             {
@@ -283,10 +290,10 @@ namespace ApliuFormsApp
             });
         }
 
-        private void btnDownload_Click(object sender, EventArgs e)
+        private void BtnDownload_Click(object sender, EventArgs e)
         {
             download = true;
-            btnGet_Click(null, null);
+            BtnGet_Click(null, null);
         }
     }
 }

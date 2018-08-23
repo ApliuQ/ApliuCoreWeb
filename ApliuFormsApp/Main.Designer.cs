@@ -75,7 +75,7 @@
             this.btnGet.TabIndex = 2;
             this.btnGet.Text = "获取图片";
             this.btnGet.UseVisualStyleBackColor = true;
-            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
+            this.btnGet.Click += new System.EventHandler(this.BtnGet_Click);
             // 
             // btnDownload
             // 
@@ -85,7 +85,7 @@
             this.btnDownload.TabIndex = 3;
             this.btnDownload.Text = "下载图片";
             this.btnDownload.UseVisualStyleBackColor = true;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            this.btnDownload.Click += new System.EventHandler(this.BtnDownload_Click);
             // 
             // tbnextid
             // 
