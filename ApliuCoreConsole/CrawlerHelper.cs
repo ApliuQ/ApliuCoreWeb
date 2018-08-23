@@ -14,7 +14,6 @@ namespace ApliuCoreConsole
         public static void Start()
         {
             Uri uri = new Uri("https://news.baidu.com");
-
             HtmlWeb htmlWeb = new HtmlWeb();
             HtmlDocument htmlDocument = htmlWeb.Load(uri);
 

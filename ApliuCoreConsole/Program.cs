@@ -7,7 +7,7 @@ namespace ApliuCoreConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Apliu Core Console Hello World!");
-            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("------------------------------------------------");
             try
             {
                 ApliuCoreConsole.RunFuction.Run();
@@ -16,7 +16,7 @@ namespace ApliuCoreConsole
             {
                 Console.WriteLine("ERROR：" + ex.Message);
             }
-            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("------------------------------------------------");
             Console.WriteLine("Apliu Core Console End!");
             Console.ReadKey();
         }
