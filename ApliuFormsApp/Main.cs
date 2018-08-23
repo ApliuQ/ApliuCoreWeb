@@ -39,8 +39,9 @@ namespace ApliuFormsApp
             tbnextid.Text = Next_Page_Id;
             tbnexttext.Text = nextpageContent;
             tbpagecount.Text = page.ToString();
-            timeDown.Interval = 100;
+            timeDown.Interval = 200;
             timeDown.Tick += new EventHandler(TimeDown_Tick);
+            webBrowser.ScriptErrorsSuppressed = true;
         }
 
         private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
