@@ -27,6 +27,21 @@ namespace ApliuCoreConsole
     {
         public static void Run()
         {
+            Console.WriteLine("开始获取");
+            HttpClient httpClient = new HttpClient();
+            try
+            {
+                Stream stream = httpClient.GetStreamAsync("https://t11.baidu.com/it/u=1895047213,2045297736&amp;fm=173&amp;app=25&amp;f=JPEG?w=218&amp;h=146&amp;s=20145D93D4AB10AF710181F10300E032").Result;
+                Console.WriteLine("获取完成：" + stream.Length);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("获取完成：" + ex.Message);
+            }
+
+            return;
+
             ModelClass modelClass = new ModelClass()
             {
                 Id = Guid.NewGuid().ToString().ToUpper(),

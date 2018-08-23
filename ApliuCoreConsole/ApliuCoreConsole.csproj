@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Apliu.Core.Database\Apliu.Core.Database.csproj" />
     <ProjectReference Include="..\Apliu.Standard.ORM\Apliu.Standard.ORM.csproj" />
     <ProjectReference Include="..\Apliu.Standard.Tools\Apliu.Standard.Tools.csproj" />
