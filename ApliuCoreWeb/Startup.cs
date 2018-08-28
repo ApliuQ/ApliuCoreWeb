@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Apliu.Standard.Tools;
+using log4net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.IO;
+using System.Text;
 
 namespace ApliuCoreWeb
 {
@@ -129,6 +129,12 @@ namespace ApliuCoreWeb
                 //创建自定义菜单
                 //Models.WeChat.WxDefaultMenu.CreateMenus();
 
+                //初始化日志配置
+                log4net.Repository.ILoggerRepository loggerRepository = LogManager.CreateRepository("NETCoreRepositoryObject");
+                log4net.Config.XmlConfigurator.Configure(loggerRepository, new FileInfo("Config/log4net.config".ToLinuxOrWinPath()));
+                log4net.ILog log4Net = LogManager.GetLogger(loggerRepository.Name, typeof(Object));
+                ApliuCoreWeb.Models.Common.Log4Net = log4Net;
+
                 Apliu.Standard.Tools.Logger.WriteLogWeb("自定义初始化事件执行完成");
             }
             catch (System.Exception ex)
@@ -136,6 +142,5 @@ namespace ApliuCoreWeb
                 Apliu.Standard.Tools.Logger.WriteLogWeb("自定义初始化事件执行失败，详情：" + ex.Message);
             }
         }
-
     }
 }

@@ -116,6 +116,7 @@ namespace ApliuCoreWeb.Controllers.WeChat
             String respContent = "ERROR";
             try
             {
+                Common.Log4Net.Debug("111111111");
                 //DataAccess.Instance.TestCeshi();
 
                 #region 测试数据库事务
@@ -143,6 +144,7 @@ namespace ApliuCoreWeb.Controllers.WeChat
             }
             catch (Exception ex)
             {
+                Common.Log4Net.Error("未知错误", ex);
                 respContent = ex.Message;
             }
 

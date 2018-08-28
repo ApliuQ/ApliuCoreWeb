@@ -1,4 +1,5 @@
 ﻿using Apliu.Standard.Tools;
+using log4net;
 using System;
 
 namespace ApliuCoreWeb.Models
@@ -26,10 +27,16 @@ namespace ApliuCoreWeb.Models
                 Logger.RootDirectory = _RootDirectory;
             }
         }
+
         /// <summary>
         /// Session加密秘钥
         /// </summary>
         private static readonly string SessionSecurityKey = ConfigurationJson.Appsettings.SessionSecurityKey;
+
+        /// <summary>
+        /// Log4Net日志实例
+        /// </summary>
+        public static ILog Log4Net { get; set; }
 
         #region 身份证号验证
         public static bool CheckIDCard(string idNumber)
