@@ -1,14 +1,18 @@
 ﻿using Apliu.Core.Database;
 using Apliu.Standard.ORM;
 using Apliu.Standard.Tools;
+using ApliuCoreConsole.DbModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace ApliuCoreConsole
@@ -25,8 +29,91 @@ namespace ApliuCoreConsole
     }
     public static class RunFuction
     {
+        public static void testFun(object obj)
+        {
+            // AutoResetEvent
+
+            Console.WriteLine(string.Format("{0}:第{1}个线程", DateTime.Now.ToString(), obj.ToString()));
+            Thread.Sleep(10000);
+        }
+
+        /// <summary>
+        /// 小Z专属知识产权 @copyright zz
+        /// </summary>
+        /// <param name="n">a个数</param>
+        /// <param name="m">z个数</param>
+        /// <param name="x">第几个</param>
+        /// <returns></returns>
+        private static String RunAsResult(Int32 n, Int32 m, Int32 x)
+        {
+            StringBuilder mmm = new StringBuilder();
+            for (int i = 0; i < m; i++) mmm.Append("1");
+            StringBuilder nnn = new StringBuilder();
+            for (int i = 0; i < n; i++) nnn.Append("0");
+            Int32 min = Convert.ToInt32(mmm.ToString(), 2);
+            Int32 max = Convert.ToInt32(mmm.ToString() + nnn.ToString(), 2);
+            Int32 result = min, forX = 0;
+            for (int i = min; i < max; i++)
+            {
+                if (Regex.Matches(Convert.ToString(i, 2), @"1").Count == m)
+                {
+                    result = i;
+                    forX++;
+                    //Console.WriteLine(Convert.ToString(result, 2).Replace("0", "a").Replace("1", "z").PadLeft(n + m, 'a'));
+                }
+                if (forX >= x) break;
+            }
+            return Convert.ToString(result, 2).Replace("0", "a").Replace("1", "z").PadLeft(n + m, 'a');
+        }
+
+        public static void EFCoreRun()
+        {
+            Students students = new Students()
+            {
+                ID = Guid.NewGuid().ToString().ToUpper(),
+                Name = "students",
+                Content = DateTime.Now.ToLongTimeString(),
+                Remark = "Remark"
+            };
+            using (DbHelper dbHelper = new DbHelper())
+            {
+                //dbHelper.Database.BeginTransaction();
+                //var tran = new TransactionScope();
+                dbHelper.Students.Add(students);
+                //dbHelper.Students.Remove(students);
+
+
+                var p_name = new SqlParameter("@Name", "萝莉");
+                var p_age = new SqlParameter("@Remark", "Remark");
+                //如果使用的是MySql数据库 需要SqlParameter把替换为MySqlParameter
+                //var p_name = new MySqlParameter("@name", "萝莉");
+                //var p_age = new MySqlParameter("@age", 13);
+                //更改学生年龄
+                int stu01 = dbHelper.Database.ExecuteSqlCommand(@"UPDATE students
+                                           SET Name = @Name
+                                           WHERE Remark = @Remark;", p_age, p_name);
+
+                dbHelper.SaveChanges();
+
+                Students stu02 = (from t in dbHelper.Students where t.Remark == null select t).First();
+
+                dbHelper.Entry<Students>(stu02).State = EntityState.Modified;
+            }
+        }
+
         public static void Run()
         {
+            EFCoreRun();
+            return;
+            Console.WriteLine(RunAsResult(7, 7, 20));
+            return;
+            //ThreadPool.SetMinThreads(1, 1);
+            //ThreadPool.SetMaxThreads(5, 5);
+            for (int i = 1; i <= 10; i++)
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(testFun), i.ToString());
+            }
+            return;
             Console.WriteLine("开始获取");
             HttpClient httpClient = new HttpClient();
             try
