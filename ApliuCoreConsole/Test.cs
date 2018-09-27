@@ -103,6 +103,10 @@ namespace ApliuCoreConsole
 
         public static void Run()
         {
+            SecurityHelper.GenerateRSAKeys(out string publicKey, out String privateKey);
+            String enc = SecurityHelper.RSAEncrypt(publicKey, "1111111111111");
+            String dec = SecurityHelper.RSADecrypt(privateKey, enc);
+            return;
             EFCoreRun();
             return;
             Console.WriteLine(RunAsResult(7, 7, 20));

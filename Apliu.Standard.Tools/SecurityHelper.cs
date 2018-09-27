@@ -9,97 +9,7 @@ namespace Apliu.Standard.Tools
 {
     public class SecurityHelper
     {
-        #region 通用加密算法
-        private static string key = "ApliuWeb";
-
-        /// <summary>
-        /// 公钥加密
-        /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
-        [Obsolete]
-        public static string EncryptContent(Object Content)
-        {
-            string Value = Content.ToString();
-            if (string.IsNullOrEmpty(Value)) return null;
-
-            try
-            {
-                using (TripleDES provider = TripleDES.Create())
-                {
-                    key = key.Length >= 24 ? key : key.PadRight(24, '9');
-                    provider.Key = Encoding.UTF8.GetBytes(key.Substring(0, 24));
-                    provider.IV = Encoding.UTF8.GetBytes(key.Substring(8, 8));
-
-                    byte[] encryptedBinary = EncryptTextToMemory(Value, provider.Key, provider.IV);
-                    return Convert.ToBase64String(encryptedBinary);
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// 公钥解密
-        /// </summary>
-        /// <param name="Content"></param>
-        /// <returns></returns>
-        [Obsolete]
-        public static string DecryptConten(Object Content)
-        {
-            string Value = Content.ToString();
-            if (string.IsNullOrEmpty(Value)) return Value;
-
-            try
-            {
-                using (TripleDES provider = TripleDES.Create())
-                {
-                    key = key.Length >= 24 ? key : key.PadRight(24, '9');
-                    provider.Key = Encoding.UTF8.GetBytes(key.Substring(0, 24));
-                    provider.IV = Encoding.UTF8.GetBytes(key.Substring(8, 8));
-
-                    byte[] buffer = Convert.FromBase64String(Value);
-                    return DecryptTextFromMemory(buffer, provider.Key, provider.IV);
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        private static byte[] EncryptTextToMemory(string data, byte[] key, byte[] iv)
-        {
-            using (var ms = new MemoryStream())
-            {
-                using (var cs = new CryptoStream(ms, TripleDES.Create().CreateEncryptor(key, iv), CryptoStreamMode.Write))
-                {
-                    byte[] toEncrypt = Encoding.Unicode.GetBytes(data);
-                    cs.Write(toEncrypt, 0, toEncrypt.Length);
-                    cs.FlushFinalBlock();
-                }
-
-                return ms.ToArray();
-            }
-        }
-
-        private static string DecryptTextFromMemory(byte[] data, byte[] key, byte[] iv)
-        {
-            using (var ms = new MemoryStream(data))
-            {
-                using (var cs = new CryptoStream(ms, TripleDES.Create().CreateDecryptor(key, iv), CryptoStreamMode.Read))
-                {
-                    using (var sr = new StreamReader(cs, Encoding.Unicode))
-                    {
-                        return sr.ReadToEnd();
-                    }
-                }
-            }
-        }
-
-        private static readonly byte[] IvBytes = { 0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF };
+        #region 哈希加密算法
 
         /// <summary>
         /// 哈希加密算法
@@ -129,10 +39,6 @@ namespace Apliu.Standard.Tools
             return string.Equals(HashEncrypt(hashAlgorithm, unhashedText, encoding), hashedText,
                 StringComparison.OrdinalIgnoreCase);
         }
-
-        #endregion 通用加密算法
-
-        #region 哈希加密算法
 
         #region MD5 算法
 
@@ -350,78 +256,56 @@ namespace Apliu.Standard.Tools
 
         #region Des 加解密
 
+        private static readonly byte[] IvBytes = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
+
         /// <summary>
         /// DES 加密
         /// </summary>
-        /// <param name="input"> 待加密的字符串 </param>
-        /// <param name="key"> 密钥（8位） </param>
+        /// <param name="content"> 待加密的字符串 </param>
+        /// <param name="skey">密钥（8位）</param>
         /// <returns></returns>
-        public static string DESEncrypt(string input, string key)
+        public static string DESEncrypt(string encryptString, string skey)
         {
             try
             {
-                var keyBytes = Encoding.UTF8.GetBytes(key);
-                //var ivBytes = Encoding.UTF8.GetBytes(iv);
-
-                var des = DES.Create();
-                des.Mode = CipherMode.ECB; //兼容其他语言的 Des 加密算法
-                des.Padding = PaddingMode.Zeros; //自动补 0
-
-                using (var ms = new MemoryStream())
-                {
-                    var data = Encoding.UTF8.GetBytes(input);
-
-                    using (var cs = new CryptoStream(ms, des.CreateEncryptor(keyBytes, IvBytes), CryptoStreamMode.Write)
-                        )
-                    {
-                        cs.Write(data, 0, data.Length);
-                        cs.FlushFinalBlock();
-                    }
-
-                    return Convert.ToBase64String(ms.ToArray());
-                }
+                if (String.IsNullOrEmpty(encryptString)) return encryptString;
+                byte[] rgbKey = Encoding.UTF8.GetBytes(skey);                 //用于对称算法的初始化向量（默认值）。       
+                byte[] inputByteArray = Encoding.UTF8.GetBytes(encryptString);
+                DESCryptoServiceProvider dCSP = new DESCryptoServiceProvider();
+                MemoryStream mStream = new MemoryStream();
+                CryptoStream cStream = new CryptoStream(mStream, dCSP.CreateEncryptor(rgbKey, IvBytes), CryptoStreamMode.Write);
+                cStream.Write(inputByteArray, 0, inputByteArray.Length);
+                cStream.FlushFinalBlock();
+                return Convert.ToBase64String(mStream.ToArray());
             }
-            catch
+            catch (Exception ex)
             {
-                return input;
+                return encryptString;
             }
         }
 
         /// <summary>
         /// DES 解密
         /// </summary>
-        /// <param name="input"> 待解密的字符串 </param>
+        /// <param name="content"> 待解密的字符串 </param>
         /// <param name="key"> 密钥（8位） </param>
         /// <returns></returns>
-        public static string DESDecrypt(string input, string key)
+        public static string DESDecrypt(string decryptString, string sKey)
         {
             try
             {
-                var keyBytes = Encoding.UTF8.GetBytes(key);
-                //var ivBytes = Encoding.UTF8.GetBytes(iv);
-
-                var des = DES.Create();
-                des.Mode = CipherMode.ECB; //兼容其他语言的Des加密算法
-                des.Padding = PaddingMode.Zeros; //自动补0
-
-                using (var ms = new MemoryStream())
-                {
-                    var data = Convert.FromBase64String(input);
-
-                    using (var cs = new CryptoStream(ms, des.CreateDecryptor(keyBytes, IvBytes), CryptoStreamMode.Write)
-                        )
-                    {
-                        cs.Write(data, 0, data.Length);
-
-                        cs.FlushFinalBlock();
-                    }
-
-                    return Encoding.UTF8.GetString(ms.ToArray());
-                }
+                if (String.IsNullOrEmpty(decryptString)) return decryptString;
+                byte[] rgbKey = Encoding.UTF8.GetBytes(sKey);
+                byte[] inputByteArray = Convert.FromBase64String(decryptString);
+                DESCryptoServiceProvider DCSP = new DESCryptoServiceProvider();
+                MemoryStream mStream = new MemoryStream();
+                CryptoStream cStream = new CryptoStream(mStream, DCSP.CreateDecryptor(rgbKey, IvBytes), CryptoStreamMode.Write);
+                cStream.Write(inputByteArray, 0, inputByteArray.Length); cStream.FlushFinalBlock();
+                return Encoding.UTF8.GetString(mStream.ToArray());
             }
-            catch
+            catch (Exception ex)
             {
-                return input;
+                return decryptString;
             }
         }
 
