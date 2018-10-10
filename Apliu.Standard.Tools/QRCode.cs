@@ -35,7 +35,8 @@ namespace Apliu.Standard.Tools
             QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
             QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCoder.QRCodeGenerator.ECCLevel.Q);
             QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.Black, Color.White, true);
+            //二维码像素不用太大 只需要设置成 5 足以
+            Bitmap qrCodeImage = qrCode.GetGraphic(5, Color.Black, Color.White, true);
             return qrCodeImage;
         }
     }
