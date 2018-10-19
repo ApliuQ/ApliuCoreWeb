@@ -28,7 +28,7 @@
 
   /*业务数据库类型: SqlServer / Oracle / MySql */
   "DatabaseType": "SqlServer",
-  "DatabaseConnection": "Data Source=APLIUCVM\\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=apliu@2018",
+  "DatabaseConnection": "Data Source=APLIUDELL\\SQLEXPRESS;Database=ApliuWeb;User ID=sa;Password=sa",
 
   /*
     Public:
@@ -43,7 +43,7 @@
   "AppSettings": {
     /*演示数据库*/
     "TesDatabaseTypet": "SqlServer",
-    "TesDatabaseConnection": "Data Source=APLIUCVM\\SQLEXPRESS;Database=TestDb;User ID=dbtest;Password=qwer@1234",
+    "TesDatabaseConnection": "Data Source=APLIUDELL\\SQLEXPRESS;Database=TestDb;User ID=sa;Password=sa",
 
     /*Session加密秘钥*/
     "SessionSecurityKey": "Apliu",
